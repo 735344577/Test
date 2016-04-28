@@ -1,0 +1,38 @@
+//
+//  CloudMoneyNew.pch
+//  CloudMoneyNew
+//
+//  Created by nice on 15/9/24.
+//  Copyright © 2015年 dfyg. All rights reserved.
+//
+
+#ifndef CloudMoneyNew_pch
+#define CloudMoneyNew_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+#import "PublicDefine.h"
+#import "ThirdParty.h"
+#import "UIKit+Category.h"
+#import "Foundation+Category.h"
+
+#endif /* CloudMoneyNew_pch */
+
+
+#ifdef DEBUG
+# define  DLog(format, ...) NSLog((@"[文件名:%s]" "[函数名:%s]" "[行号:%d]" format), __FILE__, __FUNCTION__, __LINE__, ##__VA_ARGS__);
+
+#else
+# define  DLog(...);
+
+#endif
+
+//系统版本宏判断
+#define SystemVersion(a)               [[[UIDevice currentDevice]systemVersion]floatValue] >= a
+
+#define iOS8  SystemVersion(8)
+
+
+
+

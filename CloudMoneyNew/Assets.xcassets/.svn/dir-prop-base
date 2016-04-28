@@ -1,0 +1,17 @@
+K 10
+svn:ignore
+V 329
+BarBtnImage.imageset
+Contents.json
+navigationBack_ios7.imageset
+tabbar_background.imageset
+tabbar_home_normal.imageset
+tabbar_home_select.imageset
+tabbar_more_normal.imageset
+tabbar_more_select.imageset
+tabbar_personal_normal.imageset
+tabbar_personal_select.imageset
+tabbar_product_normal.imageset
+tabbar_product_select.imageset
+
+END

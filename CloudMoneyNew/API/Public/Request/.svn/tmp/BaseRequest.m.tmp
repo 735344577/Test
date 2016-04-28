@@ -1,0 +1,173 @@
+//
+//  BaseRequest.m
+//  CloudMoneyNew
+//
+//  Created by nice on 15/9/21.
+//  Copyright © 2015年 dfyg. All rights reserved.
+//
+
+#import "BaseRequest.h"
+#import "AFNetworking.h"
+#import "BaseRequestDefine.h"
+#import "ThirdParty.h"
+#pragma mark 超时时间
+//#define TIMEOUT     30
+static float const TIMEOUT = 30;
+#pragma mark block外部使用防止block内部照成循环引用
+#define WS(weakSelf)  __weak __typeof(&*self)weakSelf = self
+@interface BaseRequest ()
+
+@property (nonatomic, strong) AFHTTPSessionManager * manager;
+@end
+
+@implementation BaseRequest
++ (instancetype)shareManager
+{
+    static BaseRequest * request = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        request = [[self alloc] init];
+    });
+    return request;
+}
+
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        self.manager = [AFHTTPSessionManager manager];
+        AFJSONResponseSerializer *serializer = [AFJSONResponseSerializer serializer];
+        [serializer setRemovesKeysWithNullValues:YES];
+        [_manager setResponseSerializer:serializer];
+        _manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+        [_manager.reachabilityManager startMonitoring];
+        [_manager.requestSerializer willChangeValueForKey:@"timeoutInterval"];
+        _manager.requestSerializer.timeoutInterval = TIMEOUT;
+        [_manager.requestSerializer didChangeValueForKey:@"timeoutInterval"];
+    }
+    return self;
+}
+
+
+- (NSURLSessionDataTask *)getSessionWithUrl:(NSString *)url parameters:(id)parameters isMask:(BOOL)mask describle:(NSString *)describle success:(void (^) (id responseJSON))success failed:(void(^) (NSString * error))failed
+{
+    
+    WS(ws);
+    NSURLSessionDataTask * task = [_manager GET:url parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+        NSString * code = [NSString stringWithFormat:@"%@", [responseObject objectForKey:CMStateName]];
+        
+         CMRequestState state = [ws requestStateFromStr:[responseObject objectForKey:CMStateName]];
+        NSString * errorInfo = [NSString stringWithFormat:@"%@", [responseObject objectForKey:CMErrorInfo]];
+        //验证失败 或者 是否需要重新登录
+        if ((state == CMRequestState_CertifyFail || [code hasPrefix:@"4"]) && [errorInfo isEqualToString:resetLoginMessage]) {
+            //            [[CMErrorLog shareManager] writeErrorLog:operation.responseString describle:describle];
+        }
+        
+        if (state == CMRequestState_success) {
+            success([responseObject JSONString]);
+        }else{
+            //需要记录到日志并上传到服务端
+//            [[CMErrorLog shareManager] writeErrorLog:operation.responseString describle:describle];
+            failed([responseObject JSONString]); 
+        }
+
+        
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        failed([error description]);
+    }];
+    return task;
+}
+
+- (NSURLSessionDataTask *)postSessionWithUrl:(NSString *)url parameters:(id)parameters isMask:(BOOL)mask describle:(NSString *)describle success:(void (^)(id responseJSON))success failed:(void(^) (NSString * error))failed
+{
+    
+    WS(ws);
+    NSURLSessionDataTask *dataTask = [_manager POST:url parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+        CMRequestState state = [ws requestStateFromStr:[responseObject objectForKey:CMStateName]];
+        if (state == CMRequestState_success) {
+            success(responseObject);
+        }else{
+            
+        }
+        success(responseObject);
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        failed([error description]);
+    }];
+    return dataTask;
+}
+
+- (NSURLSessionDataTask *)postFileWithUrl:(NSString *)url parameters:(id)parameters isMask:(BOOL)mask success:(void (^)(id responseJSON))success failed:(void (^) (NSError * error))failed
+{
+    NSURLSessionDataTask *task = [_manager POST:url parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+        
+    } success:^(NSURLSessionDataTask *task, id responseObject) {
+        success(responseObject);
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        failed(error);
+    }];
+    return task;
+}
+
+/**
+ *  获取请求状态
+ *
+ *  @param requestState 服务端返回的State值
+ *
+ *  @return state对应的字段
+ */
+- (CMRequestState)requestStateFromStr:(id)requestState
+{
+    requestState = [NSString stringWithFormat:@"%@",requestState];
+    if (requestState == nil || requestState == [NSNull null] || [requestState isEqualToString:@""]) {
+        return CMRequestState_Unkown;
+    }
+    if ([requestState isEqualToString:@"1"] || [requestState isEqualToString:@"200"])
+    {
+        return CMRequestState_success;
+    }
+    else if ([requestState isEqualToString:@"0"] || [requestState hasPrefix:@"5"])
+    {
+        return CMRequestState_fail;
+        
+    }else if([requestState isEqualToString:@"-1"] || [requestState hasPrefix:@"4"])
+    {
+        return CMRequestState_CertifyFail;
+    }
+    else
+    {
+        return CMRequestState_Unkown;
+    }
+}
+
+
+- (void)cancelAllRequest
+{
+    //    [_manager.operationQueue cancelAllOperations];
+    for (NSURLSessionTask * task in _manager.tasks) {
+        [task cancel];
+    }
+}
+
+- (void)cancelAllDataRequest
+{
+    for (NSURLSessionDataTask * task in _manager.dataTasks) {
+        [task cancel];
+    }
+}
+
+- (void)cancelAllUpdateRequest
+{
+    for (NSURLSessionUploadTask * task in _manager.uploadTasks) {
+        [task cancel];
+    }
+}
+
+- (void)cancelAllDownloadRequest
+{
+    for (NSURLSessionDownloadTask * task in _manager.downloadTasks) {
+        [task cancel];
+    }
+}
+
+
+@end
