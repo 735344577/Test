@@ -11,6 +11,7 @@
 #import "CMLineProgressView.h"
 #import "DragView.h"
 #import "LoadingView.h"
+#import "WHAnimation.h"
 @interface HomeViewController ()
 @property (nonatomic, strong) DragView * dragView;
 @end
@@ -35,13 +36,22 @@
 //    }];
 //    [self.view addSubview:_dragView];
     
-    [UMSocialSnsService presentSnsIconSheetView:self
-                                         appKey:@"546170a1fd98c5fa1500461f"
-                                      shareText:@"你要分享的文字"
-                                     shareImage:[UIImage imageNamed:@"icon.png"]
-                                shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatSession, UMShareToWechatTimeline, UMShareToSina, UMShareToQQ, UMShareToSms, UMShareToEmail, nil]
-                                       delegate:self];
+    NSMutableArray * arr = [NSMutableArray arrayWithCapacity:3];
+    [arr addObject:[WHAnimation replicatorLayer_Circle]];
+    [arr addObject:[WHAnimation replicatorLayer_Wave]];
+    [arr addObject:[WHAnimation replicatorLayer_Triangle]];
+    [arr addObject:[WHAnimation replicatorLayer_Grid]];
     
+    CGFloat radius = 80;
+    for (NSInteger loop = 0; loop < arr.count; loop ++) {
+        NSInteger col = loop % 2;
+        NSInteger row = loop / 2;
+        
+        UIView * view = [[UIView alloc] initWithFrame:CGRectMake(radius * col, radius * row, radius, radius)];
+        view.backgroundColor = [UIColor whiteColor];
+        [view.layer addSublayer:[arr objectAtIndex:loop]];
+        [self.view addSubview:view];
+    }
     
         // Do any additional setup after loading the view.
 }
@@ -61,7 +71,8 @@
     progressView.progressTintColor = [UIColor colorWithRed:140 / 255.0 green:2 / 255.0 blue:140 / 255.0 alpha:1.0];
     progressView.progress = 0.5;
     [self.view addSubview:progressView];
-    
+    NSString * str = @"123";
+    NSLog(@"str = %lu", [str obj_retainCount]);
     
     LoadingView * loadView;
     

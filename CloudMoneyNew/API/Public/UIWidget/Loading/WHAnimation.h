@@ -1,0 +1,22 @@
+//
+//  WHAnimation.h
+//  CloudMoneyNew
+//
+//  Created by nice on 16/5/11.
+//  Copyright © 2016年 dfyg. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+
+@interface WHAnimation : NSObject
+
++ (CALayer *)replicatorLayer_Circle;
+
++ (CALayer *)replicatorLayer_Wave;
+
++ (CALayer *)replicatorLayer_Triangle;
+
++ (CALayer *)replicatorLayer_Grid;
+
+
+@end

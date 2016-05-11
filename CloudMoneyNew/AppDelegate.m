@@ -27,7 +27,6 @@
     [self.window makeKeyAndVisible];
     
     self.window.rootViewController = [[BaseTabBarViewController alloc] init];
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"prefs:root=Setting"]];
     return YES;
 }
 

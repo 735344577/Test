@@ -116,4 +116,9 @@
     NSLog(@"%@",strM);
 }
 
+
+- (NSUInteger)obj_retainCount {
+    return [[self valueForKey:@"retainCount"] unsignedLongValue];
+}
+
 @end

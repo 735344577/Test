@@ -44,6 +44,7 @@
 		065B44CC1C0BFBC1003042A4 /* UITableView+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 065B44CA1C0BFBC1003042A4 /* UITableView+Category.m */; };
 		066357A01C1A5B5C0075F52B /* LoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0663579F1C1A5B5C0075F52B /* LoadingView.m */; };
 		066357A31C1A5BA70075F52B /* ArcToCircleLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 066357A21C1A5BA70075F52B /* ArcToCircleLayer.m */; };
+		06673B2A1CE2D59C00DBE98D /* WHAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 06673B291CE2D59C00DBE98D /* WHAnimation.m */; };
 		0668E0B91C0E85F400FA2669 /* UIScrollView+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 0668E0B81C0E85F400FA2669 /* UIScrollView+Category.m */; };
 		066AB8D01BC78EF000C70E13 /* libSocialQQ.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 066AB8C61BC78EF000C70E13 /* libSocialQQ.a */; };
 		066AB8D11BC78EF000C70E13 /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 066AB8C71BC78EF000C70E13 /* TencentOpenAPI.framework */; };
@@ -270,6 +271,8 @@
 		0663579F1C1A5B5C0075F52B /* LoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadingView.m; sourceTree = "<group>"; };
 		066357A11C1A5BA70075F52B /* ArcToCircleLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArcToCircleLayer.h; sourceTree = "<group>"; };
 		066357A21C1A5BA70075F52B /* ArcToCircleLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArcToCircleLayer.m; sourceTree = "<group>"; };
+		06673B281CE2D59C00DBE98D /* WHAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHAnimation.h; sourceTree = "<group>"; };
+		06673B291CE2D59C00DBE98D /* WHAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WHAnimation.m; sourceTree = "<group>"; };
 		0668E0B71C0E85F400FA2669 /* UIScrollView+Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+Category.h"; sourceTree = "<group>"; };
 		0668E0B81C0E85F400FA2669 /* UIScrollView+Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+Category.m"; sourceTree = "<group>"; };
 		066AB8C61BC78EF000C70E13 /* libSocialQQ.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libSocialQQ.a; sourceTree = "<group>"; };
@@ -778,6 +781,8 @@
 				0663579F1C1A5B5C0075F52B /* LoadingView.m */,
 				066357A11C1A5BA70075F52B /* ArcToCircleLayer.h */,
 				066357A21C1A5BA70075F52B /* ArcToCircleLayer.m */,
+				06673B281CE2D59C00DBE98D /* WHAnimation.h */,
+				06673B291CE2D59C00DBE98D /* WHAnimation.m */,
 			);
 			path = Loading;
 			sourceTree = "<group>";
@@ -1692,6 +1697,7 @@
 				065B44C61C0BFBA7003042A4 /* NSObject+Category.m in Sources */,
 				06E6686B1BB234BA00B5A80E /* NSObject+MJCoding.m in Sources */,
 				06E6682F1BB234BA00B5A80E /* NSMutableDictionary+Category.m in Sources */,
+				06673B2A1CE2D59C00DBE98D /* WHAnimation.m in Sources */,
 				06F09D231BB5148D00E8B960 /* NSData+AES.m in Sources */,
 				06E668661BB234BA00B5A80E /* MJFoundation.m in Sources */,
 				06FDBAD01BB8F6E600866A2C /* Reachability.m in Sources */,

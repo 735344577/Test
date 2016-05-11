@@ -20,4 +20,6 @@
 
 //根据字典生成对应的属性
 + (void)createPropertyWithDict:(NSDictionary *)dict;
+
+- (NSUInteger)obj_retainCount;
 @end

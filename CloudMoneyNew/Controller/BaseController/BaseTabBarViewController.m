@@ -41,6 +41,7 @@
     return self.selectedViewController.shouldAutorotate;
 }
 
+
 #pragma  mark 选中莫个VC
 //- (void)selectViewController:(NSUInteger)index
 //{
