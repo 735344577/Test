@@ -39,19 +39,39 @@
     NSMutableArray * arr = [NSMutableArray arrayWithCapacity:3];
     [arr addObject:[WHAnimation replicatorLayer_Circle]];
     [arr addObject:[WHAnimation replicatorLayer_Wave]];
+    [arr addObject:[WHAnimation replicatorLayer_Wave1]];
     [arr addObject:[WHAnimation replicatorLayer_Triangle]];
     [arr addObject:[WHAnimation replicatorLayer_Grid]];
-    
+    [arr addObject:[WHAnimation replicatorLayer_upDown]];
+    [arr addObject:[WHAnimation replicatorLayer_upDown1]];
     CGFloat radius = 80;
     for (NSInteger loop = 0; loop < arr.count; loop ++) {
-        NSInteger col = loop % 2;
-        NSInteger row = loop / 2;
+        NSInteger col = loop % 4;
+        NSInteger row = loop / 4;
         
         UIView * view = [[UIView alloc] initWithFrame:CGRectMake(radius * col, radius * row, radius, radius)];
-        view.backgroundColor = [UIColor whiteColor];
+        view.backgroundColor = [UIColor lightGrayColor];
         [view.layer addSublayer:[arr objectAtIndex:loop]];
         [self.view addSubview:view];
     }
+    
+    UIView * view = [[UIView alloc] initWithFrame:CGRectMake(100, 250, 200, 200)];
+    [view.layer addSublayer:[WHAnimation replicatorLayer_HUD]];
+    [self.view addSubview:view];
+    
+    NSString * content = @"5.8k\n粉丝";
+    UIButton * button = [UIButton buttonWithType:UIButtonTypeCustom];
+    button.frame = CGRectMake(100, 300, 80, 80);
+    button.backgroundColor = [UIColor lightGrayColor];
+    button.titleLabel.numberOfLines = 2;
+    NSMutableAttributedString *attributeString = [[NSMutableAttributedString alloc] initWithString:content];
+    [attributeString addAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor redColor], NSForegroundColorAttributeName, [UIFont systemFontOfSize:22.0], NSFontAttributeName, nil] range:NSMakeRange(0, content.length - 2)];
+    [attributeString addAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor cyanColor], NSForegroundColorAttributeName, [UIFont systemFontOfSize:14.0], NSFontAttributeName, nil] range:NSMakeRange(content.length -2, 2)];
+    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+    paragraphStyle.lineSpacing = 5.0;
+    [attributeString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0,content.length)];
+    [button setAttributedTitle:attributeString forState:UIControlStateNormal];
+//    [self.view addSubview:button];
     
         // Do any additional setup after loading the view.
 }
@@ -79,9 +99,9 @@
     if (!loadView) {
         loadView = [[LoadingView alloc] init];
         loadView.center = self.view.center;
-        [self.view addSubview:loadView];
+//        [self.view addSubview:loadView];
     }
-    [loadView startAnimation];
+//    [loadView startAnimation];
 }
 
 - (void)animationStart

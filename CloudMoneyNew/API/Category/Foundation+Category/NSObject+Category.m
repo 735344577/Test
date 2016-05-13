@@ -121,4 +121,15 @@
     return [[self valueForKey:@"retainCount"] unsignedLongValue];
 }
 
++ (UIViewController *)appRootViewController
+{
+    UIViewController *appRootVC = [UIApplication sharedApplication].keyWindow.rootViewController;
+    UIViewController *topVC = appRootVC;
+    while (topVC.presentingViewController) {
+        topVC = topVC.presentingViewController;
+    }
+    NSLog(@"topVC = %@", topVC);
+    return topVC;
+}
+
 @end
