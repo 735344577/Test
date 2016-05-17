@@ -39,7 +39,6 @@
     NSMutableArray * arr = [NSMutableArray arrayWithCapacity:3];
     [arr addObject:[WHAnimation replicatorLayer_Circle]];
     [arr addObject:[WHAnimation replicatorLayer_Wave]];
-    [arr addObject:[WHAnimation replicatorLayer_Wave1]];
     [arr addObject:[WHAnimation replicatorLayer_Triangle]];
     [arr addObject:[WHAnimation replicatorLayer_Grid]];
     [arr addObject:[WHAnimation replicatorLayer_upDown]];

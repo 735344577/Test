@@ -14,8 +14,6 @@
 
 + (CALayer *)replicatorLayer_Wave;
 
-+ (CALayer *)replicatorLayer_Wave1;
-
 + (CALayer *)replicatorLayer_Triangle;
 
 + (CALayer *)replicatorLayer_Grid;
