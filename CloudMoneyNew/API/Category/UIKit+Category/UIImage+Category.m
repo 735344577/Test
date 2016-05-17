@@ -225,6 +225,14 @@ static CGSize CWSizeReduce(CGSize size, CGFloat limit)
     return newImage;
 }
 
+- (UIImage *)imageWithTile{
+    return [self imageWithTile:UIEdgeInsetsMake(5, 5, 5, 5)];
+}
+
+- (UIImage *)imageWithTile:(UIEdgeInsets)edgeInsets{
+    return [self resizableImageWithCapInsets:edgeInsets resizingMode:UIImageResizingModeTile];
+}
+
 @end
 
 

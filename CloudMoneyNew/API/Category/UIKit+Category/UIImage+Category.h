@@ -22,8 +22,13 @@
 - (UIImage*)scaleToSize:(CGSize)size;
 
 //等比例压缩
-+ (UIImage *) imageCompressForSize:(UIImage *)sourceImage targetSize:(CGSize)size;
-+ (UIImage *) imageCompressForWidth:(UIImage *)sourceImage targetWidth:(CGFloat)defineWidth;
++ (UIImage *)imageCompressForSize:(UIImage *)sourceImage targetSize:(CGSize)size;
++ (UIImage *)imageCompressForWidth:(UIImage *)sourceImage targetWidth:(CGFloat)defineWidth;
+//图片四周保持不变拉伸图片
+- (UIImage *)imageWithTile;
+
+- (UIImage *)imageWithTile:(UIEdgeInsets)edgeInsets;
+
 @end
 
 @interface UIImage (GIF)
