@@ -82,7 +82,8 @@
     [self loginButton];
     [self registerButton];
 //    [_dragView show];
-    
+    [self currentViewController];
+    [HomeViewController appRootViewController];
     NSDictionary * dict = @{@"name":@"join", @"age": @23, @"sex":@"man", @"type":@YES, @"source":@80.5, @"array":@[@"q", @"w", @"e"], @"dic":@{@"name":@"join", @"age": @23}};
     [[self class] createPropertyWithDict:dict];
     CMLineProgressView * progressView = [[CMLineProgressView alloc] initWithFrame:CGRectMake(50, 200, CGRectGetWidth(self.view.frame) - 2 * 50, 8)];
@@ -90,8 +91,6 @@
     progressView.progressTintColor = [UIColor colorWithRed:140 / 255.0 green:2 / 255.0 blue:140 / 255.0 alpha:1.0];
     progressView.progress = 0.5;
     [self.view addSubview:progressView];
-    NSString * str = @"123";
-    NSLog(@"str = %lu", [str obj_retainCount]);
     
     LoadingView * loadView;
     

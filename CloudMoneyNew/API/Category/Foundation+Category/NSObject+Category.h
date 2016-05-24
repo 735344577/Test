@@ -23,9 +23,15 @@
 
 - (NSUInteger)obj_retainCount;
 /**
+ *  @brief 获取RootVC
+ *
+ *  @return 当前显示的VC
+ */
+- (UIViewController *)appRootViewController;
+/**
  *  @brief 获取当前所在的VC
  *
  *  @return 当前显示的VC
  */
-+ (UIViewController *)appRootViewController;
+- (UIViewController *)currentViewController;
 @end
