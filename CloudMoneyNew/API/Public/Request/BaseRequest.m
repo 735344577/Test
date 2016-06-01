@@ -18,6 +18,7 @@
 
 //@property (nonatomic, strong) AFHTTPRequestOperationManager * manager;
 @property (nonatomic, strong) AFHTTPSessionManager * manager;
+@property (nonatomic, strong) NSMutableDictionary * requestDic;
 @end
 
 @implementation BaseRequest
@@ -44,6 +45,7 @@
         [_manager.requestSerializer willChangeValueForKey:@"timeoutInterval"];
         _manager.requestSerializer.timeoutInterval = TIMEOUT;
         [_manager.requestSerializer didChangeValueForKey:@"timeoutInterval"];
+        self.requestDic = @{}.mutableCopy;
     }
     return self;
 }
@@ -94,36 +96,31 @@
 {
     
     WS(ws);
-    [_manager GET:url parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
-        /*
-        NSString * code = [NSString stringWithFormat:@"%@", [responseObject objectForKey:CMStateName]];
-        
-        CMRequestState state = [ws requestStateFromStr:[responseObject objectForKey:CMStateName]];
-        NSString * errorInfo = [NSString stringWithFormat:@"%@", [responseObject objectForKey:CMErrorInfo]];
-        //验证失败 或者 是否需要重新登录
-        if ((state == CMRequestState_CertifyFail || [code hasPrefix:@"4"]) && [errorInfo isEqualToString:resetLoginMessage]) {
-            //            [[CMErrorLog shareManager] writeErrorLog:operation.responseString describle:describle];
-        }
-        
-        if (state == CMRequestState_success) {
-            success(responseObject);
-        }else{
-            //需要记录到日志并上传到服务端
-//            [[CMErrorLog shareManager] writeErrorLog:operation.responseString describle:describle];
-            failed([responseObject JSONString]); 
-        }
-*/
-        
+    NSURLSessionDataTask * tasked = [self.requestDic objectForKey:url];
+    if (tasked) {
+        [self.requestDic removeObjectForKey:url];
+        [tasked cancel];
+    }
+    NSURLSessionDataTask * task = [_manager GET:url parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+        [ws.requestDic removeObjectForKey:url];
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         failed([error description]);
+        [ws.requestDic removeObjectForKey:url];
     }];
+    [self.requestDic setValue:task forKey:url];
 }
 
 - (void)postSessionWithUrl:(NSString *)url parameters:(id)parameters isMask:(BOOL)mask describle:(NSString *)describle success:(void (^)(id responseJSON))success failed:(void(^) (NSString * error))failed
 {
     
     WS(ws);
-    [_manager POST:url parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+    NSURLSessionDataTask * tasked = [self.requestDic objectForKey:url];
+    if (tasked) {
+        [self.requestDic removeObjectForKey:url];
+        [tasked cancel];
+    }
+    NSURLSessionDataTask * task = [_manager POST:url parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+        [ws.requestDic removeObjectForKey:url];
         CMRequestState state = [ws requestStateFromStr:[responseObject objectForKey:CMStateName]];
         if (state == CMRequestState_success) {
             success(responseObject);
@@ -133,7 +130,9 @@
         success(responseObject);
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         failed([error description]);
+        [ws.requestDic removeObjectForKey:url];
     }];
+    [self.requestDic setValue:task forKey:url];
 }
 
 - (void)postFileWithUrl:(NSString *)url parameters:(id)parameters isMask:(BOOL)mask success:(void (^)(id responseJSON))success failed:(void (^) (NSError * error))failed

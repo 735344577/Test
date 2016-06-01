@@ -35,9 +35,12 @@ static const char * HadTriggerEvent = "HadTriggerEvent";
 }
 
 + (void)load{
-    Method a = class_getInstanceMethod(self, @selector(sendAction:to:forEvent:));
-    Method b = class_getInstanceMethod(self, @selector(__uxy_sendAction:to:forEvent:));
-    method_exchangeImplementations(a, b);
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        Method a = class_getInstanceMethod(self, @selector(sendAction:to:forEvent:));
+        Method b = class_getInstanceMethod(self, @selector(__uxy_sendAction:to:forEvent:));
+        method_exchangeImplementations(a, b);
+    });
 }
 
 - (void)__uxy_sendAction:(SEL)action to:(id)target forEvent:(UIEvent *)event
@@ -48,7 +51,18 @@ static const char * HadTriggerEvent = "HadTriggerEvent";
         self.uxy_ignoreEvent = YES;
         [self performSelector:@selector(setUxy_ignoreEvent:) withObject:@(NO) afterDelay:self.uxy_acceptEventInterval];
     }
+    [self performUserSendAction:action to:target forEvent:event];
     [self __uxy_sendAction:action to:target forEvent:event];
+}
+
+- (void)performUserSendAction:(SEL)action to:(id)target forEvent:(UIEvent *)event{
+    NSDictionary * configInfo = [Status dictionaryFromConfigPlist];
+    NSString * actionString = NSStringFromSelector(action);
+    NSString * targetName = NSStringFromClass([target class]);//ViewController
+    NSString * eventID = configInfo[targetName][@"ControlEventIDs"][actionString];
+    if (eventID) {
+        NSLog(@"eventID = %@", eventID);
+    }
 }
 
 @end

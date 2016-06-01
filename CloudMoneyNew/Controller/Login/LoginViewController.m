@@ -152,7 +152,7 @@
     login_btn.titleLabel.font = [UIFont  systemFontOfSize:17];
     [login_btn addTarget:self action:@selector(loginAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.view  addSubview:login_btn];
-    
+    login_btn.uxy_acceptEventInterval = 2.0;
     [login_btn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(ws.view).with.offset(-20);
         make.left.equalTo(ws.view).with.offset(20);

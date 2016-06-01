@@ -51,6 +51,8 @@
 		066AB8D21BC78EF000C70E13 /* TencentOpenApi_IOS_Bundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 066AB8C81BC78EF000C70E13 /* TencentOpenApi_IOS_Bundle.bundle */; };
 		066AB8D31BC78EF000C70E13 /* libSocialWechat.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 066AB8CB1BC78EF000C70E13 /* libSocialWechat.a */; };
 		066AB8D41BC78EF000C70E13 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 066AB8CC1BC78EF000C70E13 /* libWeChatSDK.a */; };
+		067965281CFE83130055EAD2 /* Status.m in Sources */ = {isa = PBXBuildFile; fileRef = 067965271CFE83130055EAD2 /* Status.m */; };
+		0679652A1CFEAF3F0055EAD2 /* Event.plist in Resources */ = {isa = PBXBuildFile; fileRef = 067965291CFEAF3F0055EAD2 /* Event.plist */; };
 		067FB8571CAA127300C05D87 /* UIViewController+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 067FB8561CAA127300C05D87 /* UIViewController+Category.m */; };
 		0680A7A81CA25CE100D27852 /* ReformerProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 0680A7A71CA25CE100D27852 /* ReformerProtocol.m */; };
 		0680A7AB1CA25D2600D27852 /* APIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0680A7AA1CA25D2600D27852 /* APIManager.m */; };
@@ -284,6 +286,9 @@
 		066AB8CD1BC78EF000C70E13 /* UMSocialWechatHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMSocialWechatHandler.h; sourceTree = "<group>"; };
 		066AB8CE1BC78EF000C70E13 /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
 		066AB8CF1BC78EF000C70E13 /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiObject.h; sourceTree = "<group>"; };
+		067965261CFE83130055EAD2 /* Status.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Status.h; sourceTree = "<group>"; };
+		067965271CFE83130055EAD2 /* Status.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Status.m; sourceTree = "<group>"; };
+		067965291CFEAF3F0055EAD2 /* Event.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Event.plist; sourceTree = "<group>"; };
 		067FB8551CAA127300C05D87 /* UIViewController+Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Category.h"; sourceTree = "<group>"; };
 		067FB8561CAA127300C05D87 /* UIViewController+Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Category.m"; sourceTree = "<group>"; };
 		0680A7A61CA25CE100D27852 /* ReformerProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReformerProtocol.h; sourceTree = "<group>"; };
@@ -819,6 +824,16 @@
 			path = Wechat;
 			sourceTree = "<group>";
 		};
+		067965251CFE83000055EAD2 /* Status */ = {
+			isa = PBXGroup;
+			children = (
+				067965261CFE83130055EAD2 /* Status.h */,
+				067965271CFE83130055EAD2 /* Status.m */,
+				067965291CFEAF3F0055EAD2 /* Event.plist */,
+			);
+			path = Status;
+			sourceTree = "<group>";
+		};
 		0680A7A51CA25C9800D27852 /* Reformer */ = {
 			isa = PBXGroup;
 			children = (
@@ -965,6 +980,7 @@
 		06E667771BB234BA00B5A80E /* Public */ = {
 			isa = PBXGroup;
 			children = (
+				067965251CFE83000055EAD2 /* Status */,
 				065B44AC1C0BFB4B003042A4 /* UIWidget */,
 				06F3A3DF1BBBC6B3007E3D7B /* CMTouchID */,
 				06E9A09E1BB92764001F80DB /* CMSystemTime */,
@@ -1643,6 +1659,7 @@
 				0642F9261BC78777000E769B /* UMSLoginViewController.xib in Resources */,
 				0642F9231BC78777000E769B /* UMSCommentInputControlleriPad.xib in Resources */,
 				065641FF1C23AF1700D4B580 /* top-pic@2x.png in Resources */,
+				0679652A1CFEAF3F0055EAD2 /* Event.plist in Resources */,
 				0659E25A1C2A78E1008ADE7B /* 3.jpg in Resources */,
 				0642F9251BC78777000E769B /* UMShareEditViewControlleriPad.xib in Resources */,
 				4A12F3761BAFB306008D4FE0 /* Assets.xcassets in Resources */,
@@ -1683,6 +1700,7 @@
 				06E668531BB234BA00B5A80E /* IQKeyboardReturnKeyHandler.m in Sources */,
 				06EEDDFD1BB394BD00F6F0B4 /* CMPush.m in Sources */,
 				06FF0EA91C101DDB00B75E58 /* UIFont+Category.m in Sources */,
+				067965281CFE83130055EAD2 /* Status.m in Sources */,
 				0626B3851BB0E57300E979C3 /* ProductViewController.m in Sources */,
 				06E1A58D1C1FEE4300479C07 /* UIControl+Category.m in Sources */,
 				06E6686E1BB234BA00B5A80E /* NSString+MJExtension.m in Sources */,

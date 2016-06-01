@@ -82,8 +82,8 @@
     [self loginButton];
     [self registerButton];
 //    [_dragView show];
-    [self currentViewController];
-    [HomeViewController appRootViewController];
+    [Status currentViewController];
+    [Status appRootViewController];
     NSDictionary * dict = @{@"name":@"join", @"age": @23, @"sex":@"man", @"type":@YES, @"source":@80.5, @"array":@[@"q", @"w", @"e"], @"dic":@{@"name":@"join", @"age": @23}};
     [[self class] createPropertyWithDict:dict];
     CMLineProgressView * progressView = [[CMLineProgressView alloc] initWithFrame:CGRectMake(50, 200, CGRectGetWidth(self.view.frame) - 2 * 50, 8)];

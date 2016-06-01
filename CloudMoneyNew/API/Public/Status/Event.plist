@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>HomeViewController</key>
+	<dict>
+		<key>PageEventIDs</key>
+		<dict>
+			<key>Enter</key>
+			<string>PAGE_EVENT_VC_ENTER</string>
+			<key>Leave</key>
+			<string>PAGE_EVENT_VC_LEAVE</string>
+		</dict>
+		<key>ControlEventIDs</key>
+		<dict/>
+	</dict>
+	<key>LoginViewController</key>
+	<dict>
+		<key>PageEventIDs</key>
+		<dict>
+			<key>Enter</key>
+			<string>PAGE_EVENT_VC_ENTER</string>
+			<key>Leave</key>
+			<string>PAGE_EVENT_VC_LEAVE</string>
+		</dict>
+		<key>ControlEventIDs</key>
+		<dict>
+			<key>loginAction:</key>
+			<string>LOGIN_ACTION</string>
+			<key>forgetPassword:</key>
+			<string>FORGET_ACTION</string>
+		</dict>
+	</dict>
+</dict>
+</plist>

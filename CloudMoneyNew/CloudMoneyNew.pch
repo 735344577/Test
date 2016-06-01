@@ -16,7 +16,7 @@
 #import "ThirdParty.h"
 #import "UIKit+Category.h"
 #import "Foundation+Category.h"
-
+#import "Status.h"/**公共方法*/
 #endif /* CloudMoneyNew_pch */
 
 
