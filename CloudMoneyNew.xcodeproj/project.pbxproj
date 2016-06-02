@@ -51,6 +51,7 @@
 		066AB8D21BC78EF000C70E13 /* TencentOpenApi_IOS_Bundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 066AB8C81BC78EF000C70E13 /* TencentOpenApi_IOS_Bundle.bundle */; };
 		066AB8D31BC78EF000C70E13 /* libSocialWechat.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 066AB8CB1BC78EF000C70E13 /* libSocialWechat.a */; };
 		066AB8D41BC78EF000C70E13 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 066AB8CC1BC78EF000C70E13 /* libWeChatSDK.a */; };
+		066E37461CFFC87500BE97BB /* KLPopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 066E37451CFFC87500BE97BB /* KLPopView.m */; };
 		067965281CFE83130055EAD2 /* Status.m in Sources */ = {isa = PBXBuildFile; fileRef = 067965271CFE83130055EAD2 /* Status.m */; };
 		0679652A1CFEAF3F0055EAD2 /* Event.plist in Resources */ = {isa = PBXBuildFile; fileRef = 067965291CFEAF3F0055EAD2 /* Event.plist */; };
 		067FB8571CAA127300C05D87 /* UIViewController+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 067FB8561CAA127300C05D87 /* UIViewController+Category.m */; };
@@ -286,6 +287,8 @@
 		066AB8CD1BC78EF000C70E13 /* UMSocialWechatHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMSocialWechatHandler.h; sourceTree = "<group>"; };
 		066AB8CE1BC78EF000C70E13 /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
 		066AB8CF1BC78EF000C70E13 /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiObject.h; sourceTree = "<group>"; };
+		066E37441CFFC87500BE97BB /* KLPopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KLPopView.h; sourceTree = "<group>"; };
+		066E37451CFFC87500BE97BB /* KLPopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KLPopView.m; sourceTree = "<group>"; };
 		067965261CFE83130055EAD2 /* Status.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Status.h; sourceTree = "<group>"; };
 		067965271CFE83130055EAD2 /* Status.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Status.m; sourceTree = "<group>"; };
 		067965291CFEAF3F0055EAD2 /* Event.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Event.plist; sourceTree = "<group>"; };
@@ -721,6 +724,7 @@
 		065B44AC1C0BFB4B003042A4 /* UIWidget */ = {
 			isa = PBXGroup;
 			children = (
+				066E37431CFFC85D00BE97BB /* KLPopView */,
 				0663579D1C1A5B3A0075F52B /* Loading */,
 				065B44AD1C0BFB4B003042A4 /* CMProgressView */,
 				065B44B21C0BFB4B003042A4 /* CMTableView */,
@@ -822,6 +826,15 @@
 				066AB8CF1BC78EF000C70E13 /* WXApiObject.h */,
 			);
 			path = Wechat;
+			sourceTree = "<group>";
+		};
+		066E37431CFFC85D00BE97BB /* KLPopView */ = {
+			isa = PBXGroup;
+			children = (
+				066E37441CFFC87500BE97BB /* KLPopView.h */,
+				066E37451CFFC87500BE97BB /* KLPopView.m */,
+			);
+			path = KLPopView;
 			sourceTree = "<group>";
 		};
 		067965251CFE83000055EAD2 /* Status */ = {
@@ -1731,6 +1744,7 @@
 				06E668501BB234BA00B5A80E /* IQUIViewController+Additions.m in Sources */,
 				068F7B3C1C97E537003D4BC3 /* AFSecurityPolicy.m in Sources */,
 				06E668591BB234BA00B5A80E /* IQUIView+IQKeyboardToolbar.m in Sources */,
+				066E37461CFFC87500BE97BB /* KLPopView.m in Sources */,
 				06E668581BB234BA00B5A80E /* IQToolbar.m in Sources */,
 				06E6685D1BB234BA00B5A80E /* MASConstraintMaker.m in Sources */,
 				06E668361BB234BA00B5A80E /* UILabel+Category.m in Sources */,
