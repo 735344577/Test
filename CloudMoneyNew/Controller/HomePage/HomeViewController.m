@@ -9,11 +9,11 @@
 #import "HomeViewController.h"
 #import "CMCircleProgressView.h"
 #import "CMLineProgressView.h"
-#import "DragView.h"
 #import "LoadingView.h"
 #import "WHAnimation.h"
+#import "CMUserInfo.h"
 @interface HomeViewController ()
-@property (nonatomic, strong) DragView * dragView;
+
 @end
 
 @implementation HomeViewController
@@ -31,10 +31,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-//    _dragView = [[DragView alloc] initWithFrame:CGRectMake(ScreenWidth - 60, 150, 60, 80) level:ROOT clickBlock:^{
-//        
-//    }];
-//    [self.view addSubview:_dragView];
     
     NSMutableArray * arr = [NSMutableArray arrayWithCapacity:3];
     [arr addObject:[WHAnimation replicatorLayer_Circle]];
@@ -71,8 +67,13 @@
     [attributeString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0,content.length)];
     [button setAttributedTitle:attributeString forState:UIControlStateNormal];
 //    [self.view addSubview:button];
-    
-        // Do any additional setup after loading the view.
+    CMUserInfo * Info = [CMUserInfo new];
+    Info.name = @"大黄";
+    Info.sex = 1;
+    Info.grade = 78;
+    Info.love = @"DoSomething";
+    NSLog(@"Inf0 = %@", Info);
+    // Do any additional setup after loading the view.
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -81,9 +82,7 @@
     self.title = @"首页";
     [self loginButton];
     [self registerButton];
-//    [_dragView show];
-    [Status currentViewController];
-    [Status appRootViewController];
+    
     NSDictionary * dict = @{@"name":@"join", @"age": @23, @"sex":@"man", @"type":@YES, @"source":@80.5, @"array":@[@"q", @"w", @"e"], @"dic":@{@"name":@"join", @"age": @23}};
     [[self class] createPropertyWithDict:dict];
     CMLineProgressView * progressView = [[CMLineProgressView alloc] initWithFrame:CGRectMake(50, 200, CGRectGetWidth(self.view.frame) - 2 * 50, 8)];
@@ -91,80 +90,8 @@
     progressView.progressTintColor = [UIColor colorWithRed:140 / 255.0 green:2 / 255.0 blue:140 / 255.0 alpha:1.0];
     progressView.progress = 0.5;
     [self.view addSubview:progressView];
-    
-    LoadingView * loadView;
-    
-    if (!loadView) {
-        loadView = [[LoadingView alloc] init];
-        loadView.center = self.view.center;
-//        [self.view addSubview:loadView];
-    }
-//    [loadView startAnimation];
 }
 
-- (void)animationStart
-{
-    _dragView.alpha = 1.0;
-    [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:1.0];
-    [UIView setAnimationRepeatCount:2.5];
-    [UIView setAnimationRepeatAutoreverses:YES];
-    [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
-    _dragView.transform = CGAffineTransformMakeScale(1.25f, 1.25f);
-    [UIView setAnimationDelegate:self];
-    [UIView setAnimationDidStopSelector:@selector(stopAnimation)];
-    [UIView commitAnimations];
-}
-
-- (void)stopAnimation
-{
-    [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:1.0];
-    _dragView.transform = CGAffineTransformMakeScale(1.0f, 1.0f);
-    [UIView setAnimationDelegate:self];
-    [UIView setAnimationDidStopSelector:@selector(hadStopAnimation)];
-    [UIView commitAnimations];
-}
-- (void)hadStopAnimation
-{
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        _dragView.alpha = 0.7;
-    });
-}
-
-- (void)dragViewAnimation
-{
-    [UIView animateWithDuration:1.0 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-        _dragView.transform = CGAffineTransformMakeScale(1.25f, 1.25f);
-    } completion:^(BOOL finished) {
-        
-    }];
-    [UIView animateWithDuration:1.0 delay:1.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-        _dragView.transform = CGAffineTransformMakeScale(1.0f, 1.0f);
-    } completion:^(BOOL finished) {
-        
-    }];
-    [UIView animateWithDuration:1.0 delay:2.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-        _dragView.transform = CGAffineTransformMakeScale(1.25f, 1.25f);
-    } completion:^(BOOL finished) {
-        
-    }];
-    [UIView animateWithDuration:1.0 delay:3.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-        _dragView.transform = CGAffineTransformMakeScale(1.0f, 1.0f);
-    } completion:^(BOOL finished) {
-        
-    }];
-    [UIView animateWithDuration:1.0 delay:4.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-        _dragView.transform = CGAffineTransformMakeScale(1.25f, 1.25f);
-    } completion:^(BOOL finished) {
-        
-    }];
-    [UIView animateWithDuration:1.0 delay:5.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-        _dragView.transform = CGAffineTransformMakeScale(1.0f, 1.0f);
-    } completion:^(BOOL finished) {
-        
-    }];
-}
 
 - (void)viewDidAppear:(BOOL)animated
 {
@@ -175,7 +102,6 @@
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    [_dragView hide];
 }
 
 - (void)viewDidDisappear:(BOOL)animated

@@ -191,6 +191,7 @@
 {
     RegisterViewController * registerVC = [[RegisterViewController alloc] init];
     [self.navVC pushViewController:registerVC animated:YES];
+    
 }
 
 /*
