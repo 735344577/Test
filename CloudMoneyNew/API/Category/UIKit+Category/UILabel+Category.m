@@ -10,33 +10,6 @@
 #import "UIKit+Category.h"
 @implementation UILabel (Category)
 
-+ (UILabel *)labelwithFrame:(CGRect)frame TextName:(NSString *)textname  FontSize:(CGFloat)size
-{
-    UILabel *label = [[UILabel alloc] init];
-    [label setFrame:frame];
-    [label setText:textname];
-    label.font = [UIFont  systemFontOfSize:size];
-    label.backgroundColor = [UIColor  clearColor];
-    //    label.textColor = [UIColor colorWithHexString:@"#818181"];
-    //    label.translatesAutoresizingMaskIntoConstraints = NO;
-    return label;
-}
-
-/**
- frame:位置和大小
- textname:标题名称
- size:字体大小
- str:字体颜色值
- */
-+ (UILabel *)labelwithFrame:(CGRect)frame TextName:(NSString *)textname FontSize:(CGFloat)size  textColor:(NSString *)str
-{
-    UILabel *label = [[UILabel alloc] init];
-    [label setFrame:frame];
-    [label setText:textname];
-    label.font = [UIFont  systemFontOfSize:size];
-    label.textColor = [UIColor colorWithHexString:str];
-    return label;
-}
 
 @end
 
@@ -98,6 +71,39 @@
 }
 
 @end
+@implementation UILabel (changeValue)
+
+- (void)textChangeFromNum:(NSInteger)start endNum:(NSInteger)end{
+    CGFloat animationPeriod = 0.25;
+    NSInteger conut = end - start;
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+        for (NSInteger i = start; i <= start + conut; i++) {
+            usleep(animationPeriod/conut * 1000000); // sleep in microseconds
+            dispatch_async(dispatch_get_main_queue(), ^{
+                self.text = [NSString stringWithFormat:@"%ld", i];
+            });
+        }
+    });
+}
+
+- (void)textChangeStartNum:(CGFloat)start endNum:(CGFloat)end{
+    CGFloat animationPeriod = 0.25;
+    NSInteger conut = (end - start) * 100;
+    if (conut > 100000) {
+        animationPeriod = 1.25;
+    }
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+        for (NSInteger i = start * 100; i <= end * 100; i++) {
+            usleep(animationPeriod/conut * 1000000); // sleep in microseconds
+            dispatch_async(dispatch_get_main_queue(), ^{
+                self.text = [NSString stringWithFormat:@"%.2f", [@(i) floatValue] / 100];
+            });
+        }
+    });
+}
+
+@end
+
 
 @implementation UILabel (Font_Color)
 
@@ -123,6 +129,22 @@
         startLoc += [txtArr[i] length];
     }
     self.attributedText = str;
+}
+
+@end
+
+@implementation UILabel (LineSpace)
+
+- (void)setLineSpace:(NSInteger)lineSpace{
+    NSMutableAttributedString *attributedString =
+    [[NSMutableAttributedString alloc] initWithString:self.text];
+    NSMutableParagraphStyle *paragraphStyle =  [[NSMutableParagraphStyle alloc] init];
+    [paragraphStyle setLineSpacing:lineSpace];
+    //调整行间距
+    [attributedString addAttribute:NSParagraphStyleAttributeName
+                             value:paragraphStyle
+                             range:NSMakeRange(0, [self.text length])];
+    self.attributedText = attributedString;
 }
 
 @end

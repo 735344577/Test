@@ -119,7 +119,9 @@
         [self.requestDic removeObjectForKey:url];
         [tasked cancel];
     }
-    NSURLSessionDataTask * task = [_manager POST:url parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+    NSURLSessionDataTask * task = [_manager POST:url parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
+        
+    } success:^(NSURLSessionDataTask *task, id responseObject) {
         [ws.requestDic removeObjectForKey:url];
         CMRequestState state = [ws requestStateFromStr:[responseObject objectForKey:CMStateName]];
         if (state == CMRequestState_success) {

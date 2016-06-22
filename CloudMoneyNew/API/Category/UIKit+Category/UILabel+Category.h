@@ -9,15 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface UILabel (Category)
-+ (UILabel *)labelwithFrame:(CGRect)frame  TextName:(NSString *)textname  FontSize:(CGFloat)size;
 
-/**
- frame:位置和大小
- textname:标题名称
- size:字体大小
- str:字体颜色值
- */
-+ (UILabel *)labelwithFrame:(CGRect)frame TextName:(NSString *)textname FontSize:(CGFloat)size  textColor:(NSString *)str;
 @end
 
 
@@ -45,6 +37,20 @@
 @end
 
 @interface UILabel (changeValue)
+/**
+ *  @brief 数字变化(整数级变化)
+ *
+ *  @param start 初始值
+ *  @param end   结束值
+ */
+- (void)textChangeFromNum:(NSInteger)start endNum:(NSInteger)end;
+/**
+ *  @brief 小数级变化--------（保留2位小数）
+ *
+ *  @param start 开始值
+ *  @param end   结束值
+ */
+- (void)textChangeStartNum:(CGFloat)start endNum:(CGFloat)end;
 
 @end
 
@@ -57,4 +63,13 @@
  *  @param fontArr  文字字体样式数组
  */
 - (void)txtArr:(NSArray *)txtArr colorArr:(NSArray *)colorArr fontArr:(NSArray *)fontArr;
+@end
+
+/**
+ *  @brief 设置Label行间距
+ */
+@interface UILabel (LineSpace)
+
+- (void)setLineSpace:(NSInteger)lineSpace;
+
 @end

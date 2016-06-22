@@ -12,6 +12,7 @@
 #import "LoadingView.h"
 #import "WHAnimation.h"
 #import "CMUserInfo.h"
+#import "BaseRequest.h"
 @interface HomeViewController ()
 
 @end
@@ -67,13 +68,13 @@
     [attributeString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0,content.length)];
     [button setAttributedTitle:attributeString forState:UIControlStateNormal];
 //    [self.view addSubview:button];
-    CMUserInfo * Info = [CMUserInfo new];
-    Info.name = @"大黄";
-    Info.sex = 1;
-    Info.grade = 78;
-    Info.love = @"DoSomething";
-    NSLog(@"Inf0 = %@", Info);
     // Do any additional setup after loading the view.
+    [[BaseRequest shareManager] postSessionWithUrl:@"http://192.163.3.103:8080/api/speedy/common/home.rest?appId=40000002&charset=UTF-8&format=JSON&signType=MD5&sign=dc0977189e4a7bfc035b75530a7e96dc" parameters:@{@"msg":@"lv3SggwWvmPVLAlq8jOwtLVvch1MEVfYPKvXZYOsRdsZVL88yP8/dtVFmvZFi8itkKdag0ue1QDFZpzs4GhP5fj6nGLDa+vr0hjZXmhfiTyiKI98U5ZuOtTRX+nfkPhkf+9zvakg/6fN1Ua6fsytBakHHxtFONHIqqsR4iaCEYlhnaQCPg8ltUUcTPNaQADT"} isMask:NO describle:@"" success:^(id responseJSON) {
+        
+    } failed:^(NSString *error) {
+        
+    }];
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -83,8 +84,6 @@
     [self loginButton];
     [self registerButton];
     
-    NSDictionary * dict = @{@"name":@"join", @"age": @23, @"sex":@"man", @"type":@YES, @"source":@80.5, @"array":@[@"q", @"w", @"e"], @"dic":@{@"name":@"join", @"age": @23}};
-    [[self class] createPropertyWithDict:dict];
     CMLineProgressView * progressView = [[CMLineProgressView alloc] initWithFrame:CGRectMake(50, 200, CGRectGetWidth(self.view.frame) - 2 * 50, 8)];
     progressView.trackTintColor = [UIColor purpleColor];
     progressView.progressTintColor = [UIColor colorWithRed:140 / 255.0 green:2 / 255.0 blue:140 / 255.0 alpha:1.0];

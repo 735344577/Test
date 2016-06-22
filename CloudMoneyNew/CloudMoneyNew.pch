@@ -28,6 +28,9 @@
 
 #endif
 
+//宏定义检测block是否可用
+#define BLOCK_EXEC(block, ...) if (block) { block(__VA_ARGS__); };
+
 //系统版本宏判断
 #define SystemVersion(a)               [[[UIDevice currentDevice]systemVersion]floatValue] >= a
 

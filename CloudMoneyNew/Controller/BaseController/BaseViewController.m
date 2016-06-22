@@ -188,8 +188,7 @@
     [sickNetView addSubview:logoImage];
     
     //显示信息
-    UILabel * messageLable = [UILabel labelwithFrame:CGRectMake((VIEW_WIDTH(self.view) - 200) / 2, height - 60, 200, 40) TextName:@"网络不给力,请检查网络连接" FontSize:16 textColor:@"#313131"];
-    [sickNetView addSubview:messageLable];
+    
     //重新加载 btn
     UIButton * reloadBtn = [UIButton buttonwithType:UIButtonTypeCustom Frame:CGRectMake((VIEW_WIDTH(self.view) - 120) / 2, height - 10, 120, 30) TitileName:@"重新加载" backgroundIamge:nil];
     [reloadBtn  setTitleColor:[UIColor  colorWithHexString:@"#313131"] forState:UIControlStateNormal];
