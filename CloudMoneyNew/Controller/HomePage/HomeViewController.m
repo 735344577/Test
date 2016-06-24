@@ -68,12 +68,9 @@
     [attributeString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0,content.length)];
     [button setAttributedTitle:attributeString forState:UIControlStateNormal];
 //    [self.view addSubview:button];
+    
+    
     // Do any additional setup after loading the view.
-    [[BaseRequest shareManager] postSessionWithUrl:@"http://192.163.3.103:8080/api/speedy/common/home.rest?appId=40000002&charset=UTF-8&format=JSON&signType=MD5&sign=dc0977189e4a7bfc035b75530a7e96dc" parameters:@{@"msg":@"lv3SggwWvmPVLAlq8jOwtLVvch1MEVfYPKvXZYOsRdsZVL88yP8/dtVFmvZFi8itkKdag0ue1QDFZpzs4GhP5fj6nGLDa+vr0hjZXmhfiTyiKI98U5ZuOtTRX+nfkPhkf+9zvakg/6fN1Ua6fsytBakHHxtFONHIqqsR4iaCEYlhnaQCPg8ltUUcTPNaQADT"} isMask:NO describle:@"" success:^(id responseJSON) {
-        
-    } failed:^(NSString *error) {
-        
-    }];
     
 }
 

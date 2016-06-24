@@ -1,0 +1,13 @@
+PODS:
+  - JPFPSStatus (0.0.2)
+  - pop (1.0.9)
+
+DEPENDENCIES:
+  - JPFPSStatus (~> 0.0.2)
+  - pop (~> 1.0.9)
+
+SPEC CHECKSUMS:
+  JPFPSStatus: 11de6027b4cbebfeee0c939dfe08f5ec124a0965
+  pop: f667631a5108a2e60d9e8797c9b32ddaf2080bce
+
+COCOAPODS: 0.39.0

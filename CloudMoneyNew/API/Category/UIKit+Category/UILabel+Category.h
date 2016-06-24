@@ -36,21 +36,16 @@
 
 @end
 
-@interface UILabel (changeValue)
+@interface UILabel (textValueAnimation)
 /**
- *  @brief 数字变化(整数级变化)
+ *  @brief 数值变化动画
  *
- *  @param start 初始值
- *  @param end   结束值
+ *  @param key       动画的key   字符串
+ *  @param fromValue 起始值
+ *  @param toValue   结束值
+ *  @param decimal   是否有小数点（小数保留2位）
  */
-- (void)textChangeFromNum:(NSInteger)start endNum:(NSInteger)end;
-/**
- *  @brief 小数级变化--------（保留2位小数）
- *
- *  @param start 开始值
- *  @param end   结束值
- */
-- (void)textChangeStartNum:(CGFloat)start endNum:(CGFloat)end;
+- (void)animationForkey:(NSString *)key fromValue:(CGFloat)fromValue toValue:(CGFloat)toValue decimal:(BOOL)decimal;
 
 @end
 

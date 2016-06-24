@@ -71,35 +71,46 @@
 }
 
 @end
+
 @implementation UILabel (changeValue)
 
-- (void)textChangeFromNum:(NSInteger)start endNum:(NSInteger)end{
-    CGFloat animationPeriod = 0.25;
-    NSInteger conut = end - start;
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-        for (NSInteger i = start; i <= start + conut; i++) {
-            usleep(animationPeriod/conut * 1000000); // sleep in microseconds
-            dispatch_async(dispatch_get_main_queue(), ^{
-                self.text = [NSString stringWithFormat:@"%ld", i];
-            });
-        }
-    });
-}
+- (void)animationForkey:(NSString *)key fromValue:(CGFloat)fromValue toValue:(CGFloat)toValue decimal:(BOOL)decimal{
+    POPAnimatableProperty *prop = [POPAnimatableProperty propertyWithName:key initializer:^(POPMutableAnimatableProperty *prop) {
+        prop.readBlock = ^(id obj, CGFloat values[]) {
+        };
+        prop.writeBlock = ^(id obj, const CGFloat values[]) {
+            NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+            formatter.numberStyle = NSNumberFormatterDecimalStyle;
+            NSString *string = nil;
+            //是否带有小数点
+            if (decimal) {
+                string = [NSString stringWithFormat:@"%.2f",values[0]];
+            }
+            else{
+                string = [formatter stringFromNumber:[NSNumber numberWithUnsignedInteger:(NSUInteger)values[0]]];
+            }
+            
+            if (fromValue > toValue) {
+                self.alpha = 0.5;
+            }
+            else{
+                self.alpha = 1.0;
+            }
+            
+            self.text = string;
+        };
+        
+        prop.threshold = 0.1;
+    }];
+    
+    POPBasicAnimation *anBasic = [POPBasicAnimation easeInEaseOutAnimation];   //动画属性
+    anBasic.property = prop;    //自定义属性
+    anBasic.fromValue = @(fromValue);   //从0开始
+    anBasic.toValue = @(toValue);  //
+    anBasic.duration = 1.5;    //持续时间
+    anBasic.beginTime = CACurrentMediaTime() + 0.1;    //延迟0.1秒开始
+    [self pop_addAnimation:anBasic forKey:key];
 
-- (void)textChangeStartNum:(CGFloat)start endNum:(CGFloat)end{
-    CGFloat animationPeriod = 0.25;
-    NSInteger conut = (end - start) * 100;
-    if (conut > 100000) {
-        animationPeriod = 1.25;
-    }
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-        for (NSInteger i = start * 100; i <= end * 100; i++) {
-            usleep(animationPeriod/conut * 1000000); // sleep in microseconds
-            dispatch_async(dispatch_get_main_queue(), ^{
-                self.text = [NSString stringWithFormat:@"%.2f", [@(i) floatValue] / 100];
-            });
-        }
-    });
 }
 
 @end
