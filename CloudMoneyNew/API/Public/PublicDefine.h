@@ -12,6 +12,8 @@
 //云钱袋电话
 #define Service_PhoneNum               @"400-815-2688"
 
+#define weakity(obj) autoreleasepool{} __weak __typeof(obj) obj##Weak = obj
+#define strongity(obj) autoreleasepool{} __strong __typeof(obj) obj = obj##Weak
 
 //获取全屏大小
 #define ScreenWidth                        [[UIScreen mainScreen]bounds].size.width

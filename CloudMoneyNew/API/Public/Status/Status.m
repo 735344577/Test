@@ -22,7 +22,7 @@
 
 
 + (UIViewController *)currentViewController {
-    UIWindow *keyWindow = [UIApplication sharedApplication].keyWindow;
+    UIWindow *keyWindow = [[[UIApplication sharedApplication] windows] firstObject];
     UIViewController *vc = keyWindow.rootViewController;
     if ([vc isKindOfClass:[UINavigationController class]]) {
         vc = [(UINavigationController *)vc visibleViewController];
