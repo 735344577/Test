@@ -96,7 +96,7 @@
         return defValue;
 }
 
--(NSArray *) arrayValue :(NSString *) path
+-(NSArray *)arrayValue:(NSString *)path
 {
     NSObject* obj = [self valueForKeyPath:path];
     if(obj && [obj isKindOfClass:[NSArray class]])

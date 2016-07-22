@@ -227,12 +227,6 @@ static NSString * p12Password = @"";
     } success:^(NSURLSessionDataTask *task, id responseObject) {
         @strongity(self);
         [self.requestDic removeObjectForKey:url];
-        CMRequestState state = [self requestStateFromStr:[responseObject objectForKey:CMStateName]];
-        if (state == CMRequestState_success) {
-            success(responseObject);
-        }else{
-            
-        }
         success(responseObject);
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         @strongity(self);
@@ -256,36 +250,6 @@ static NSString * p12Password = @"";
     }];
 }
 
-/**
- *  获取请求状态
- *
- *  @param requestState 服务端返回的State值
- *
- *  @return state对应的字段
- */
-- (CMRequestState)requestStateFromStr:(id)requestState
-{
-    requestState = [NSString stringWithFormat:@"%@",requestState];
-    if (requestState == nil || requestState == [NSNull null] || [requestState isEqualToString:@""]) {
-        return CMRequestState_Unkown;
-    }
-    if ([requestState isEqualToString:@"1"] || [requestState isEqualToString:@"200"])
-    {
-        return CMRequestState_success;
-    }
-    else if ([requestState isEqualToString:@"0"] || [requestState hasPrefix:@"5"])
-    {
-        return CMRequestState_fail;
-        
-    }else if([requestState isEqualToString:@"-1"] || [requestState hasPrefix:@"4"])
-    {
-        return CMRequestState_CertifyFail;
-    }
-    else
-    {
-        return CMRequestState_Unkown;
-    }
-}
 
 
 @end
