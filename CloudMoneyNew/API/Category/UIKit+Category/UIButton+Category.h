@@ -14,4 +14,12 @@
 
 @interface UIButton (Category)
 
+/**
+ *  @brief 倒计时
+ *
+ *  @param timeLine 倒计时时常
+ *  @param subTitle subTitle description
+ */
+- (void)startWithTime:(NSInteger)timeLine countDownTitle:(NSString *)subTitle;
+
 @end

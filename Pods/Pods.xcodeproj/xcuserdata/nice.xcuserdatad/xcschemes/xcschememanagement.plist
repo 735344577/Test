@@ -4,12 +4,17 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>FMDB.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>JPFPSStatus.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods.xcscheme</key>
+		<key>Pods-CloudMoneyNew.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -22,17 +27,22 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>0E9A8323B684D86745CFC1407C93C86B</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>305CC677745DDE04F1CBEEDBDCE9F341</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>744F7CD12F8BBD9F25362CDAD590D524</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>7DE20CC0E27D1D26E299CA7CBC87FE28</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>9F12FB4A63E20F601CFB2E64A65B57C1</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>DC247358A1A3D5993FAB2737423DD796</key>
 		<dict>
 			<key>primary</key>
 			<true/>

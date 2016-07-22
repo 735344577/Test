@@ -242,7 +242,7 @@ static NSString * p12Password = @"";
         //application/octet-stream通用格式
         NSURL *url2=[[NSBundle mainBundle]URLForResource:@"02.jpg" withExtension:nil];
         NSData *data2=[NSData dataWithContentsOfURL:url2];
-        [formData appendPartWithFileData:data2 name:@"userfile[]" fileName:@"02.jpg" mimeType:@"application/octet-stream"];
+        [formData appendPartWithFileData:data2 name:@"userfile" fileName:@"02.jpg" mimeType:@"application/octet-stream"];
     } success:^(NSURLSessionDataTask *task, id responseObject) {
         success(responseObject);
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
