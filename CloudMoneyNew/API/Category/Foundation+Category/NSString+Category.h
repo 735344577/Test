@@ -23,5 +23,24 @@
 - (BOOL)isContainsString:(NSString *)str;
 //注：只适配iOS8以上使用 系统的 containsString: 方法
 
-
+/**
+ *  @brief 用str替换字符串中的某一部分
+ *
+ *  @param changeStr 需要替换的字符串
+ *  @param str       替换的字符串
+ *  @param range     需要被替换的部分
+ *
+ *  @return 返回替换后的字符串
+ */
+- (NSString *)changeStringWithStr:(NSString *)change
+                  range:(NSRange)range;
+/**
+ *  @brief 用*替换字符串中的某一部分
+ *
+ *  @param changeStr 需要替换的字符串
+ *  @param range     需要被替换的部分
+ *
+ *  @return 返回替换后的字符串
+ */
+- (NSString *)changeAsteriskStringWithRange:(NSRange)range;
 @end

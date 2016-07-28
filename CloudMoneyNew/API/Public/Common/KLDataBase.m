@@ -73,7 +73,6 @@ static NSString *const DELETE_ITEMS_WITH_PREFIX_SQL = @"DELETE from %@ where id 
         [self createTableWithName:UserDB];
     }
     return self;
-    
 }
 
 - (instancetype)initWithDBWithPath:(NSString *)dbPath

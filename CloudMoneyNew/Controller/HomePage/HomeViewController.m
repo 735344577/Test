@@ -69,7 +69,6 @@
     [button setAttributedTitle:attributeString forState:UIControlStateNormal];
 //    [self.view addSubview:button];
     
-    
     // Do any additional setup after loading the view.
     
 }

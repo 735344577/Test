@@ -153,4 +153,15 @@
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",regex];
     return [predicate evaluateWithObject:self];
 }
+
+- (NSString *)changeStringWithStr:(NSString *)change
+                            range:(NSRange)range{
+    NSRegularExpression *regularExpression = [NSRegularExpression regularExpressionWithPattern:@"[0-9]" options:0 error:nil];
+    return [regularExpression stringByReplacingMatchesInString:self options:0 range:range withTemplate:change];
+}
+
+- (NSString *)changeAsteriskStringWithRange:(NSRange)range{
+    return [self changeStringWithStr:@"*" range:range];
+}
+
 @end
