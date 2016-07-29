@@ -31,4 +31,16 @@
  *  @return Event 信息
  */
 + (NSDictionary *)dictionaryFromConfigPlist;
+
+
+/**
+ *  @brief 判断一个 index是否在一个Range中  index <= range.
+ *
+ *  @param index 需要判断的index
+ *  @param range range
+ *
+ *  @return Bool
+ */
++ (BOOL)isContainsIndex:(NSUInteger)index range:(NSRange)range;
+
 @end

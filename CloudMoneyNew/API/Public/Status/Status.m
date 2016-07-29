@@ -44,4 +44,11 @@
     return dic;
 }
 
++ (BOOL)isContainsIndex:(NSUInteger)index range:(NSRange)range{
+    if (index >= range.location && index <= range.length + range.location)
+        return YES;
+    else
+        return NO;
+}
+
 @end

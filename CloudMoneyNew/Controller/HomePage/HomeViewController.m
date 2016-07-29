@@ -13,6 +13,7 @@
 #import "WHAnimation.h"
 #import "CMUserInfo.h"
 #import "BaseRequest.h"
+#import "KLAttStrView.h"
 @interface HomeViewController ()
 
 @end
@@ -48,12 +49,12 @@
         UIView * view = [[UIView alloc] initWithFrame:CGRectMake(radius * col, radius * row, radius, radius)];
         view.backgroundColor = [UIColor lightGrayColor];
         [view.layer addSublayer:[arr objectAtIndex:loop]];
-        [self.view addSubview:view];
+//        [self.view addSubview:view];
     }
     
     UIView * view = [[UIView alloc] initWithFrame:CGRectMake(100, 250, 200, 200)];
     [view.layer addSublayer:[WHAnimation replicatorLayer_HUD]];
-    [self.view addSubview:view];
+//    [self.view addSubview:view];
     
     NSString * content = @"5.8k\n粉丝";
     UIButton * button = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -68,6 +69,25 @@
     [attributeString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0,content.length)];
     [button setAttributedTitle:attributeString forState:UIControlStateNormal];
 //    [self.view addSubview:button];
+    
+    NSString * string=@"我已阅读并同意《用户注册服务协议》《支付协议》";
+    NSRange range = [string rangeOfString:@"《用户注册服务协议》"];
+    NSRange range1 = [string rangeOfString:@"《支付协议》"];
+    NSMutableAttributedString* attributeStr=[[NSMutableAttributedString alloc]initWithString:string];
+    [attributeStr addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:range];
+    [attributeStr addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:range1];
+    KLAttStrView * strView = [[KLAttStrView alloc] initWithFrame:CGRectMake(50, 350, ScreenWidth - 100, 40)];
+    strView.attributedString = attributeStr;
+    strView.backgroundColor = [UIColor clearColor];
+    [strView sizeToFit];
+    [strView setClickAction:^(NSUInteger index) {
+        if ([Status isContainsIndex:index range:range]) {
+            NSLog(@"点击《用户注册服务协议》");
+        }else if ([Status isContainsIndex:index range:range1])
+            NSLog(@"点击《支付协议》");
+    }];
+    
+    [self.view addSubview:strView];
     
     // Do any additional setup after loading the view.
     

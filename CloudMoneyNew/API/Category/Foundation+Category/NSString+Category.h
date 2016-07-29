@@ -43,4 +43,6 @@
  *  @return 返回替换后的字符串
  */
 - (NSString *)changeAsteriskStringWithRange:(NSRange)range;
+
+
 @end
