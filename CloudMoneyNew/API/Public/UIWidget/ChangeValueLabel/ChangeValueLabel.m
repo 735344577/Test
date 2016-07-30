@@ -12,7 +12,7 @@
 @property (nonatomic, strong) CADisplayLink * displayLink;
 @property (nonatomic, assign) double fromValue;
 
-@property (nonatomic, assign) double toValue;//<#obj#>
+@property (nonatomic, assign) double toValue;
 
 @property (nonatomic, assign) NSTimeInterval startTime;
 @property (nonatomic, assign) NSTimeInterval time;
@@ -37,7 +37,14 @@
 }
 
 - (void)handleAnimation:(CADisplayLink *)link{
-    static float DURATION = 1.25;
+    double vaule = fabs(_fromValue - _toValue) / 10000;
+    float DURATION = 0.75;
+    if (vaule >= 10)        //  10万以上
+        DURATION = 1.0;
+    else if (vaule >= 100)  //  100万以上
+        DURATION = 1.25;
+    else if (vaule >= 1000) //  1000万以上
+        DURATION = 1.35;
     NSTimeInterval now = CACurrentMediaTime();
     _time = now - _startTime;
     float dt = (_time) / DURATION;
@@ -88,6 +95,7 @@
 - (void)endLinkAnimation{
     self.displayLink.paused = YES;
     [self.displayLink invalidate];
+    [_displayLink removeFromRunLoop:[NSRunLoop currentRunLoop] forMode:NSRunLoopCommonModes];
     self.displayLink = nil;
 }
 

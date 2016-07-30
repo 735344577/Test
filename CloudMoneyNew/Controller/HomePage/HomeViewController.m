@@ -108,7 +108,7 @@
     self.title = @"首页";
     [self loginButton];
     [self registerButton];
-    [_ValueLabel animationChangeValueFromValue:0.0 toValue:9999.97 decimal:YES];
+    [_ValueLabel animationChangeValueFromValue:0.0 toValue:999999999.97 decimal:YES];
     CMLineProgressView * progressView = [[CMLineProgressView alloc] initWithFrame:CGRectMake(50, 200, CGRectGetWidth(self.view.frame) - 2 * 50, 8)];
     progressView.trackTintColor = [UIColor purpleColor];
     progressView.progressTintColor = [UIColor colorWithRed:140 / 255.0 green:2 / 255.0 blue:140 / 255.0 alpha:1.0];
