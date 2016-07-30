@@ -14,8 +14,9 @@
 #import "CMUserInfo.h"
 #import "BaseRequest.h"
 #import "KLAttStrView.h"
+#import "ChangeValueLabel.h"
 @interface HomeViewController ()
-
+@property (nonatomic, strong) ChangeValueLabel * ValueLabel;
 @end
 
 @implementation HomeViewController
@@ -89,6 +90,14 @@
     
     [self.view addSubview:strView];
     
+    _ValueLabel = [ChangeValueLabel new];
+    _ValueLabel.frame = CGRectMake(50, 300, ScreenWidth - 100, 40);
+    _ValueLabel.font = [UIFont systemFontOfSize:30];
+    _ValueLabel.textAlignment = NSTextAlignmentCenter;
+    _ValueLabel.textColor = [UIColor redColor];
+    [self.view addSubview:_ValueLabel];
+//    _ValueLabel.headerString = @"￥";
+    
     // Do any additional setup after loading the view.
     
 }
@@ -99,7 +108,7 @@
     self.title = @"首页";
     [self loginButton];
     [self registerButton];
-    
+    [_ValueLabel animationChangeValueFromValue:0.0 toValue:9999.97 decimal:YES];
     CMLineProgressView * progressView = [[CMLineProgressView alloc] initWithFrame:CGRectMake(50, 200, CGRectGetWidth(self.view.frame) - 2 * 50, 8)];
     progressView.trackTintColor = [UIColor purpleColor];
     progressView.progressTintColor = [UIColor colorWithRed:140 / 255.0 green:2 / 255.0 blue:140 / 255.0 alpha:1.0];
