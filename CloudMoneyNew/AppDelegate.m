@@ -25,7 +25,6 @@
     self.window.backgroundColor = [UIColor whiteColor];
     self.window.hidden = NO;
     [self.window makeKeyAndVisible];
-    
     self.window.rootViewController = [[BaseTabBarViewController alloc] init];
     return YES;
 }
