@@ -47,26 +47,6 @@
     return replicatorLayer;
 }
 
-+ (CALayer *)replicatorLayer_Wave1{
-    CGFloat between = 5.0;
-    CGFloat radius = (55 - 2 * between) / 3;
-    CAShapeLayer * shape = [CAShapeLayer layer];
-    shape.frame = CGRectMake(0, (55 - radius) / 2, radius, radius);
-    shape.path = [UIBezierPath bezierPathWithOvalInRect:CGRectMake(0, 0, radius, radius)].CGPath;
-    shape.fillColor = [UIColor redColor].CGColor;
-    [shape addAnimation:[WHAnimation angleAnimation] forKey:@"rotateAnimation"];
-    CAReplicatorLayer * replicatorLayer = [CAReplicatorLayer layer];
-    replicatorLayer.frame = CGRectMake(10, 10, 55, 55);
-    replicatorLayer.instanceDelay = 1.8;
-    replicatorLayer.instanceCount = 3;
-    CATransform3D trans3D = CATransform3DIdentity;
-    trans3D = CATransform3DTranslate(trans3D, 20, 0, 0);
-    trans3D = CATransform3DRotate(trans3D, 180 * M_PI / 180.0, 1.0, 0.0, 0.0);
-    replicatorLayer.instanceTransform = trans3D;
-    [replicatorLayer addSublayer:shape];
-    return replicatorLayer;
-}
-
 + (CALayer *)replicatorLayer_Triangle{
     CGFloat radius = 60 / 4;
     CGFloat transX = 60 - radius;

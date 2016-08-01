@@ -22,10 +22,5 @@
 + (void)createPropertyWithDict:(NSDictionary *)dict;
 
 - (NSUInteger)obj_retainCount;
-/**
- *  @brief 获取当前所在的VC
- *
- *  @return 当前显示的VC
- */
-+ (UIViewController *)appRootViewController;
+
 @end

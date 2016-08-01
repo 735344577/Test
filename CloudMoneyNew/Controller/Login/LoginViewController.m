@@ -133,7 +133,9 @@
     
     
     //忘记密码
-    UIButton * forgetPassword_btn = [UIButton buttonWithTitle:@"忘记密码" titleColor:@"#32A8EC" buttonBgColor:nil];
+    UIButton * forgetPassword_btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [forgetPassword_btn setTitle:@"忘记密码" forState:UIControlStateNormal];
+    [forgetPassword_btn setTitleColor:[UIColor colorWithHexString:@"#32A8EC"] forState:UIControlStateNormal];
     forgetPassword_btn.titleLabel.font  = [UIFont systemFontOfSize: 13];
     [forgetPassword_btn addTarget:self action:@selector(forgetPassword:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:forgetPassword_btn];
@@ -145,14 +147,16 @@
     }];
     
     // 登陆
-    UIButton *login_btn = [UIButton buttonWithTitle:@"登录" titleColor:@"#FFFFFF" buttonBgColor:nil];
+    UIButton *login_btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [login_btn setTitleColor:[UIColor colorWithHexString:@"#FFFFFF"] forState:UIControlStateNormal];
+    [login_btn setTitle:@"登录" forState:UIControlStateNormal];
     login_btn.tintColor = [UIColor colorWithHexString:@"#FFFFFF"];
     login_btn.layer.cornerRadius = 4;
     login_btn.backgroundColor = [UIColor colorWithHexString:@"#32A8EC"];
     login_btn.titleLabel.font = [UIFont  systemFontOfSize:17];
     [login_btn addTarget:self action:@selector(loginAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.view  addSubview:login_btn];
-    
+    login_btn.uxy_acceptEventInterval = 2.0;
     [login_btn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(ws.view).with.offset(-20);
         make.left.equalTo(ws.view).with.offset(20);
@@ -161,12 +165,15 @@
     }];
     
     // 注册
-    UIButton *register_btn = [UIButton buttonWithTitle:@"注册" titleColor:@"#FFFFFF" buttonBgColor:@"#FC712E"];
-    register_btn.tintColor = [UIColor  colorWithHexString:@"#FFFFFF"];
+    UIButton *register_btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [register_btn setTitleColor:[UIColor colorWithHexString:@"#FFFFFF"] forState:UIControlStateNormal];
+    [register_btn setTitle:@"注册" forState:UIControlStateNormal];
+    [register_btn setBackgroundColor:[UIColor colorWithHexString:@"#FC712E"]];
+    register_btn.tintColor = [UIColor colorWithHexString:@"#FFFFFF"];
     register_btn.layer.cornerRadius = 4;
     register_btn.titleLabel.font = [UIFont systemFontOfSize:17];
     [register_btn addTarget:self action:@selector(registerAction:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view  addSubview:register_btn];
+    [self.view addSubview:register_btn];
     [register_btn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(ws.view).with.offset(-20);
         make.left.equalTo(ws.view).with.offset(20);
@@ -191,6 +198,7 @@
 {
     RegisterViewController * registerVC = [[RegisterViewController alloc] init];
     [self.navVC pushViewController:registerVC animated:YES];
+    
 }
 
 /*

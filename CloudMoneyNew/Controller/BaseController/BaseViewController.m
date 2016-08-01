@@ -14,7 +14,6 @@
 #import "BaseNavigationViewController.h"
 #import "ThirdParty.h"
 #import "CMTouchID.h"
-#import "APIManager.h"
 @interface BaseViewController ()<MBProgressHUDDelegate>
 {
     UIView * sickNetView;
@@ -119,10 +118,7 @@
 //返回按钮
 - (void)buildBackButton
 {
-    UIButton * backBtn = [UIButton buttonwithType:UIButtonTypeCustom Frame:CGRectMake(0, 0, 25 /2, 45 / 2) TitileName:nil backgroundIamge:@"BarBtnImage.png"];
-    [backBtn addTarget:self action:@selector(popToLastController:) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem * backBarBtn = [[UIBarButtonItem alloc] initWithCustomView:backBtn];
-    self.navigationItem.leftBarButtonItem = backBarBtn;
+    
 }
 
 - (void)popToLastController:(UIButton *)sender
@@ -188,20 +184,6 @@
     [sickNetView addSubview:logoImage];
     
     //显示信息
-    UILabel * messageLable = [UILabel labelwithFrame:CGRectMake((VIEW_WIDTH(self.view) - 200) / 2, height - 60, 200, 40) TextName:@"网络不给力,请检查网络连接" FontSize:16 textColor:@"#313131"];
-    [sickNetView addSubview:messageLable];
-    //重新加载 btn
-    UIButton * reloadBtn = [UIButton buttonwithType:UIButtonTypeCustom Frame:CGRectMake((VIEW_WIDTH(self.view) - 120) / 2, height - 10, 120, 30) TitileName:@"重新加载" backgroundIamge:nil];
-    [reloadBtn  setTitleColor:[UIColor  colorWithHexString:@"#313131"] forState:UIControlStateNormal];
-    [reloadBtn titleLabel].font = [UIFont  systemFontOfSize:14];
-    reloadBtn.layer.cornerRadius = 4;
-    reloadBtn.layer.masksToBounds = YES;
-    [[reloadBtn layer] setBorderWidth:0.40];
-    [[reloadBtn layer] setBorderColor:[UIColor  colorWithHexString:@"#BBBAAA"].CGColor];
-    [reloadBtn  addTarget:self action:@selector(reloadAgain) forControlEvents:UIControlEventTouchUpInside];
-    [sickNetView  addSubview:reloadBtn];
-    [self.view  addSubview:sickNetView];
-    sickNetView.hidden = YES;
 }
 
 /**

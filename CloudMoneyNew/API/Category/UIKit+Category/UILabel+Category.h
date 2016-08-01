@@ -9,15 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface UILabel (Category)
-+ (UILabel *)labelwithFrame:(CGRect)frame  TextName:(NSString *)textname  FontSize:(CGFloat)size;
 
-/**
- frame:位置和大小
- textname:标题名称
- size:字体大小
- str:字体颜色值
- */
-+ (UILabel *)labelwithFrame:(CGRect)frame TextName:(NSString *)textname FontSize:(CGFloat)size  textColor:(NSString *)str;
 @end
 
 
@@ -44,7 +36,16 @@
 
 @end
 
-@interface UILabel (changeValue)
+@interface UILabel (textValueAnimation)
+/**
+ *  @brief 数值变化动画
+ *
+ *  @param key       动画的key   字符串
+ *  @param fromValue 起始值
+ *  @param toValue   结束值
+ *  @param decimal   是否有小数点（小数保留2位）
+ */
+- (void)animationForkey:(NSString *)key fromValue:(CGFloat)fromValue toValue:(CGFloat)toValue decimal:(BOOL)decimal;
 
 @end
 
@@ -57,4 +58,13 @@
  *  @param fontArr  文字字体样式数组
  */
 - (void)txtArr:(NSArray *)txtArr colorArr:(NSArray *)colorArr fontArr:(NSArray *)fontArr;
+@end
+
+/**
+ *  @brief 设置Label行间距
+ */
+@interface UILabel (LineSpace)
+
+- (void)setLineSpace:(NSInteger)lineSpace;
+
 @end

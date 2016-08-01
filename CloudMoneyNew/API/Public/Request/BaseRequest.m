@@ -12,13 +12,20 @@
 #import "ThirdParty.h"
 #pragma mark 超时时间
 #define TIMEOUT     30
-#pragma mark block外部使用防止block内部照成循环引用
-#define WS(weakSelf)  __weak __typeof(&*self)weakSelf = self
-@interface BaseRequest ()
+/**
+ *  @brief 你的p12密码
+ */
+static NSString * p12Password = @"";
 
-//@property (nonatomic, strong) AFHTTPRequestOperationManager * manager;
+@interface BaseRequest ()
+/**
+ *  @brief Description
+ */
 @property (nonatomic, strong) AFHTTPSessionManager * manager;
+@property (nonatomic, strong) NSMutableDictionary * requestDic;
+
 @end
+
 
 @implementation BaseRequest
 + (instancetype)shareManager
@@ -44,8 +51,100 @@
         [_manager.requestSerializer willChangeValueForKey:@"timeoutInterval"];
         _manager.requestSerializer.timeoutInterval = TIMEOUT;
         [_manager.requestSerializer didChangeValueForKey:@"timeoutInterval"];
+        self.requestDic = @{}.mutableCopy;
+        
+//        https 双向认证 需要证书（服务端.cer，客户端.p12）
+#if 1
+        NSString * cerFilePath = [[NSBundle mainBundle] pathForResource:@"sever" ofType:@"der"];
+        NSData * cerData = [NSData dataWithContentsOfFile:cerFilePath];
+        NSSet * cerSet = [NSSet setWithObject:cerData];
+        AFSecurityPolicy * policy = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeCertificate withPinnedCertificates:cerSet];
+        policy.allowInvalidCertificates = YES;
+        policy.validatesDomainName = NO;
+        _manager.securityPolicy = policy;
+//        关闭缓存避免干扰测试
+        _manager.requestSerializer.cachePolicy = NSURLRequestReloadIgnoringLocalCacheData;
+        [_manager setSessionDidBecomeInvalidBlock:^(NSURLSession * _Nonnull session, NSError * _Nonnull error) {
+            DLog(@"setSessionDidBecomeInvalidBlock");
+        }];
+//        客户端请求验证 重写
+        
+        @weakity(self);
+        [_manager setSessionDidReceiveAuthenticationChallengeBlock:^NSURLSessionAuthChallengeDisposition(NSURLSession * _Nonnull session, NSURLAuthenticationChallenge * _Nonnull challenge, NSURLCredential *__autoreleasing  _Nullable * _Nullable _credential) {
+            @strongity(self);
+            __autoreleasing NSURLCredential * credential = nil;
+            NSURLSessionAuthChallengeDisposition disposition = NSURLSessionAuthChallengePerformDefaultHandling;
+            if ([challenge.protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust]) {
+                if ([self.manager.securityPolicy evaluateServerTrust:challenge.protectionSpace.serverTrust forDomain:challenge.protectionSpace.host]) {
+                    
+                    if (credential) {
+                        disposition = NSURLSessionAuthChallengeUseCredential;
+                    }else{
+                        disposition = NSURLSessionAuthChallengePerformDefaultHandling;
+                    }
+                    
+                }else{
+                    disposition = NSURLSessionAuthChallengeCancelAuthenticationChallenge;
+                }
+                
+            }else{
+//                client authentication
+                SecIdentityRef identity = NULL;
+                SecTrustRef trust = NULL;
+                NSString * p12 = [[NSBundle mainBundle] pathForResource:@"client" ofType:@"p12"];
+                NSFileManager * fileManager = [NSFileManager defaultManager];
+#ifdef DEBUG
+//                断言内部使用了self在block中会导致循环引用，这里给转出去
+                 NSAssert([fileManager fileExistsAtPath:p12], @"client.p12: not exist");
+#endif
+                if (![fileManager fileExistsAtPath:p12]) {
+                    DLog(@"client.p12: not exist");
+                }else{
+                    NSData * PKCS12Data = [NSData dataWithContentsOfFile:p12];
+                    
+                    //客户端证书验证
+                    if ([[self class] extractIdentity:&identity andTrust:&trust fromPKCS12Data:PKCS12Data]) {
+                        SecCertificateRef certificate = NULL;
+                        SecIdentityCopyCertificate(identity, &certificate);
+                        const void * certs[] = {certificate};
+                        CFArrayRef certArray = CFArrayCreate(kCFAllocatorDefault, certs, 1, NULL);
+                        credential = [NSURLCredential credentialWithIdentity:identity certificates:(__bridge NSArray *)certArray persistence:NSURLCredentialPersistencePermanent];
+                        disposition = NSURLSessionAuthChallengeUseCredential;
+                    }
+                    
+                }
+            }
+            *_credential = credential;
+            return disposition;
+        }];
+#endif
     }
     return self;
+}
+
+//客户端证书验证方法
++ (BOOL)extractIdentity:(SecIdentityRef *)outIdentity
+               andTrust:(SecTrustRef *)outTrust
+         fromPKCS12Data:(NSData *)inPKCS12Data{
+    OSStatus securityError = errSecSuccess;
+//    client certificate password
+    NSDictionary * optionDictionary = [NSDictionary dictionaryWithObject:p12Password forKey:(__bridge id)kSecImportExportPassphrase];
+    CFArrayRef items = CFArrayCreate(NULL, 0, 0, NULL);
+    securityError = SecPKCS12Import((__bridge CFDataRef)inPKCS12Data, (__bridge CFDictionaryRef)optionDictionary, &items);
+    if (securityError == 0) {
+        CFDictionaryRef myIdentityAndTrust = CFArrayGetValueAtIndex(items, 0);
+        const void * tempIdentity = NULL;
+        tempIdentity = CFDictionaryGetValue(myIdentityAndTrust, kSecImportItemIdentity);
+        *outIdentity = (SecIdentityRef)tempIdentity;
+        const void * tempTrust = NULL;
+        tempTrust = CFDictionaryGetValue(myIdentityAndTrust, kSecImportItemTrust);
+        *outTrust = (SecTrustRef)tempTrust;
+    }else{
+        NSAssert(NO, @"Failed With error code %d", (int)securityError);
+        DLog(@"Failed With error code %d", (int)securityError);
+        return NO;
+    }
+    return YES;
 }
 
 
@@ -92,48 +191,49 @@
 
 - (void)getSessionWithUrl:(NSString *)url parameters:(id)parameters isMask:(BOOL)mask describle:(NSString *)describle success:(void (^) (id responseJSON))success failed:(void(^) (NSString * error))failed
 {
-    
-    WS(ws);
-    [_manager GET:url parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
-        /*
-        NSString * code = [NSString stringWithFormat:@"%@", [responseObject objectForKey:CMStateName]];
-        
-        CMRequestState state = [ws requestStateFromStr:[responseObject objectForKey:CMStateName]];
-        NSString * errorInfo = [NSString stringWithFormat:@"%@", [responseObject objectForKey:CMErrorInfo]];
-        //验证失败 或者 是否需要重新登录
-        if ((state == CMRequestState_CertifyFail || [code hasPrefix:@"4"]) && [errorInfo isEqualToString:resetLoginMessage]) {
-            //            [[CMErrorLog shareManager] writeErrorLog:operation.responseString describle:describle];
-        }
-        
-        if (state == CMRequestState_success) {
-            success(responseObject);
-        }else{
-            //需要记录到日志并上传到服务端
-//            [[CMErrorLog shareManager] writeErrorLog:operation.responseString describle:describle];
-            failed([responseObject JSONString]); 
-        }
-*/
-        
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+    @weakity(self);
+    NSURLSessionDataTask * tasked = [self.requestDic objectForKey:url];
+    if (tasked) {
+        [self.requestDic removeObjectForKey:url];
+        [tasked cancel];
+    }
+    NSURLSessionDataTask * task = [_manager GET:url
+                                     parameters:parameters
+                                       progress:^(NSProgress * _Nonnull downloadProgress){
+                                           
+                                       }
+                                        success:^(NSURLSessionDataTask *task, id responseObject) {
+        @strongity(self);
+        [self.requestDic removeObjectForKey:url];
+    }
+                                        failure:^(NSURLSessionDataTask *task, NSError *error) {
         failed([error description]);
+        @strongity(self);
+        [self.requestDic removeObjectForKey:url];
     }];
+    [self.requestDic setValue:task forKey:url];
 }
 
 - (void)postSessionWithUrl:(NSString *)url parameters:(id)parameters isMask:(BOOL)mask describle:(NSString *)describle success:(void (^)(id responseJSON))success failed:(void(^) (NSString * error))failed
 {
-    
-    WS(ws);
-    [_manager POST:url parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
-        CMRequestState state = [ws requestStateFromStr:[responseObject objectForKey:CMStateName]];
-        if (state == CMRequestState_success) {
-            success(responseObject);
-        }else{
-            
-        }
+    @weakity(self);
+    NSURLSessionDataTask * tasked = [self.requestDic objectForKey:url];
+    if (tasked) {
+        [self.requestDic removeObjectForKey:url];
+        [tasked cancel];
+    }
+    NSURLSessionDataTask * task = [_manager POST:url parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
+        
+    } success:^(NSURLSessionDataTask *task, id responseObject) {
+        @strongity(self);
+        [self.requestDic removeObjectForKey:url];
         success(responseObject);
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        @strongity(self);
         failed([error description]);
+        [self.requestDic removeObjectForKey:url];
     }];
+    [self.requestDic setValue:task forKey:url];
 }
 
 - (void)postFileWithUrl:(NSString *)url parameters:(id)parameters isMask:(BOOL)mask success:(void (^)(id responseJSON))success failed:(void (^) (NSError * error))failed
@@ -142,7 +242,7 @@
         //application/octet-stream通用格式
         NSURL *url2=[[NSBundle mainBundle]URLForResource:@"02.jpg" withExtension:nil];
         NSData *data2=[NSData dataWithContentsOfURL:url2];
-        [formData appendPartWithFileData:data2 name:@"userfile[]" fileName:@"02.jpg" mimeType:@"application/octet-stream"];
+        [formData appendPartWithFileData:data2 name:@"userfile" fileName:@"02.jpg" mimeType:@"application/octet-stream"];
     } success:^(NSURLSessionDataTask *task, id responseObject) {
         success(responseObject);
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
@@ -150,36 +250,6 @@
     }];
 }
 
-/**
- *  获取请求状态
- *
- *  @param requestState 服务端返回的State值
- *
- *  @return state对应的字段
- */
-- (CMRequestState)requestStateFromStr:(id)requestState
-{
-    requestState = [NSString stringWithFormat:@"%@",requestState];
-    if (requestState == nil || requestState == [NSNull null] || [requestState isEqualToString:@""]) {
-        return CMRequestState_Unkown;
-    }
-    if ([requestState isEqualToString:@"1"] || [requestState isEqualToString:@"200"])
-    {
-        return CMRequestState_success;
-    }
-    else if ([requestState isEqualToString:@"0"] || [requestState hasPrefix:@"5"])
-    {
-        return CMRequestState_fail;
-        
-    }else if([requestState isEqualToString:@"-1"] || [requestState hasPrefix:@"4"])
-    {
-        return CMRequestState_CertifyFail;
-    }
-    else
-    {
-        return CMRequestState_Unkown;
-    }
-}
 
 
 @end

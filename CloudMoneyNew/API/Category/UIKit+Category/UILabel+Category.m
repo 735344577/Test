@@ -10,33 +10,6 @@
 #import "UIKit+Category.h"
 @implementation UILabel (Category)
 
-+ (UILabel *)labelwithFrame:(CGRect)frame TextName:(NSString *)textname  FontSize:(CGFloat)size
-{
-    UILabel *label = [[UILabel alloc] init];
-    [label setFrame:frame];
-    [label setText:textname];
-    label.font = [UIFont  systemFontOfSize:size];
-    label.backgroundColor = [UIColor  clearColor];
-    //    label.textColor = [UIColor colorWithHexString:@"#818181"];
-    //    label.translatesAutoresizingMaskIntoConstraints = NO;
-    return label;
-}
-
-/**
- frame:位置和大小
- textname:标题名称
- size:字体大小
- str:字体颜色值
- */
-+ (UILabel *)labelwithFrame:(CGRect)frame TextName:(NSString *)textname FontSize:(CGFloat)size  textColor:(NSString *)str
-{
-    UILabel *label = [[UILabel alloc] init];
-    [label setFrame:frame];
-    [label setText:textname];
-    label.font = [UIFont  systemFontOfSize:size];
-    label.textColor = [UIColor colorWithHexString:str];
-    return label;
-}
 
 @end
 
@@ -99,6 +72,50 @@
 
 @end
 
+@implementation UILabel (changeValue)
+
+- (void)animationForkey:(NSString *)key fromValue:(CGFloat)fromValue toValue:(CGFloat)toValue decimal:(BOOL)decimal{
+    POPAnimatableProperty *prop = [POPAnimatableProperty propertyWithName:key initializer:^(POPMutableAnimatableProperty *prop) {
+        prop.readBlock = ^(id obj, CGFloat values[]) {
+        };
+        prop.writeBlock = ^(id obj, const CGFloat values[]) {
+            NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+            formatter.numberStyle = NSNumberFormatterDecimalStyle;
+            NSString *string = nil;
+            //是否带有小数点
+            if (decimal) {
+                string = [NSString stringWithFormat:@"%.2f",values[0]];
+            }
+            else{
+                string = [formatter stringFromNumber:[NSNumber numberWithUnsignedInteger:(NSUInteger)values[0]]];
+            }
+            
+            if (fromValue > toValue) {
+                self.alpha = 0.5;
+            }
+            else{
+                self.alpha = 1.0;
+            }
+            
+            self.text = string;
+        };
+        
+        prop.threshold = 0.1;
+    }];
+    
+    POPBasicAnimation *anBasic = [POPBasicAnimation easeInEaseOutAnimation];   //动画属性
+    anBasic.property = prop;    //自定义属性
+    anBasic.fromValue = @(fromValue);   //从0开始
+    anBasic.toValue = @(toValue);  //
+    anBasic.duration = 1.5;    //持续时间
+    anBasic.beginTime = CACurrentMediaTime() + 0.1;    //延迟0.1秒开始
+    [self pop_addAnimation:anBasic forKey:key];
+
+}
+
+@end
+
+
 @implementation UILabel (Font_Color)
 
 - (void)txtArr:(NSArray *)txtArr colorArr:(NSArray *)colorArr fontArr:(NSArray *)fontArr {
@@ -123,6 +140,22 @@
         startLoc += [txtArr[i] length];
     }
     self.attributedText = str;
+}
+
+@end
+
+@implementation UILabel (LineSpace)
+
+- (void)setLineSpace:(NSInteger)lineSpace{
+    NSMutableAttributedString *attributedString =
+    [[NSMutableAttributedString alloc] initWithString:self.text];
+    NSMutableParagraphStyle *paragraphStyle =  [[NSMutableParagraphStyle alloc] init];
+    [paragraphStyle setLineSpacing:lineSpace];
+    //调整行间距
+    [attributedString addAttribute:NSParagraphStyleAttributeName
+                             value:paragraphStyle
+                             range:NSMakeRange(0, [self.text length])];
+    self.attributedText = attributedString;
 }
 
 @end

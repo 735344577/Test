@@ -9,99 +9,38 @@
 #import "UIButton+Category.h"
 #import "UIKit+Category.h"
 @implementation UIButton (Category)
-+ (UIButton*)buttonwithType:(UIButtonType)type Frame:(CGRect)frame TitileName:(NSString *)name  backgroundIamge:(NSString*)image
-{
-    UIButton *mybtn = [UIButton buttonWithType:type];
-    [mybtn setFrame:frame];
-    [mybtn setTitle:name forState:UIControlStateNormal];
-    [mybtn setBackgroundImage:[UIImage  imageNamed:image] forState: UIControlStateNormal];
-    return mybtn;
+
+- (void)startWithTime:(NSInteger)timeLine countDownTitle:(NSString *)subTitle{
+    //倒计时时间
+    __block NSInteger timeOut = timeLine;
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_source_t _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, queue);
+    //每秒执行一次
+    dispatch_source_set_timer(_timer, dispatch_walltime(NULL, 0), 1.0 * NSEC_PER_SEC, 0);
+    dispatch_source_set_event_handler(_timer, ^{
+        
+        //倒计时结束，关闭
+        if (timeOut <= 0) {
+            dispatch_source_cancel(_timer);
+            dispatch_async(dispatch_get_main_queue(), ^{
+                self.backgroundColor = [UIColor colorWithHexString:@"#FF562F"];
+                [self setTitle:@"重新获取" forState:UIControlStateNormal];
+                self.userInteractionEnabled = YES;
+            });
+        } else {
+            int allTime = (int)timeLine + 1;
+            int seconds = timeOut % allTime;
+            NSString *timeStr = [NSString stringWithFormat:@"%0.2d", seconds];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                self.backgroundColor = [UIColor colorWithHexString:@"#CCCCCC"];
+                [self setTitle:[NSString stringWithFormat:@"%@%@",timeStr,subTitle] forState:UIControlStateNormal];
+                self.userInteractionEnabled = NO;
+            });
+            timeOut--;
+        }
+    });
+    dispatch_resume(_timer);
 }
 
-//IOS 1.2版本 改动的地方用方法
-/**
- type:  类型
- frame: 位置和大小
- titleName: 标题
- tiltleColorStr: 标题字体颜色
- buttonBgColorStr: 背景色
- */
-
-+ (UIButton *)buttonWithType:(UIButtonType)type buttonFrame:(CGRect)frame buttonTitle:(NSString *)titleName  titleColor:(NSString *)tiltleColorStr  buttonBgColor:(NSString *)buttonBgColorStr
-{
-    UIButton *button = [UIButton  buttonWithType:type];
-    [button  setFrame:frame];
-    [button  setTitle:titleName forState:UIControlStateNormal];
-    [button setBackgroundColor:[UIColor  colorWithHexString:buttonBgColorStr]];
-    [button  setTitleColor:[UIColor  colorWithHexString:tiltleColorStr] forState:UIControlStateNormal];
-    return button;
-}
-
-
-+ (UIButton *)buttonWithType:(UIButtonType)type buttonFrame:(CGRect)controlframe    labelTitle:(NSString *)titlename backgroundIamge:(NSString *)imagename
-{
-    UIButton *btn = [UIButton buttonWithType:type];
-    
-    UILabel *lab = [[UILabel alloc] init];
-    lab.text = titlename;
-    lab.textAlignment =  NSTextAlignmentCenter;
-    lab.textColor = [UIColor  colorWithHexString:@"#818181"];
-    lab.backgroundColor = [UIColor  clearColor];
-    lab.font = [UIFont  systemFontOfSize:13];
-    [btn addSubview:lab];
-    [btn setBackgroundImage:[UIImage imageNamed:@"bg.png"] forState: UIControlStateNormal];
-    UIImageView *imageview = [[UIImageView alloc]init];
-    imageview.image = [UIImage imageNamed:imagename];
-    [btn addSubview:imageview];
-    btn.translatesAutoresizingMaskIntoConstraints = NO;
-    /*
-     if (IOS_SystemVersion(7) == NO)
-     {
-     [btn setBackgroundImage:nil forState:UIControlStateNormal];
-     [[btn layer] setBorderWidth:0.25];
-     [[btn layer] setBorderColor:[UIColor  colorWithHexString:@"#BBBAAA"].CGColor];
-     btn.backgroundColor = [UIColor   whiteColor];
-     lab.font = [UIFont systemFontOfSize:12];
-     }
-     
-     if ([SDiPhoneVersion deviceSize] ==  iPhone35inch)
-     {
-     lab.font = [UIFont systemFontOfSize:12];
-     [imageview  autoSetDimension:ALDimensionHeight toSize:30];
-     [imageview autoPinEdgeToSuperviewEdge:ALEdgeLeft withInset:65];
-     [imageview autoPinEdgeToSuperviewEdge:ALEdgeRight withInset:65];
-     [imageview autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:7];
-     
-     [lab  autoPinEdgeToSuperviewEdge:ALEdgeLeft withInset:35];
-     [lab autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:imageview withOffset:5];
-     [lab autoPinEdgeToSuperviewEdge:ALEdgeRight withInset:35];
-     }
-     else
-     {
-     lab.font = [UIFont systemFontOfSize:13];
-     [imageview  autoSetDimension:ALDimensionHeight toSize:40];
-     [imageview autoPinEdgeToSuperviewEdge:ALEdgeLeft withInset:60];
-     [imageview autoPinEdgeToSuperviewEdge:ALEdgeRight withInset:60];
-     [imageview autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:10];
-     
-     [lab  autoPinEdgeToSuperviewEdge:ALEdgeLeft withInset:35];
-     [lab autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:imageview withOffset:5];
-     [lab autoPinEdgeToSuperviewEdge:ALEdgeRight withInset:35];
-     
-     }
-     
-     */
-    return btn;
-}
-
-+ (UIButton *)buttonWithTitle:(NSString *)titleName titleColor:(NSString *)tiltleColorStr buttonBgColor:(NSString *)buttonBgColorStr
-{
-    UIButton * button = [UIButton buttonWithType:UIButtonTypeSystem];
-    [button  setTitle:titleName forState:UIControlStateNormal];
-    [button setBackgroundColor:[UIColor  colorWithHexString:buttonBgColorStr]];
-    [button  setTitleColor:[UIColor  colorWithHexString:tiltleColorStr] forState:UIControlStateNormal];
-    
-    return button;
-}
 
 @end

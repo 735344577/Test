@@ -9,12 +9,7 @@
 #import "BaseAppDelegate.h"
 #import "ThirdParty.h"
 #import "PublicDefine.h"
-#import "CMPush.h"
 #import "CMDeviceInfo.h"
-
-
-#define umengAppKey   @"546170a1fd98c5fa1500461f"
-#define app_download_url @"https://itunes.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=950919128&mt=8"
 
 @interface BaseAppDelegate ()
 
@@ -29,10 +24,6 @@
     [self IQKeyboardManager];
     
     //推送
-    [CMPush startPush:launchOptions];
-    [self umengTrack];
-    [UMSocialData setAppKey:umengAppKey];
-    
     return YES;
     
 }
@@ -57,50 +48,10 @@
 }
 
 #pragma mark umeng
-- (void)umengTrack {
-    [MobClick setCrashReportEnabled:YES]; // 如果不需要捕捉异常，注释掉此行
-    //    [MobClick setLogEnabled:YES];  // 打开友盟sdk调试，注意Release发布时需要注释掉此行,减少io消耗
-    [MobClick setAppVersion:XcodeAppVersion]; //参数为NSString * 类型,自定义app版本信息，如果不设置，默认从CFBundleVersion里取
-    
-    [MobClick startWithAppkey:umengAppKey reportPolicy:(ReportPolicy) REALTIME channelId:[CMDeviceInfo appChannel]];
-    //   reportPolicy为枚举类型,可以为 REALTIME, BATCH,SENDDAILY,SENDWIFIONLY几种
-    //   channelId 为NSString * 类型，channelId 为nil或@""时,默认会被被当作@"App Store"渠道
-    
-    
-    [MobClick updateOnlineConfig];  //在线参数配置
-    
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onlineConfigCallBack:) name:UMOnlineConfigDidFinishedNotification object:nil];
-    
-//    Class cls = NSClassFromString(@"UMANUtil");
-//    SEL deviceIDSelector = @selector(openUDIDString);
-//    NSString *deviceID = nil;
-//    if(cls && [cls respondsToSelector:deviceIDSelector]){
-//        deviceID = [cls performSelector:deviceIDSelector];
-//    }
-//    NSLog(@"{\"oid\": \"%@\"}", deviceID);
-    
-}
 
 - (void)onlineConfigCallBack:(NSNotification *)note {
     
     NSLog(@"online config has fininshed and note = %@", note.userInfo);
-}
-
-
-#pragma mark  友盟推送
-- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
-{
-    [CMPush CMApplication:application didRegisterForRemoteNotificationsWithDeviceToken:deviceToken];
-}
-
-- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
-{
-    [[CMPush sharedInstance] CMApplication:application didReceiveRemoteNotification:userInfo];
-}
-
-- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error
-{
-    [CMPush CMApplication:application didFailToRegisterForRemoteNotificationsWithError:error];
 }
 
 #pragma -mark 键盘处理

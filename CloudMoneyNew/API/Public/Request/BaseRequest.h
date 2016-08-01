@@ -7,6 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+
+
+
 @class AFHTTPRequestOperation;
 
 @interface BaseRequest : NSObject

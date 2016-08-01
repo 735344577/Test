@@ -8,7 +8,7 @@
 
 #import "ProductViewController.h"
 
-@interface ProductViewController ()<UITableViewDataSource, UITableViewDelegate>
+@interface ProductViewController ()<UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate>
 @property (nonatomic, strong) UITableView * tableView;
 @property (nonatomic, strong) UIImageView *topImageView;
 @end
@@ -17,7 +17,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.edgesForExtendedLayout = UIRectEdgeAll;
+    self.extendedLayoutIncludesOpaqueBars = YES;
+//    self.modalPresentationCapturesStatusBarAppearance = NO;
+//    self.navigationController.navigationBar.translucent = NO;
     [self.view addSubview:self.tableView];
     self.topImageView.frame = CGRectMake(0, 0, self.tableView.bounds.size.width, 150);
 //    [self.tableView addSpringHeadView:self.topImageView];
@@ -36,7 +39,34 @@
     
     [_topImageView addSubview:label];
     [self.tableView addSpringTableHeadView:self.topImageView];
+//    [self.navigationController.navigationBar setBackgroundImage:[UIImage new]
+//                                                  forBarMetrics:UIBarMetricsDefault];
+//    self.navigationController.navigationBar.shadowImage = [UIImage new];
+    self.title = @"详情";
+//    [[self.navigationController.navigationBar subviews] firstObject].alpha = 0;
+    
     // Do any additional setup after loading the view.
+}
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+//    self.navigationController.hidesBarsOnTap = true;
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -54,26 +84,16 @@
 }
 
 
+//- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+//    CGFloat minAlphaOffset = - 64;
+//    CGFloat maxAlphaOffset = 64;
+//    CGFloat offset = scrollView.contentOffset.y;
+//    CGFloat alpha = (offset - minAlphaOffset) / (maxAlphaOffset - minAlphaOffset);
+//    [UIView animateWithDuration:0.25 animations:^{
+//        [self.navigationController.navigationBar.subviews firstObject].alpha = alpha;
+//    }];
+//}
 
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-}
-
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-}
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
-}
-
-- (void)viewDidDisappear:(BOOL)animated
-{
-    [super viewDidDisappear:animated];
-}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -82,7 +102,7 @@
 
 - (UITableView *)tableView{
     if (_tableView == nil) {
-        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight - 64 - 49) style:UITableViewStylePlain];
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight - 49) style:UITableViewStylePlain];
         _tableView.dataSource = self;
         _tableView.delegate = self;
     }

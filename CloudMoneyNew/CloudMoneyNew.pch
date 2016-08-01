@@ -17,6 +17,10 @@
 #import "UIKit+Category.h"
 #import "Foundation+Category.h"
 
+#import <pop/POP.h>
+#import <JPFPSStatus/JPFPSStatus.h>
+
+#import "Status.h"/**公共方法*/
 #endif /* CloudMoneyNew_pch */
 
 
@@ -27,6 +31,9 @@
 # define  DLog(...);
 
 #endif
+
+//宏定义检测block是否可用
+#define BLOCK_EXEC(block, ...) if (block) { block(__VA_ARGS__); };
 
 //系统版本宏判断
 #define SystemVersion(a)               [[[UIDevice currentDevice]systemVersion]floatValue] >= a

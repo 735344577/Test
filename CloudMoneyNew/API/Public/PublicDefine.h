@@ -12,10 +12,16 @@
 //云钱袋电话
 #define Service_PhoneNum               @"400-815-2688"
 
+#define weakity(obj) autoreleasepool{} __weak __typeof(obj) obj##Weak = obj
+#define strongity(obj) autoreleasepool{} __strong __typeof(obj) obj = obj##Weak
 
 //获取全屏大小
 #define ScreenWidth                        [[UIScreen mainScreen]bounds].size.width
 #define ScreenHeight                       [[UIScreen mainScreen]bounds].size.height
+/**
+ 按等比例计算高度时可以使用
+ */
+#define SCREEN_HEIGHT  ScreenHeight < 568 ? 568 : ScreenHeight
 
 //获取当前view的 x，y，width，height
 #define VIEW_X(a)                           a.frame.origin.x
