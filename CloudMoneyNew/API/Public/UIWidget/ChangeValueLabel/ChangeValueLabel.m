@@ -37,14 +37,14 @@
 }
 
 - (void)handleAnimation:(CADisplayLink *)link{
-    double vaule = fabs(_fromValue - _toValue) / 10000;
-    float DURATION = 0.75;
-    if (vaule >= 10)        //  10万以上
-        DURATION = 1.0;
-    else if (vaule >= 100)  //  100万以上
-        DURATION = 1.25;
-    else if (vaule >= 1000) //  1000万以上
-        DURATION = 1.35;
+//    double vaule = fabs(_fromValue - _toValue) / 10000;
+    static float DURATION = 0.75;
+//    if (vaule >= 10)        //  10万以上
+//        DURATION = 1.0;
+//    else if (vaule >= 100)  //  100万以上
+//        DURATION = 1.25;
+//    else if (vaule >= 1000) //  1000万以上
+//        DURATION = 1.35;
     NSTimeInterval now = CACurrentMediaTime();
     _time = now - _startTime;
     float dt = (_time) / DURATION;
@@ -56,8 +56,10 @@
     NSString *string = nil;
     if (dt >= 1.0) {
         if (_isDecimal) {
-            string = [NSString stringWithFormat:@"%.2f", _toValue];
-            string = [self valueFormatWithValue:string formatter:formatter];
+            formatter.roundingMode = NSNumberFormatterRoundFloor;   //不四舍五入
+            [formatter setPositiveFormat:@"#,###.##"];  //自定义数据格式
+            formatter.maximumFractionDigits = 2;        //保留2位小数
+            string = [formatter stringFromNumber:[NSNumber numberWithDouble:_toValue]];
         }else{
             string = [formatter stringFromNumber:[NSNumber numberWithUnsignedInteger:(NSUInteger)_toValue]];
         }
@@ -65,25 +67,15 @@
         [self endLinkAnimation];
         return;
     }
-    float current = (_toValue - _fromValue) * dt + _fromValue;
+    double current = (_toValue - _fromValue) * dt + _fromValue;
     if (_isDecimal) {
-        string = [NSString stringWithFormat:@"%.2f", current];
-        string = [self valueFormatWithValue:string formatter:formatter];
+        formatter.roundingMode = NSNumberFormatterRoundFloor;
+        [formatter setPositiveFormat:@"#,###.##"];
+        string = [formatter stringFromNumber:[NSNumber numberWithDouble:current]];
     }else{
         string = [formatter stringFromNumber:[NSNumber numberWithUnsignedInteger:(NSUInteger)current]];
     }
     self.text = [NSString stringWithFormat:@"%@%@", _headerString, string];
-}
-
-- (NSString *)valueFormatWithValue:(NSString *)strValue formatter:(NSNumberFormatter *)formatter{
-    //字符串转为数组
-    NSMutableArray * array = [strValue componentsSeparatedByString:@"."].mutableCopy;
-    NSString * firstStr = [array firstObject];
-    [array removeObject:firstStr];
-    firstStr = [formatter stringFromNumber:[NSNumber numberWithUnsignedInteger:(NSUInteger)[firstStr integerValue]]];
-    [array insertObject:firstStr atIndex:0];
-    //数组转为字符串
-    return [array componentsJoinedByString:@"."];
 }
 
 - (void)startLinkAnimation{
