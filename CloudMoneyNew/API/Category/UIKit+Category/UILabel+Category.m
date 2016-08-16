@@ -23,9 +23,9 @@
     }
     CGSize size = CGSizeMake(CGRectGetWidth(self.frame), 300);
     CGSize rect = [self.text boundingRectWithSize:size
-                                             options:NSStringDrawingTruncatesLastVisibleLine | NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading
-                                          attributes:@{NSFontAttributeName:font}
-                                             context:nil].size;
+                                          options:NSStringDrawingTruncatesLastVisibleLine | NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading
+                                       attributes:@{NSFontAttributeName:font}
+                                          context:nil].size;
     return rect;
 }
 
@@ -84,7 +84,8 @@
             NSString *string = nil;
             //是否带有小数点
             if (decimal) {
-                string = [NSString stringWithFormat:@"%.2f",values[0]];
+                [formatter setPositiveFormat:@"#,###.##"];
+                string = [formatter stringFromNumber:[NSNumber numberWithFloat:values[0]]];
             }
             else{
                 string = [formatter stringFromNumber:[NSNumber numberWithUnsignedInteger:(NSUInteger)values[0]]];

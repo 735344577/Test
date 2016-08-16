@@ -23,6 +23,17 @@
 #import "Status.h"/**公共方法*/
 #endif /* CloudMoneyNew_pch */
 
+//define this constant if you want to use Masonry without the 'mas_' prefix
+//不再需要写 mas_ 前缀，可以直接使用 控件.right .lift等属性
+#define MAS_SHORTHAND
+
+//define this constant if you want to enable auto-boxing for default syntax
+//equalTo(@30)默认不支持，添加下面宏定义后，可以直接使用 equalTo(30)
+#define MAS_SHORTHAND_GLOBALS
+
+
+#import "Masonry.h"
+
 
 #ifdef DEBUG
 # define  DLog(format, ...) NSLog((@"[文件名:%s]" "[函数名:%s]" "[行号:%d]" format), __FILE__, __FUNCTION__, __LINE__, ##__VA_ARGS__);

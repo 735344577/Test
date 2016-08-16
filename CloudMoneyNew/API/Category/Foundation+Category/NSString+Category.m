@@ -165,3 +165,25 @@
 }
 
 @end
+
+@implementation NSString (ValueFormatter)
+
++ (NSString *)valueWithFloat:(CGFloat)value{
+    NSNumberFormatter * formatter = [[NSNumberFormatter alloc] init];
+    formatter.numberStyle = NSNumberFormatterDecimalStyle;
+    [formatter setPositiveFormat:@"#,###.##"];
+    formatter.minimumFractionDigits = 2;
+    NSString * string = [formatter stringFromNumber:[NSNumber numberWithFloat:value]];
+    return string;
+}
+
++ (NSString * )valueWithUInteger:(NSUInteger)value{
+    NSNumberFormatter * formatter = [[NSNumberFormatter alloc] init];
+    formatter.numberStyle = NSNumberFormatterDecimalStyle;
+    [formatter setPositiveFormat:@"#,###"];
+    formatter.minimumFractionDigits = 2;
+    NSString * string = [formatter stringFromNumber:[NSNumber numberWithUnsignedInteger:value]];
+    return string;
+}
+
+@end

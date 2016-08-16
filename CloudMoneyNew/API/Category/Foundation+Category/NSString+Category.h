@@ -10,7 +10,7 @@
 
 @interface NSString (Category)
 /**
- *  //处理四舍五入的问题
+ *  @brief 处理四舍五入的问题
  *
  *  @param price    需要处理的数字
  *  @param position 保留小数点第几位
@@ -44,5 +44,19 @@
  */
 - (NSString *)changeAsteriskStringWithRange:(NSRange)range;
 
+
+@end
+
+/**
+ *  @brief 数值格式化，用于金额的表达
+ *      格式如下：
+ *              XX,XXX.XX   小数保留2位
+ *              XX,XXX      整数
+ */
+@interface NSString (ValueFormatter)
+
++ (NSString *)valueWithFloat:(CGFloat)value;
+
++ (NSString *)valueWithUInteger:(NSUInteger)value;
 
 @end

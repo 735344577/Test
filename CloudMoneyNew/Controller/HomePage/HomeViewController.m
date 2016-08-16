@@ -98,6 +98,17 @@
     [self.view addSubview:_ValueLabel];
 //    _ValueLabel.headerString = @"￥";
     
+    UILabel * label = [UILabel new];
+    label.text = @"改进和规范公安派出所出具证明工作，是公安部等12个部门深入贯彻中央全面深化改革和国务院协同推进简政放权、放管结合、优化服务重要部署的实际举措。根据党中央、国务院的部署，公安部将改进和规范派出所出具证明工作作为全面深化公安改革、推进职能转变的一项重点任务，成立工作专班，协调12个部门深入研究、全力攻坚，着力解决群众反映强烈的这一突出问题。经过半年多的努力，于近日出台了《意见》和《通知》两个文件，自今年9月1日起实施。";
+    label.font = [UIFont systemFontOfSize:15];
+    [self.view addSubview:label];
+    label.numberOfLines = 0;
+    [label setLineSpace:8];
+    [label mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.view).offset(15);
+        make.top.equalTo(self.view).offset(15);
+        make.right.equalTo(self.view).offset(-15);
+    }];
     // Do any additional setup after loading the view.
     
 }

@@ -40,3 +40,49 @@
 }
 
 @end
+
+
+@implementation NSDate (compare)
+
++ (BOOL)compareCurrentDateIsGreaterThanLastDate24H:(NSDate *)currentDate
+                                          lastDate:(NSDate *)lastDate {
+    double secondsInMinute = 60 * 60 * 24; //一天
+    NSTimeInterval lastTime = [lastDate timeIntervalSince1970];
+    NSTimeInterval nowime = [currentDate timeIntervalSince1970];
+    NSTimeInterval value = nowime - lastTime;
+    NSInteger secondsBetweenDates = value / secondsInMinute;
+    if (secondsBetweenDates >= 1)
+        return YES;
+    else
+        return NO;
+}
+
++ (BOOL)isNumberMinLater:(NSInteger)min
+             currentDate:(NSDate *)currentDate
+                lastDate:(NSDate *)lastDate{
+    double secondsInMinute = 60 * min; //min 分钟
+    NSTimeInterval lastTime = [lastDate timeIntervalSince1970];
+    NSTimeInterval nowime = [currentDate timeIntervalSince1970];
+    NSTimeInterval value = nowime - lastTime;
+    NSInteger secondsBetweenDates = value / secondsInMinute;
+    if (secondsBetweenDates >= 1)
+        return YES;
+    else
+        return NO;
+}
+
++ (BOOL)isNumberHourLater:(NSInteger)hour
+              currentDate:(NSDate *)currentDate
+                 lastDate:(NSDate *)lastDate{
+    double secondsInMinute = 60 * 60 * hour; //h 小时
+    NSTimeInterval lastTime = [lastDate timeIntervalSince1970];
+    NSTimeInterval nowime = [currentDate timeIntervalSince1970];
+    NSTimeInterval value = nowime - lastTime;
+    NSInteger secondsBetweenDates = value / secondsInMinute;
+    if (secondsBetweenDates >= 1)
+        return YES;
+    else
+        return NO;
+}
+
+@end
