@@ -15,6 +15,7 @@
 #import "BaseRequest.h"
 #import "KLAttStrView.h"
 #import "ChangeValueLabel.h"
+#import "KLBannerLoopView.h"
 @interface HomeViewController ()
 @property (nonatomic, strong) ChangeValueLabel * ValueLabel;
 @end
@@ -88,28 +89,19 @@
             NSLog(@"点击《支付协议》");
     }];
     
-    [self.view addSubview:strView];
+//    [self.view addSubview:strView];
     
     _ValueLabel = [ChangeValueLabel new];
     _ValueLabel.frame = CGRectMake(50, 300, ScreenWidth - 100, 40);
     _ValueLabel.font = [UIFont systemFontOfSize:30];
     _ValueLabel.textAlignment = NSTextAlignmentCenter;
     _ValueLabel.textColor = [UIColor redColor];
-    [self.view addSubview:_ValueLabel];
+//    [self.view addSubview:_ValueLabel];
 //    _ValueLabel.headerString = @"￥";
     
-    UILabel * label = [UILabel new];
-    label.text = @"改进和规范公安派出所出具证明工作，是公安部等12个部门深入贯彻中央全面深化改革和国务院协同推进简政放权、放管结合、优化服务重要部署的实际举措。根据党中央、国务院的部署，公安部将改进和规范派出所出具证明工作作为全面深化公安改革、推进职能转变的一项重点任务，成立工作专班，协调12个部门深入研究、全力攻坚，着力解决群众反映强烈的这一突出问题。经过半年多的努力，于近日出台了《意见》和《通知》两个文件，自今年9月1日起实施。";
-    label.font = [UIFont systemFontOfSize:15];
-    [self.view addSubview:label];
-    label.numberOfLines = 0;
-    [label setLineSpace:8];
-    [label mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.view).offset(15);
-        make.top.equalTo(self.view).offset(15);
-        make.right.equalTo(self.view).offset(-15);
-    }];
-    // Do any additional setup after loading the view.
+    
+    KLBannerLoopView * bannerView = [[KLBannerLoopView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 150) imageArray:@[@"http://mtest.yunqiandai.com/images/activity/0630/banner/1242X450.jpg", @"http://mtest.yunqiandai.com/static/activity/anniversary2nd/img/banner/1242-450.jpg"]];
+        // Do any additional setup after loading the view.
     
 }
 
@@ -119,7 +111,7 @@
     self.title = @"首页";
     [self loginButton];
     [self registerButton];
-    [_ValueLabel animationChangeValueFromValue:0.0 toValue:999999999.976 decimal:YES];
+//    [_ValueLabel animationChangeValueFromValue:0.0 toValue:999999999.976 decimal:YES];
     CMLineProgressView * progressView = [[CMLineProgressView alloc] initWithFrame:CGRectMake(50, 200, CGRectGetWidth(self.view.frame) - 2 * 50, 8)];
     progressView.trackTintColor = [UIColor purpleColor];
     progressView.progressTintColor = [UIColor colorWithRed:140 / 255.0 green:2 / 255.0 blue:140 / 255.0 alpha:1.0];

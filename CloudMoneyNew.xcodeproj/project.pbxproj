@@ -53,6 +53,7 @@
 		066AB8D31BC78EF000C70E13 /* libSocialWechat.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 066AB8CB1BC78EF000C70E13 /* libSocialWechat.a */; };
 		066AB8D41BC78EF000C70E13 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 066AB8CC1BC78EF000C70E13 /* libWeChatSDK.a */; };
 		066E37461CFFC87500BE97BB /* KLPopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 066E37451CFFC87500BE97BB /* KLPopView.m */; };
+		0675E1931D6401570009C5D0 /* KLBannerLoopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0675E1921D6401570009C5D0 /* KLBannerLoopView.m */; };
 		067965281CFE83130055EAD2 /* Status.m in Sources */ = {isa = PBXBuildFile; fileRef = 067965271CFE83130055EAD2 /* Status.m */; };
 		0679652A1CFEAF3F0055EAD2 /* Event.plist in Resources */ = {isa = PBXBuildFile; fileRef = 067965291CFEAF3F0055EAD2 /* Event.plist */; };
 		067FB8571CAA127300C05D87 /* UIViewController+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 067FB8561CAA127300C05D87 /* UIViewController+Category.m */; };
@@ -291,6 +292,8 @@
 		066AB8CF1BC78EF000C70E13 /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiObject.h; sourceTree = "<group>"; };
 		066E37441CFFC87500BE97BB /* KLPopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KLPopView.h; sourceTree = "<group>"; };
 		066E37451CFFC87500BE97BB /* KLPopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KLPopView.m; sourceTree = "<group>"; };
+		0675E1911D6401570009C5D0 /* KLBannerLoopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KLBannerLoopView.h; sourceTree = "<group>"; };
+		0675E1921D6401570009C5D0 /* KLBannerLoopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KLBannerLoopView.m; sourceTree = "<group>"; };
 		067965261CFE83130055EAD2 /* Status.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Status.h; sourceTree = "<group>"; };
 		067965271CFE83130055EAD2 /* Status.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Status.m; sourceTree = "<group>"; };
 		067965291CFEAF3F0055EAD2 /* Event.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Event.plist; sourceTree = "<group>"; };
@@ -732,6 +735,7 @@
 		065B44AC1C0BFB4B003042A4 /* UIWidget */ = {
 			isa = PBXGroup;
 			children = (
+				0675E1901D6401240009C5D0 /* KLendlessLoop */,
 				0697F5FA1D4B583B004F210F /* ChangeValueLabel */,
 				065AD6E11D4AE2DB00B5A8F2 /* KLAttStrView */,
 				066E37431CFFC85D00BE97BB /* KLPopView */,
@@ -845,6 +849,15 @@
 				066E37451CFFC87500BE97BB /* KLPopView.m */,
 			);
 			path = KLPopView;
+			sourceTree = "<group>";
+		};
+		0675E1901D6401240009C5D0 /* KLendlessLoop */ = {
+			isa = PBXGroup;
+			children = (
+				0675E1911D6401570009C5D0 /* KLBannerLoopView.h */,
+				0675E1921D6401570009C5D0 /* KLBannerLoopView.m */,
+			);
+			path = KLendlessLoop;
 			sourceTree = "<group>";
 		};
 		067965251CFE83000055EAD2 /* Status */ = {
@@ -1821,6 +1834,7 @@
 				06F3A3E21BBBC6CE007E3D7B /* CMTouchID.m in Sources */,
 				06E6682A1BB234BA00B5A80E /* NSArray+Category.m in Sources */,
 				06E6683A1BB234BA00B5A80E /* UIView+Category.m in Sources */,
+				0675E1931D6401570009C5D0 /* KLBannerLoopView.m in Sources */,
 				06E6686C1BB234BA00B5A80E /* NSObject+MJKeyValue.m in Sources */,
 				06AEDF0D1D41EBA000EBCF3F /* KLDataBase.m in Sources */,
 				06F09D281BB5148D00E8B960 /* SecurityUtil.m in Sources */,
