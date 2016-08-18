@@ -111,9 +111,6 @@
     UIBezierPath * path = [UIBezierPath bezierPath];
     [path moveToPoint:CGPointMake(0, 0)];
     [path addLineToPoint:CGPointMake(CGRectGetWidth(self.frame), 0)];
-//    UIGraphicsBeginImageContext(self.frame.size);
-//    [path stroke];
-//    UIGraphicsEndImageContext();
     _whiteLayer.path = path.CGPath;
     
 }
@@ -124,9 +121,6 @@
     UIBezierPath * path = [UIBezierPath bezierPath];
     [path moveToPoint:CGPointMake(0, 0)];
     [path addLineToPoint:CGPointMake(CGRectGetWidth(self.frame), 0)];
-//    UIGraphicsBeginImageContext(self.frame.size);
-//    [path stroke];
-//    UIGraphicsEndImageContext();
     _trackLayer.path = path.CGPath;
 }
 
@@ -138,13 +132,8 @@
     [path addLineToPoint:CGPointMake(CGRectGetWidth(self.frame) * _progress, 0)];
     path.lineCapStyle = kCGLineCapRound;
     path.lineJoinStyle = kCGLineJoinBevel;
-    
     [path setLineWidth:_lineWidth];
-    
     [_progressTintColor setStroke];
-//    UIGraphicsBeginImageContext(self.frame.size);
-//    [path stroke];
-//    UIGraphicsEndImageContext();
     self.progressLayer.path = path.CGPath;
     
     CABasicAnimation *pathAnimation = [CABasicAnimation animationWithKeyPath:@"strokeEnd"];
