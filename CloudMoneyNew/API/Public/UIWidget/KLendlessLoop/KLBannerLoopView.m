@@ -78,16 +78,17 @@
 
 - (void)setFrame:(CGRect)frame{
     [super setFrame:frame];
+    [self addSubview:self.scrollView];
     [self addSubview:self.describeLabel];
     [self addSubview:self.pageControl];
 }
 
 - (void)changeCurrentPageWithOffsetX:(CGFloat)offsetX {
-    if (offsetX < self.scrollView.frame.size.width * 1.5) {
+    if (offsetX < self.scrollView.frame.size.width * 1) {
         NSInteger index = self.currentIndex - 1;
         if (index < 0) index = _imageArray.count - 1;
         _pageControl.currentPage = index;
-    } else if (offsetX > self.scrollView.frame.size.width * 2.5) {
+    } else if (offsetX > self.scrollView.frame.size.width * 2) {
         _pageControl.currentPage = (self.currentIndex + 1) % self.imageArray.count;
     } else {
         _pageControl.currentPage = self.currentIndex;
@@ -97,15 +98,18 @@
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     if (CGSizeEqualToSize(CGSizeZero, scrollView.contentSize)) return;
     CGFloat offsetX = scrollView.contentOffset.x;
-    [self changeCurrentPageWithOffsetX:offsetX];
-    if (offsetX > self.scrollView.frame.size.width * 2) {
+//    [self changeCurrentPageWithOffsetX:offsetX];
+    if (offsetX > self.scrollView.frame.size.width * 1) {
         self.otherImgView.frame = CGRectMake(CGRectGetMaxX(self.currentImgView.frame), 0, ScreenWidth, scrollView.frame.size.height);
         self.nextIndex = (self.currentIndex + 1) % self.imageArray.count;
-    } else if (offsetX < self.scrollView.frame.size.width * 2) {
-        self.otherImgView.frame = CGRectMake(scrollView.frame.size.width, 0, scrollView.frame.size.width, scrollView.frame.size.height);
+        
+        //大于等于2倍的宽表示已经到最后一个范围上（即第三个）这时候正在向第四和滑动，但第三个已经是最后一个了，所以调整scrollView显示位置
+        if (offsetX >= scrollView.frame.size.width * 2) [self changeToNext];
+    } else if (offsetX < self.scrollView.frame.size.width * 1) {
+        self.otherImgView.frame = CGRectMake(0, 0, scrollView.frame.size.width, scrollView.frame.size.height);
         self.nextIndex = self.currentIndex - 1;
         if (self.nextIndex < 0) self.nextIndex = self.imageArray.count - 1;
-        if (offsetX <= scrollView.frame.size.width) [self changeToNext];
+        if (offsetX <= scrollView.frame.size.width * 0) [self changeToNext];
     }
     [self.otherImgView setImageWithURL:[NSURL URLWithString:_imageArray[_nextIndex]] placeholderImage:nil];
     
@@ -126,8 +130,8 @@
     _describeLabel.frame = CGRectMake(0, CGRectGetHeight(self.bounds) - 10, CGRectGetWidth(self.bounds), 10);
     if (_imageArray.count > 1) {
         self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width * 3, CGRectGetHeight(self.scrollView.frame));
-        self.scrollView.contentOffset = CGPointMake(self.scrollView.frame.size.width, CGRectGetHeight(self.scrollView.frame));
         self.currentImgView.frame = CGRectMake(self.scrollView.frame.size.width, 0, CGRectGetWidth(self.scrollView.frame), CGRectGetHeight(self.scrollView.frame));
+        [self.scrollView setContentOffset:CGPointMake(self.scrollView.frame.size.width, 0) animated:NO];
         [self startTimer];
     } else {
         self.scrollView.contentSize = CGSizeZero;
@@ -143,16 +147,16 @@
 }
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
-    [self startTimer];
+    [self stopTimer];
 }
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
-    [self stopTimer];
+    [self startTimer];
 }
 
 #pragma -mark 定时器相关
 - (void)timerAction {
-    [self.scrollView setContentOffset:CGPointMake(ScreenWidth * 2, 0) animated:YES];
+    [self.scrollView setContentOffset:CGPointMake(CGRectGetWidth(self.scrollView.bounds) * 2, 0) animated:YES];
 }
 
 - (void)startTimer {
@@ -189,7 +193,6 @@
     else
         _pageControl.center = CGPointMake(ScreenWidth - size.width * 0.5, centerY);
         
-        
 }
 
 - (void)setImageArray:(NSArray *)imageArray{
@@ -210,11 +213,21 @@
         _describeLabel.hidden = YES;
     } else {
         if (_textArray.count < _imageArray.count) {
-            
+            NSMutableArray * array = [NSMutableArray arrayWithArray:_textArray];
+            for (NSInteger i = _textArray.count; i < _imageArray.count; i++) {
+                [array addObject:@""];
+            }
+            _textArray = array;
         }
+        _describeLabel.text = _textArray[_currentIndex];
     }
 }
 
+- (void)tapAction:(UITapGestureRecognizer *)tap {
+    if (_clickBlock) {
+        _clickBlock(_currentIndex);
+    }
+}
 
 
 - (UIScrollView *)scrollView {
@@ -226,11 +239,10 @@
         _scrollView.showsHorizontalScrollIndicator = NO;
         _scrollView.delegate = self;
         _scrollView.backgroundColor = [UIColor whiteColor];
-        _scrollView.contentSize = CGSizeMake(3 * ScreenWidth, 0);
-        [_scrollView setContentOffset:CGPointMake(ScreenWidth, 0) animated:NO];
         [_scrollView addSubview:self.currentImgView];
         [_scrollView addSubview:self.otherImgView];
-        [self addSubview:_scrollView];
+        UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAction:)];
+        [_scrollView addGestureRecognizer:tap];
     }
     return _scrollView;
 }
