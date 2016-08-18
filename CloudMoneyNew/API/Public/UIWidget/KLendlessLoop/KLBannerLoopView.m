@@ -103,12 +103,14 @@
         self.otherImgView.frame = CGRectMake(CGRectGetMaxX(self.currentImgView.frame), 0, ScreenWidth, scrollView.frame.size.height);
         self.nextIndex = (self.currentIndex + 1) % self.imageArray.count;
         
-        //大于等于2倍的宽表示已经到最后一个范围上（即第三个）这时候正在向第四和滑动，但第三个已经是最后一个了，所以调整scrollView显示位置
+        //大于等于2倍的宽表示已经到最后一个范围上（即第三个）这时候正在<-----滑动，但第三个已经是最后一个了（滑到了右边界处），所以调整scrollView显示位置
         if (offsetX >= scrollView.frame.size.width * 2) [self changeToNext];
     } else if (offsetX < self.scrollView.frame.size.width * 1) {
         self.otherImgView.frame = CGRectMake(0, 0, scrollView.frame.size.width, scrollView.frame.size.height);
         self.nextIndex = self.currentIndex - 1;
         if (self.nextIndex < 0) self.nextIndex = self.imageArray.count - 1;
+        
+        //小于等于0表示已经到第一一个范围上（即第1个）这时候正在----->滑动，但第一个已经是最左边的了（滑到了左边界处），所以调整scrollView显示位置
         if (offsetX <= scrollView.frame.size.width * 0) [self changeToNext];
     }
     [self.otherImgView setImageWithURL:[NSURL URLWithString:_imageArray[_nextIndex]] placeholderImage:nil];
@@ -121,6 +123,7 @@
     self.currentIndex = _nextIndex;
     self.pageControl.currentPage = self.currentIndex;
     self.describeLabel.text = self.textArray[_currentIndex];
+    _describeLabel.hidden = [self.describeLabel.text isEqualToString:@""] ? YES : NO;
 }
 
 - (void)layoutSubviews{
@@ -185,13 +188,13 @@
     else if (_position== PositionTopCenter)
         _pageControl.center = CGPointMake(ScreenWidth * 0.5, size.height * 0.5 + 5);
     else if (_position == PositionTopLeft)
-        _pageControl.center = CGPointMake(size.width * 0.5 + 5, size.height * 0.5 + 5);
+        _pageControl.center = CGPointMake(size.width * 0.5 + 15, size.height * 0.5 + 5);
     else if (_position == PositionTopRight)
-        _pageControl.center = CGPointMake(ScreenWidth - size.width * 0.5 - 10, size.height * 0.5 + 5);
+        _pageControl.center = CGPointMake(ScreenWidth - size.width * 0.5 - 15, size.height * 0.5 + 5);
     else if (_position == PositionBottomLeft)
-        _pageControl.center = CGPointMake(size.width * 0.5 + 5, centerY);
+        _pageControl.center = CGPointMake(size.width * 0.5 + 15, centerY);
     else
-        _pageControl.center = CGPointMake(ScreenWidth - size.width * 0.5, centerY);
+        _pageControl.center = CGPointMake(ScreenWidth - size.width * 0.5 - 15, centerY);
         
 }
 
@@ -219,6 +222,7 @@
             }
             _textArray = array;
         }
+        _describeLabel.hidden = NO;
         _describeLabel.text = _textArray[_currentIndex];
     }
 }

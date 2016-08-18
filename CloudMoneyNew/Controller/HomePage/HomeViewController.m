@@ -102,7 +102,7 @@
     
     KLBannerLoopView * bannerView = [[KLBannerLoopView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 150) imageArray:@[@"http://mtest.yunqiandai.com/images/activity/0630/banner/1242X450.jpg", @"http://mtest.yunqiandai.com/static/activity/anniversary2nd/img/banner/1242-450.jpg", @"http://scimg.jb51.net/allimg/160716/105-160G61F250436.jpg", @"http://c.hiphotos.baidu.com/image/h%3D200/sign=a280d7a0ed24b899c13c7e385e071d59/2934349b033b5bb54352dd5e32d3d539b700bc8d.jpg", @"http://g.hiphotos.baidu.com/image/h%3D200/sign=dccb079f4ffbfbedc359317f48f1f78e/8b13632762d0f70317eb037c0cfa513d2697c531.jpg"]];
     [bannerView setpageColor:[UIColor redColor] currentColor:[UIColor orangeColor]];
-    [bannerView setPosition:PositionBottomCenter];
+    [bannerView setPosition:PositionBottomRight];
     bannerView.textArray = @[@"1", @"2"];
     [bannerView setClickBlock:^(NSInteger index) {
         NSLog(@"index = %ld", index);
