@@ -23,6 +23,19 @@
 - (BOOL)isContainsString:(NSString *)str;
 //注：只适配iOS8以上使用 系统的 containsString: 方法
 
+
+
+@end
+
+@interface NSString (Regular)
+
+- (BOOL)isPhoneNum;
+
+@end
+
+
+@interface NSString (ReplaceSubString)
+
 /**
  *  @brief 用str替换字符串中的某一部分
  *
@@ -33,7 +46,7 @@
  *  @return 返回替换后的字符串
  */
 - (NSString *)changeStringWithStr:(NSString *)change
-                  range:(NSRange)range;
+                            range:(NSRange)range;
 /**
  *  @brief 用*替换字符串中的某一部分
  *
@@ -44,6 +57,13 @@
  */
 - (NSString *)changeAsteriskStringWithRange:(NSRange)range;
 
+
+/**
+ *  @brief 手机号码处理
+ *         xxx****xxxx 处理后变为这种格式，防止手机号码泄露
+ *         如果不是手机号  则返回原字段
+ */
+- (NSString *)isPhoneNumMask;
 
 @end
 
