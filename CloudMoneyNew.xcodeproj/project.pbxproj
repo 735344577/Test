@@ -43,6 +43,7 @@
 		065B44C61C0BFBA7003042A4 /* NSObject+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 065B44C51C0BFBA7003042A4 /* NSObject+Category.m */; };
 		065B44CB1C0BFBC1003042A4 /* AppDelegate+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 065B44C81C0BFBC1003042A4 /* AppDelegate+Category.m */; };
 		065B44CC1C0BFBC1003042A4 /* UITableView+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 065B44CA1C0BFBC1003042A4 /* UITableView+Category.m */; };
+		065F39171D6E9AA1006D8D6A /* MBProgressHUD+Toast.m in Sources */ = {isa = PBXBuildFile; fileRef = 065F39161D6E9AA1006D8D6A /* MBProgressHUD+Toast.m */; };
 		066357A01C1A5B5C0075F52B /* LoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0663579F1C1A5B5C0075F52B /* LoadingView.m */; };
 		066357A31C1A5BA70075F52B /* ArcToCircleLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 066357A21C1A5BA70075F52B /* ArcToCircleLayer.m */; };
 		06673B2A1CE2D59C00DBE98D /* WHAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 06673B291CE2D59C00DBE98D /* WHAnimation.m */; };
@@ -53,6 +54,7 @@
 		066AB8D31BC78EF000C70E13 /* libSocialWechat.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 066AB8CB1BC78EF000C70E13 /* libSocialWechat.a */; };
 		066AB8D41BC78EF000C70E13 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 066AB8CC1BC78EF000C70E13 /* libWeChatSDK.a */; };
 		066E37461CFFC87500BE97BB /* KLPopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 066E37451CFFC87500BE97BB /* KLPopView.m */; };
+		067550161D6C4CC5004F3132 /* KLTwoTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 067550151D6C4CC5004F3132 /* KLTwoTableView.m */; };
 		0675E1931D6401570009C5D0 /* KLBannerLoopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0675E1921D6401570009C5D0 /* KLBannerLoopView.m */; };
 		067965281CFE83130055EAD2 /* Status.m in Sources */ = {isa = PBXBuildFile; fileRef = 067965271CFE83130055EAD2 /* Status.m */; };
 		0679652A1CFEAF3F0055EAD2 /* Event.plist in Resources */ = {isa = PBXBuildFile; fileRef = 067965291CFEAF3F0055EAD2 /* Event.plist */; };
@@ -273,6 +275,8 @@
 		065B44C81C0BFBC1003042A4 /* AppDelegate+Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+Category.m"; sourceTree = "<group>"; };
 		065B44C91C0BFBC1003042A4 /* UITableView+Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+Category.h"; sourceTree = "<group>"; };
 		065B44CA1C0BFBC1003042A4 /* UITableView+Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+Category.m"; sourceTree = "<group>"; };
+		065F39151D6E9AA1006D8D6A /* MBProgressHUD+Toast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD+Toast.h"; sourceTree = "<group>"; };
+		065F39161D6E9AA1006D8D6A /* MBProgressHUD+Toast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MBProgressHUD+Toast.m"; sourceTree = "<group>"; };
 		0663579E1C1A5B5C0075F52B /* LoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadingView.h; sourceTree = "<group>"; };
 		0663579F1C1A5B5C0075F52B /* LoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadingView.m; sourceTree = "<group>"; };
 		066357A11C1A5BA70075F52B /* ArcToCircleLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArcToCircleLayer.h; sourceTree = "<group>"; };
@@ -292,6 +296,8 @@
 		066AB8CF1BC78EF000C70E13 /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiObject.h; sourceTree = "<group>"; };
 		066E37441CFFC87500BE97BB /* KLPopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KLPopView.h; sourceTree = "<group>"; };
 		066E37451CFFC87500BE97BB /* KLPopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KLPopView.m; sourceTree = "<group>"; };
+		067550141D6C4CC5004F3132 /* KLTwoTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KLTwoTableView.h; sourceTree = "<group>"; };
+		067550151D6C4CC5004F3132 /* KLTwoTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KLTwoTableView.m; sourceTree = "<group>"; };
 		0675E1911D6401570009C5D0 /* KLBannerLoopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KLBannerLoopView.h; sourceTree = "<group>"; };
 		0675E1921D6401570009C5D0 /* KLBannerLoopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KLBannerLoopView.m; sourceTree = "<group>"; };
 		067965261CFE83130055EAD2 /* Status.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Status.h; sourceTree = "<group>"; };
@@ -735,6 +741,7 @@
 		065B44AC1C0BFB4B003042A4 /* UIWidget */ = {
 			isa = PBXGroup;
 			children = (
+				067550131D6C4CA9004F3132 /* KLTableView */,
 				0675E1901D6401240009C5D0 /* KLendlessLoop */,
 				0697F5FA1D4B583B004F210F /* ChangeValueLabel */,
 				065AD6E11D4AE2DB00B5A8F2 /* KLAttStrView */,
@@ -849,6 +856,15 @@
 				066E37451CFFC87500BE97BB /* KLPopView.m */,
 			);
 			path = KLPopView;
+			sourceTree = "<group>";
+		};
+		067550131D6C4CA9004F3132 /* KLTableView */ = {
+			isa = PBXGroup;
+			children = (
+				067550141D6C4CC5004F3132 /* KLTwoTableView.h */,
+				067550151D6C4CC5004F3132 /* KLTwoTableView.m */,
+			);
+			path = KLTableView;
 			sourceTree = "<group>";
 		};
 		0675E1901D6401240009C5D0 /* KLendlessLoop */ = {
@@ -1018,6 +1034,8 @@
 				06E1A58C1C1FEE4300479C07 /* UIControl+Category.m */,
 				067FB8551CAA127300C05D87 /* UIViewController+Category.h */,
 				067FB8561CAA127300C05D87 /* UIViewController+Category.m */,
+				065F39151D6E9AA1006D8D6A /* MBProgressHUD+Toast.h */,
+				065F39161D6E9AA1006D8D6A /* MBProgressHUD+Toast.m */,
 			);
 			path = "UIKit+Category";
 			sourceTree = "<group>";
@@ -1484,8 +1502,8 @@
 				4A12F3A31BAFCF02008D4FE0 /* BaseAppDelegate.h */,
 				4A12F3A41BAFCF02008D4FE0 /* BaseAppDelegate.m */,
 				4A12F36C1BAFB306008D4FE0 /* AppDelegate.h */,
-				06E6674F1BB234BA00B5A80E /* API */,
 				4A12F36D1BAFB306008D4FE0 /* AppDelegate.m */,
+				06E6674F1BB234BA00B5A80E /* API */,
 				4A12F39D1BAFB353008D4FE0 /* Controller */,
 				4A12F39E1BAFB353008D4FE0 /* Models */,
 				4A12F39F1BAFB353008D4FE0 /* View */,
@@ -1771,6 +1789,7 @@
 				06E1A58D1C1FEE4300479C07 /* UIControl+Category.m in Sources */,
 				06E6686E1BB234BA00B5A80E /* NSString+MJExtension.m in Sources */,
 				4A12F36E1BAFB306008D4FE0 /* AppDelegate.m in Sources */,
+				067550161D6C4CC5004F3132 /* KLTwoTableView.m in Sources */,
 				06E668691BB234BA00B5A80E /* MJPropertyType.m in Sources */,
 				068F7B411C97E537003D4BC3 /* AFImageDownloader.m in Sources */,
 				06E6684F1BB234BA00B5A80E /* IQUIView+Hierarchy.m in Sources */,
@@ -1870,6 +1889,7 @@
 				0626B37F1BB0E53600E979C3 /* MoreViewController.m in Sources */,
 				0626B37C1BB0E51E00E979C3 /* HomeViewController.m in Sources */,
 				0626B36F1BB0E0E900E979C3 /* BaseNavigationViewController.m in Sources */,
+				065F39171D6E9AA1006D8D6A /* MBProgressHUD+Toast.m in Sources */,
 				06E6685F1BB234BA00B5A80E /* MASViewAttribute.m in Sources */,
 				065AD6E41D4AE2F600B5A8F2 /* KLAttStrView.m in Sources */,
 				067FB8571CAA127300C05D87 /* UIViewController+Category.m in Sources */,

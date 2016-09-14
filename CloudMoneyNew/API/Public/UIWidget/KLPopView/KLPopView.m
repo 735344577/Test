@@ -288,12 +288,15 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"cellIndentifiers" forIndexPath:indexPath];
     cell.backgroundColor = [UIColor clearColor];
-    cell.imageView.image = [UIImage imageNamed:self.images[indexPath.row]];
+    if (self.images[indexPath.row]) {
+        cell.imageView.image = [UIImage imageNamed:self.images[indexPath.row]];
+    }
     cell.textLabel.text = self.dataArray[indexPath.row];
     if (!self.titleTextColor) {
         self.titleTextColor = [UIColor whiteColor];
     }
     cell.textLabel.textColor = self.titleTextColor;
+    cell.textLabel.textAlignment = NSTextAlignmentCenter;
     cell.textLabel.font = [UIFont systemFontOfSize:self.fontSize];
     return cell;
 }
@@ -304,6 +307,7 @@
     }else if (_delegate && [_delegate respondsToSelector:@selector(selectIndexPathRow:)]) {
         [_delegate selectIndexPathRow:indexPath.row];
     }
+    [self dismiss];
 }
 
 @end

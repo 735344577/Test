@@ -320,7 +320,7 @@ typedef void(^Progress)(float progress);
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 }
 
-- (void)webView:(UIWebView *)webView didFailLoadWithError:(nullable NSError *)error
+- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
 {
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 }

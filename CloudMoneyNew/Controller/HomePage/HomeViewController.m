@@ -16,6 +16,7 @@
 #import "KLAttStrView.h"
 #import "ChangeValueLabel.h"
 #import "KLBannerLoopView.h"
+#import "KLPopView.h"
 @interface HomeViewController ()
 @property (nonatomic, strong) ChangeValueLabel * ValueLabel;
 @end
@@ -109,14 +110,29 @@
     }];
     [self.view addSubview:bannerView];
     
+    KLPopView * popView = [[KLPopView alloc] initWithOrigin:CGPointMake(50, 250) width:100 height:175 Type:XTTypeOfLeftUp color:nil];
+    popView.dataArray = @[@"100", @"200", @"300", @"400", @"500", @"1000", @"1500", @"2000", @"2500", @"3000"];
+    NSArray * array = popView.dataArray;
+    popView.selectBlock = ^(NSInteger row){
+        NSLog(@"result = %@", array[row]);
+    };
+//    [popView popView];
         // Do any additional setup after loading the view.
+    CMCircleProgressView * circleProgressView = [[CMCircleProgressView alloc] initWithFrame:CGRectMake(100, 250, 55, 55)];
+    circleProgressView.lineWidth = 1.5;
+    circleProgressView.trackTintColor = [UIColor colorWithHexString:@"#d9d9d9"];
+    circleProgressView.progressTintColor = [UIColor colorWithHexString:@"#FC712E"];
+    circleProgressView.progress = 0.5;
+    circleProgressView.state = @"抢购中";
     
+    [self.view addSubview:circleProgressView];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    self.title = @"首页";
+    self.title = @"云钱袋";
+    self.tabBarItem.title = @"首页";
     [self loginButton];
     [self registerButton];
 //    [_ValueLabel animationChangeValueFromValue:0.0 toValue:999999999.976 decimal:YES];
@@ -125,6 +141,8 @@
     progressView.progressTintColor = [UIColor colorWithRed:140 / 255.0 green:2 / 255.0 blue:140 / 255.0 alpha:1.0];
     progressView.progress = 0.5;
     [self.view addSubview:progressView];
+    
+    
 }
 
 
@@ -137,6 +155,7 @@
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
+    self.tabBarItem.title = @"首页";
 }
 
 - (void)viewDidDisappear:(BOOL)animated

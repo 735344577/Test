@@ -25,4 +25,6 @@
 #import "UITableView+Category.h"
 #import "UIView+Category.h"
 
+#import "MBProgressHUD+Toast.h"
+
 #endif /* UIKit_Category_h */

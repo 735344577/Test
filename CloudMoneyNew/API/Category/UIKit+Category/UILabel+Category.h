@@ -36,6 +36,8 @@
 
 @end
 
+
+
 @interface UILabel (textValueAnimation)
 /**
  *  @brief 数值变化动画
@@ -49,6 +51,8 @@
 
 @end
 
+
+
 @interface UILabel (Font_Color)
 /**
  *  @brief 一个Label上设置多种样式的字体
@@ -60,11 +64,28 @@
 - (void)txtArr:(NSArray *)txtArr colorArr:(NSArray *)colorArr fontArr:(NSArray *)fontArr;
 @end
 
+
+
+//富文本 http://www.cocoachina.com/ios/20160823/17409.html
+@interface UILabel (LineSpace)
+
+/**
+ *  @brief 设置字间距
+ *
+ *  @param wordSpace 字间距
+ */
+- (void)setWordSpace:(NSInteger)wordSpace;
+
 /**
  *  @brief 设置Label行间距
  */
-@interface UILabel (LineSpace)
-
 - (void)setLineSpace:(NSInteger)lineSpace;
+/**
+ *  @brief 设置字间距和行间距
+ *
+ *  @param wordSpace 字间距
+ *  @param lineSpace 行间距
+ */
+- (void)setWordSpace:(NSUInteger)wordSpace lineSpace:(NSInteger)lineSpace;
 
 @end

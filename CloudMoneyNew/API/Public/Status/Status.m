@@ -10,8 +10,7 @@
 
 @implementation Status
 
-+ (UIViewController *)appRootViewController
-{
++ (UIViewController *)appRootViewController {
     UIViewController *appRootVC = [UIApplication sharedApplication].keyWindow.rootViewController;
     UIViewController *topVC = appRootVC;
     while (topVC.presentedViewController) {
@@ -38,14 +37,14 @@
     return vc;
 }
 
-+ (NSDictionary *)dictionaryFromConfigPlist{
++ (NSDictionary *)dictionaryFromConfigPlist {
     NSString * filePath = [[NSBundle mainBundle] pathForResource:@"Event" ofType:@"plist"];
     NSDictionary * dic = [NSDictionary dictionaryWithContentsOfFile:filePath];
     return dic;
 }
 
-+ (BOOL)isContainsIndex:(NSUInteger)index range:(NSRange)range{
-    if (index >= range.location && index <= range.length + range.location)
++ (BOOL)isContainsIndex:(NSUInteger)index range:(NSRange)range {
+    if (index >= range.location && index <= range.length + range.location - 1)
         return YES;
     else
         return NO;

@@ -8,6 +8,7 @@
 
 #import "UILabel+Category.h"
 #import "UIKit+Category.h"
+#import <CoreText/CoreText.h>
 @implementation UILabel (Category)
 
 
@@ -147,7 +148,18 @@
 
 @implementation UILabel (LineSpace)
 
-- (void)setLineSpace:(NSInteger)lineSpace{
+- (void)setWordSpace:(NSInteger)wordSpace {
+    NSMutableAttributedString *attributedStr = [[NSMutableAttributedString alloc] initWithString:self.text];
+    long number = wordSpace;
+    CFNumberRef num = CFNumberCreate(kCFAllocatorDefault,kCFNumberSInt8Type,&number);
+    [attributedStr addAttribute:(id)kCTKernAttributeName
+                          value:(__bridge id)num
+                          range:NSMakeRange(0,[attributedStr length])];
+    CFRelease(num);
+    self.attributedText = attributedStr;
+}
+
+- (void)setLineSpace:(NSInteger)lineSpace {
     NSMutableAttributedString *attributedString =
     [[NSMutableAttributedString alloc] initWithString:self.text];
     NSMutableParagraphStyle *paragraphStyle =  [[NSMutableParagraphStyle alloc] init];
@@ -157,6 +169,20 @@
                              value:paragraphStyle
                              range:NSMakeRange(0, [self.text length])];
     self.attributedText = attributedString;
+}
+
+- (void)setWordSpace:(NSUInteger)wordSpace lineSpace:(NSInteger)lineSpace {
+    NSMutableAttributedString *attributedStr = [[NSMutableAttributedString alloc] initWithString:self.text];
+    NSMutableParagraphStyle * paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+    [paragraphStyle setLineSpacing:lineSpace];
+    [attributedStr addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [self.text length])];
+    long number = wordSpace;
+    CFNumberRef num = CFNumberCreate(kCFAllocatorDefault,kCFNumberSInt8Type,&number);
+    [attributedStr addAttribute:(id)kCTKernAttributeName
+                          value:(__bridge id)num
+                          range:NSMakeRange(0,[attributedStr length])];
+    CFRelease(num);
+    self.attributedText = attributedStr;
 }
 
 @end

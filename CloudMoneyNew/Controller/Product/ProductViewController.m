@@ -42,7 +42,7 @@
 //    [self.navigationController.navigationBar setBackgroundImage:[UIImage new]
 //                                                  forBarMetrics:UIBarMetricsDefault];
 //    self.navigationController.navigationBar.shadowImage = [UIImage new];
-    self.title = @"详情";
+    self.title = @"我要出借";
 //    [[self.navigationController.navigationBar subviews] firstObject].alpha = 0;
     
     // Do any additional setup after loading the view.

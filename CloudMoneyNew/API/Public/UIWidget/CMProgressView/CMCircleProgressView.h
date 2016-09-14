@@ -20,4 +20,8 @@
 
 @property (nonatomic, assign) float  lineWidth;
 
+/*状态*/
+@property (nonatomic, copy) NSString * state;
+/*字体颜色*/
+@property (nonatomic, strong) UIColor * textColor;
 @end

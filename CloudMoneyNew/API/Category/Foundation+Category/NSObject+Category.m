@@ -157,19 +157,19 @@
     return [[self valueForKey:@"retainCount"] unsignedLongValue];
 }
 
-- (NSString *)description
-{
-    NSString * string;
-    NSDictionary * info = [self properties_aps];
-    for (NSString * key in info.allKeys) {
-        if (string) {
-            string = [NSString stringWithFormat:@"%@,\n\t%@ : %@", string, key, info[key]];
-        }else{
-            string = [NSString stringWithFormat:@"\t%@ : %@", key, info[key]];
-        }
-        
-    }
-    return [NSString stringWithFormat:@"%@ {\n%@\n}", NSStringFromClass([self class]), string];
-}
+//- (NSString *)description
+//{
+//    NSString * string;
+//    NSDictionary * info = [self properties_aps];
+//    for (NSString * key in info.allKeys) {
+//        if (string) {
+//            string = [NSString stringWithFormat:@"%@,\n\t%@ : %@", string, key, info[key]];
+//        }else{
+//            string = [NSString stringWithFormat:@"\t%@ : %@", key, info[key]];
+//        }
+//        
+//    }
+//    return [NSString stringWithFormat:@"%@ {\n%@\n}", NSStringFromClass([self class]), string];
+//}
 
 @end
