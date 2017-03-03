@@ -17,8 +17,11 @@
 #import "ChangeValueLabel.h"
 #import "KLBannerLoopView.h"
 #import "KLPopView.h"
+#import "SDBarView.h"
 @interface HomeViewController ()
 @property (nonatomic, strong) ChangeValueLabel * ValueLabel;
+/**<#Description#>*/
+@property (nonatomic, strong) CMCircleProgressView * circleProgressView;
 @end
 
 @implementation HomeViewController
@@ -118,14 +121,13 @@
     };
 //    [popView popView];
         // Do any additional setup after loading the view.
-    CMCircleProgressView * circleProgressView = [[CMCircleProgressView alloc] initWithFrame:CGRectMake(100, 250, 55, 55)];
-    circleProgressView.lineWidth = 1.5;
-    circleProgressView.trackTintColor = [UIColor colorWithHexString:@"#d9d9d9"];
-    circleProgressView.progressTintColor = [UIColor colorWithHexString:@"#FC712E"];
-    circleProgressView.progress = 0.5;
-    circleProgressView.state = @"抢购中";
+    _circleProgressView = [[CMCircleProgressView alloc] initWithFrame:CGRectMake(100, 250, 55, 55)];
+    _circleProgressView.lineWidth = 2.5;
+    _circleProgressView.trackTintColor = [UIColor colorWithHexString:@"#d9d9d9"];
+    _circleProgressView.progressTintColor = [UIColor colorWithHexString:@"#FC712E"];
+    _circleProgressView.state = @"抢购中";
+    [self.view addSubview:_circleProgressView];
     
-    [self.view addSubview:circleProgressView];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -140,8 +142,25 @@
     progressView.trackTintColor = [UIColor purpleColor];
     progressView.progressTintColor = [UIColor colorWithRed:140 / 255.0 green:2 / 255.0 blue:140 / 255.0 alpha:1.0];
     progressView.progress = 0.5;
-    [self.view addSubview:progressView];
+//    [self.view addSubview:progressView];
     
+    [_circleProgressView setProgress:0 animation:NO];
+    [_circleProgressView setProgress:0.5 animation:YES];
+    
+    
+    
+    SDBarView *barView = [[SDBarView alloc] initWithFrame:CGRectZero];
+//    [self.view addSubview:barView];
+//    [barView makeConstraints:^(MASConstraintMaker *make) {
+//        make.top.equalTo(self.view).offset(250);
+//        make.centerX.equalTo(self.view);
+//        make.width.equalTo(30);
+//        make.height.equalTo(150);
+//    }];
+    
+    barView.progressTintColor = [UIColor colorWithHexString:@"#FC712E"];
+    barView.progress = 0.3;
+    barView.backgroundColor = [UIColor colorWithHexString:@"#F5F5F5"];
     
 }
 

@@ -17,12 +17,6 @@
 #import "UIKit+Category.h"
 #import "Foundation+Category.h"
 
-#import <pop/POP.h>
-#import <JPFPSStatus/JPFPSStatus.h>
-
-#import "Status.h"/**公共方法*/
-#endif /* CloudMoneyNew_pch */
-
 //define this constant if you want to use Masonry without the 'mas_' prefix
 //不再需要写 mas_ 前缀，可以直接使用 控件.right .lift等属性
 #define MAS_SHORTHAND
@@ -32,7 +26,14 @@
 #define MAS_SHORTHAND_GLOBALS
 
 
-#import "Masonry.h"
+#import <pop/POP.h>
+#import <JPFPSStatus/JPFPSStatus.h>
+#import <Masonry/Masonry.h>
+#import <FMDB/FMDB.h>
+#import <AFNetworking/AFNetworking.h>
+#import <AFNetworking/UIKit+AFNetworking.h>
+#import "Status.h"/**公共方法*/
+#endif /* CloudMoneyNew_pch */
 
 
 #ifdef DEBUG

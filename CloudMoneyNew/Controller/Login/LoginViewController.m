@@ -163,6 +163,8 @@
         make.height.mas_equalTo(@40);
         make.top.equalTo(ws.view).with.offset(190);
     }];
+    login_btn.animationColor = [UIColor purpleColor];
+    login_btn.animationType = KLAnimationInner;
     
     // 注册
     UIButton *register_btn = [UIButton buttonWithType:UIButtonTypeCustom];

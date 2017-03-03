@@ -98,9 +98,9 @@ static char * kSpringTableHeadViewHeight = "kSpringTableHeadViewHeight";
         return;
     }
     //如果不使用约束的话，图片的y值要上移offsetY,同时height也要增加offsetY
-    CGFloat x = self.SpringHeadView.origin.x;
+    CGFloat x = CGRectGetMinX(self.SpringHeadView.frame);
     CGFloat y = offsetY;
-    CGFloat width = self.SpringHeadView.size.width;
+    CGFloat width = CGRectGetWidth(self.SpringHeadView.frame);
     CGFloat height = self.SpringHeadViewHeight - offsetY;
     self.SpringHeadView.frame = CGRectMake(x, y, width, height);
 }

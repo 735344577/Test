@@ -59,11 +59,11 @@ static char * kTopViewHeight = "kTopViewHeight";
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     CGFloat offy = scrollView.contentOffset.y;
     //防止height小于0
-    if (self.topView.size.height - offy < 0) {
+    if (CGRectGetHeight(self.topView.frame) - offy < 0) {
         return;
     }
     //如果不使用约束的话，图片的y值要上移offsetY,同时height也要增加offsetY
-    CGFloat width = self.topView.size.width;
+    CGFloat width = CGRectGetWidth(self.topView.frame);
     CGFloat height = self.topViewHeight;
     if (offy <= -self.topViewHeight) {
         if (offy + height <= -self.topViewHeight) {

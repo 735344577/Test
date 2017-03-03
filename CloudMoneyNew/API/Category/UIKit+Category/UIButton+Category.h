@@ -23,3 +23,16 @@
 - (void)startWithTime:(NSInteger)timeLine countDownTitle:(NSString *)subTitle;
 
 @end
+
+typedef NS_ENUM(NSInteger, KLAnimationType) {
+    KLAnimationInner = 1,
+    KLAnimationOuter,
+};
+
+@interface UIButton (animation)
+
+/* <#Description#>*/
+@property (nonatomic, assign) KLAnimationType animationType;
+/*动画颜色*/
+@property (nonatomic, strong) UIColor * animationColor;
+@end

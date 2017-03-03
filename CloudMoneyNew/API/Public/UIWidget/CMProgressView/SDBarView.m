@@ -1,24 +1,21 @@
 //
-//  CMLineProgressView.m
+//  SDBarView.m
 //  CloudMoneyNew
 //
-//  Created by nice on 15/10/8.
-//  Copyright © 2015年 dfyg. All rights reserved.
+//  Created by nice on 2017/2/24.
+//  Copyright © 2017年 dfyg. All rights reserved.
 //
 
-#import "CMLineProgressView.h"
+#import "SDBarView.h"
 
-@interface CMLineProgressView ()
-
-@property (nonatomic, strong) CAShapeLayer * trackLayer;
-
-@property (nonatomic, strong) CAShapeLayer * progressLayer;
-
-@property (nonatomic, strong) CAShapeLayer * whiteLayer;
-
+@interface SDBarView ()
+@property (nonatomic, strong) CAShapeLayer *progressLayer;
+@property (nonatomic, strong) CAShapeLayer *whiteLayer;
+@property (nonatomic, strong) CAShapeLayer *trackLayer;
 @end
 
-@implementation CMLineProgressView
+@implementation SDBarView
+
 - (instancetype)init
 {
     self = [super init];
@@ -48,32 +45,22 @@
 
 - (void)initView
 {
-    self.lineWidth = CGRectGetHeight(self.frame);
+    self.lineWidth = CGRectGetWidth(self.frame);
     self.trackLayer = [CAShapeLayer layer];
     _trackLayer.frame = self.bounds;
     [self.layer addSublayer:_trackLayer];
     _trackLayer.fillColor = nil;
-    _trackLayer.lineCap = kCALineCapRound;
+    _trackLayer.lineCap = kCALineCapButt;
     _trackLayer.lineJoin = kCALineJoinRound;
     _trackLayer.lineWidth = _lineWidth;
     [self setTrackPath];
     
-    self.whiteLayer = [CAShapeLayer layer];
-    _whiteLayer.frame = self.bounds;
-    [_trackLayer addSublayer:_whiteLayer];
-    _whiteLayer.fillColor = [UIColor whiteColor].CGColor;
-    _whiteLayer.lineCap = kCALineCapRound;
-    _whiteLayer.lineWidth = _lineWidth - 1;
-    [self setWhitePath];
-    _whiteLayer.strokeColor = [UIColor whiteColor].CGColor;
     
     _progressLayer = [CAShapeLayer layer];
-    _progressLayer.frame = _trackLayer.bounds;
     _progressLayer.fillColor = [UIColor clearColor].CGColor;
-    _progressLayer.lineCap = kCALineCapRound;
+    _progressLayer.lineCap = kCALineCapButt;
     _progressLayer.lineWidth = _lineWidth;
     [_trackLayer addSublayer:_progressLayer];
-    
 }
 
 - (void)setTrackFillColor:(UIColor *)trackFillColor
@@ -106,32 +93,25 @@
     [self setProgressPath];
 }
 
-- (void)setWhitePath
-{
-    UIBezierPath * path = [UIBezierPath bezierPath];
-    [path moveToPoint:CGPointMake(CGRectGetMinX(self.bounds), CGRectGetMidY(self.bounds))];
-    [path addLineToPoint:CGPointMake(CGRectGetWidth(self.frame), CGRectGetMidY(self.bounds))];
-    _whiteLayer.path = path.CGPath;
-    
-}
-
 //设置线条路径
 - (void)setTrackPath
 {
     UIBezierPath * path = [UIBezierPath bezierPath];
-    [path moveToPoint:CGPointMake(CGRectGetMinX(self.bounds), CGRectGetMidY(self.bounds))];
-    [path addLineToPoint:CGPointMake(CGRectGetWidth(self.frame), CGRectGetMidY(self.bounds))];
+    [path moveToPoint:CGPointMake(CGRectGetMinX(self.bounds), CGRectGetMaxY(self.bounds))];
+    [path addLineToPoint:CGPointMake(CGRectGetMinX(self.bounds), CGRectGetHeight(self.bounds))];
+    path.lineWidth = _lineWidth;
+    path.lineCapStyle = kCGLineCapSquare;
     _trackLayer.path = path.CGPath;
 }
+
 
 //设置进度路径
 - (void)setProgressPath
 {
     UIBezierPath * path = [UIBezierPath bezierPath];
-    [path moveToPoint:CGPointMake(CGRectGetMinX(self.bounds), CGRectGetMidY(self.bounds))];
-    [path addLineToPoint:CGPointMake(CGRectGetWidth(self.frame) * _progress, CGRectGetMidY(self.bounds))];
-    path.lineCapStyle = kCGLineCapRound;
-    path.lineJoinStyle = kCGLineJoinBevel;
+    [path moveToPoint:CGPointMake(CGRectGetMidX(self.bounds), CGRectGetMaxY(self.bounds))];
+    [path addLineToPoint:CGPointMake(CGRectGetMidX(self.bounds), CGRectGetHeight(self.bounds) * (1 - _progress))];
+    path.lineCapStyle = kCGLineCapButt;
     [path setLineWidth:_lineWidth];
     [_progressTintColor setStroke];
     self.progressLayer.path = path.CGPath;
@@ -145,15 +125,6 @@
     [_progressLayer addAnimation:pathAnimation forKey:@"strokeEndAnimation"];
     _progressLayer.strokeEnd = 1.0;
 }
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
-}
-*/
+
 
 @end
-
-
-

@@ -22,6 +22,8 @@
 @property (nonatomic, strong) UILabel * progressLabel;
 /*状态*/
 @property (nonatomic, strong) UILabel * stateLabel;
+/**是否动画*/
+@property (nonatomic, assign) BOOL isAnimation;
 @end
 
 @implementation CMCircleProgressView
@@ -73,6 +75,29 @@
 {
     _progressPath = [UIBezierPath bezierPathWithArcCenter:CGPointMake(CGRectGetWidth(self.bounds) / 2, CGRectGetHeight(self.bounds) / 2) radius:(self.bounds.size.width - _lineWidth)/ 2 startAngle:- M_PI_2 endAngle:(M_PI * 2) * _progress - M_PI_2 clockwise:YES];
     _progressLayer.path = _progressPath.CGPath;
+
+    if (_isAnimation) {
+        CABasicAnimation *pathAnimation = [CABasicAnimation animationWithKeyPath:@"strokeEnd"];
+        pathAnimation.duration = 0.75;
+        pathAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];
+        pathAnimation.fromValue = [NSNumber numberWithFloat:0.0f];
+        pathAnimation.toValue = [NSNumber numberWithFloat:1.0f];
+        pathAnimation.autoreverses = NO;
+        [_progressLayer addAnimation:pathAnimation forKey:@"strokeEndAnimation"];
+        _progressLayer.strokeEnd = 1.0;
+    }
+}
+
+- (void)setProgress:(float)progress animation:(BOOL)animation {
+    _isAnimation = animation;
+    _progress = progress;
+    _progressLabel.text = [NSString stringWithFormat:@"%.2f%%", progress * 100];
+//    if (_isAnimation) {
+//        [self startAnimation];
+//    } else {
+//        [self setProgress];
+//    }
+    [self setProgress];
 }
 
 
@@ -104,7 +129,10 @@
     }
     _progress = progress;
     _progressLabel.text = [NSString stringWithFormat:@"%.2f%%", progress * 100];
-    [self startAnimation];
+//    if (_isAnimation) {
+//        [self startAnimation];
+//    }
+    [self setProgress];
 }
 
 - (void)setState:(NSString *)state {

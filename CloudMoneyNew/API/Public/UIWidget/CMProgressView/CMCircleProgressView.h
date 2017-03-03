@@ -24,4 +24,7 @@
 @property (nonatomic, copy) NSString * state;
 /*字体颜色*/
 @property (nonatomic, strong) UIColor * textColor;
+
+- (void)setProgress:(float)progress animation:(BOOL)animation;
+
 @end

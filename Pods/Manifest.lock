@@ -1,20 +1,40 @@
 PODS:
+  - AFNetworking (3.1.0):
+    - AFNetworking/NSURLSession (= 3.1.0)
+    - AFNetworking/Reachability (= 3.1.0)
+    - AFNetworking/Security (= 3.1.0)
+    - AFNetworking/Serialization (= 3.1.0)
+    - AFNetworking/UIKit (= 3.1.0)
+  - AFNetworking/NSURLSession (3.1.0):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (3.1.0)
+  - AFNetworking/Security (3.1.0)
+  - AFNetworking/Serialization (3.1.0)
+  - AFNetworking/UIKit (3.1.0):
+    - AFNetworking/NSURLSession
   - FMDB (2.6.2):
     - FMDB/standard (= 2.6.2)
   - FMDB/standard (2.6.2)
   - JPFPSStatus (0.0.2)
+  - Masonry (1.0.1)
   - pop (1.0.9)
 
 DEPENDENCIES:
+  - AFNetworking (~> 3.1.0)
   - FMDB (~> 2.6.2)
   - JPFPSStatus (~> 0.0.2)
+  - Masonry (~> 1.0.1)
   - pop (~> 1.0.9)
 
 SPEC CHECKSUMS:
+  AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
   FMDB: 854a0341b4726e53276f2a8996f06f1b80f9259a
   JPFPSStatus: 11de6027b4cbebfeee0c939dfe08f5ec124a0965
+  Masonry: a1a931a0d08870ed8ae415a2ea5ea68ebcac77df
   pop: f667631a5108a2e60d9e8797c9b32ddaf2080bce
 
-PODFILE CHECKSUM: 71b8eed1c9c268fef546cfaa91ce9a57c60d2e57
+PODFILE CHECKSUM: daf9d776c44cfdbdf79832ad13111b4e2481f067
 
 COCOAPODS: 1.0.1
