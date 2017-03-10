@@ -18,6 +18,7 @@
 #import "KLBannerLoopView.h"
 #import "KLPopView.h"
 #import "SDBarView.h"
+#import "SDMutiBarView.h"
 @interface HomeViewController ()
 @property (nonatomic, strong) ChangeValueLabel * ValueLabel;
 /**<#Description#>*/
@@ -126,7 +127,7 @@
     _circleProgressView.trackTintColor = [UIColor colorWithHexString:@"#d9d9d9"];
     _circleProgressView.progressTintColor = [UIColor colorWithHexString:@"#FC712E"];
     _circleProgressView.state = @"抢购中";
-    [self.view addSubview:_circleProgressView];
+//    [self.view addSubview:_circleProgressView];
     
 }
 
@@ -149,7 +150,7 @@
     
     
     
-    SDBarView *barView = [[SDBarView alloc] initWithFrame:CGRectZero];
+//    SDBarView *barView = [[SDBarView alloc] initWithFrame:CGRectZero];
 //    [self.view addSubview:barView];
 //    [barView makeConstraints:^(MASConstraintMaker *make) {
 //        make.top.equalTo(self.view).offset(250);
@@ -157,10 +158,68 @@
 //        make.width.equalTo(30);
 //        make.height.equalTo(150);
 //    }];
+//    
+//    barView.progressTintColor = [UIColor colorWithHexString:@"#FC712E"];
+//    barView.progress = 0.3;
+//    barView.backgroundColor = [UIColor colorWithHexString:@"#F5F5F5"];
+    NSArray *message = @[@{@"progressColor": [UIColor redColor], @"progress": @(0.8)},
+                         @{@"progressColor": [UIColor blueColor], @"progress": @(0.38)},
+                         @{@"progressColor": [UIColor orangeColor], @"progress": @(0.2)}];
+//    SDMutiBarView *barView = [SDMutiBarView mutiBarWith:message];//[[SDMutiBarView alloc] initWithFrame:CGRectZero];
+//    [self.view addSubview:barView];
+//    [barView makeConstraints:^(MASConstraintMaker *make) {
+//        make.top.equalTo(self.view).offset(250);
+//        make.centerX.equalTo(self.view);
+//        make.width.equalTo(30);
+//        make.height.equalTo(150);
+//    }];
+//    barView.currentColor = [UIColor redColor];
+    NSMutableArray *dataSource = @[].mutableCopy;
+    NSMutableArray *bars = @[].mutableCopy;
     
-    barView.progressTintColor = [UIColor colorWithHexString:@"#FC712E"];
-    barView.progress = 0.3;
-    barView.backgroundColor = [UIColor colorWithHexString:@"#F5F5F5"];
+    for (int i = 0; i < 12; i++) {
+        NSDictionary *dic = @{@"progressColor": [UIColor redColor], @"progress": @(0.4 + i * 0.05), @"duration": @(0.75 + 0.05 * i)};
+        NSArray *source = @[dic,
+                                   @{@"progressColor": [UIColor blueColor], @"progress": @(0.3), @"duration": @(0.55)},
+                                   @{@"progressColor": [UIColor orangeColor], @"progress": @(0.2), @"duration": @(0.25)}].mutableCopy;
+        [dataSource addObject:source];
+        
+        SDMutiBarView *barView = [SDMutiBarView mutiBarWith:source];//[[SDMutiBarView alloc] initWithFrame:CGRectZero];
+        [self.view addSubview:barView];
+        [barView makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self.view).offset(65 + (15 + 5) * i);
+            make.width.equalTo(15);
+            make.height.equalTo(150);
+            make.top.equalTo(self.view).offset(250);
+        }];
+        [bars addObject:barView];
+        UILabel *label = [[UILabel alloc] init];
+        label.text = [NSString stringWithFormat:@"%@", @(i + 1)];
+        [self.view addSubview:label];
+        label.textAlignment = NSTextAlignmentCenter;
+        label.font = [UIFont systemFontOfSize:10];
+        [label makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(barView.bottom).offset(5);
+            make.left.centerX.equalTo(barView);
+        }];
+    }
+    SDMutiBarView *bar = bars[7];
+    bar.currentColor = [UIColor purpleColor];
+    UILabel *label = [[UILabel alloc] init];
+    label.text = @"10.5%";
+    label.textColor = [UIColor purpleColor];
+    label.textAlignment = NSTextAlignmentCenter;
+    label.font = [UIFont systemFontOfSize:14.0];
+    [self.view addSubview:label];
+    [label makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.equalTo(bar.bottom).offset(-135);
+        make.centerX.equalTo(bar);
+    }];
+    
+    
+//    barView.progressTintColor = [UIColor colorWithHexString:@"#FC712E"];
+//    barView.progress = 0.3;
+//    barView.backgroundColor = [UIColor colorWithHexString:@"#F5F5F5"];
     
 }
 

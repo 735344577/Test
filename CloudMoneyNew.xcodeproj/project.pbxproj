@@ -163,6 +163,7 @@
 		4A12F38F1BAFB306008D4FE0 /* CloudMoneyNewUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A12F38E1BAFB306008D4FE0 /* CloudMoneyNewUITests.m */; };
 		4A12F3A51BAFCF02008D4FE0 /* BaseAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A12F3A41BAFCF02008D4FE0 /* BaseAppDelegate.m */; };
 		9D83210C913FC9E874F4B8AC /* libPods-CloudMoneyNew.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 02C999B6FB593B4D257B7980 /* libPods-CloudMoneyNew.a */; };
+		B285B73B1E72FC79008FF4D8 /* SDMutiBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = B285B73A1E72FC79008FF4D8 /* SDMutiBarView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -494,6 +495,8 @@
 		4A12F3901BAFB306008D4FE0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4A12F3A31BAFCF02008D4FE0 /* BaseAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseAppDelegate.h; sourceTree = "<group>"; };
 		4A12F3A41BAFCF02008D4FE0 /* BaseAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseAppDelegate.m; sourceTree = "<group>"; };
+		B285B7391E72FC79008FF4D8 /* SDMutiBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDMutiBarView.h; sourceTree = "<group>"; };
+		B285B73A1E72FC79008FF4D8 /* SDMutiBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDMutiBarView.m; sourceTree = "<group>"; };
 		BCDCF42CA9D72C7E1541EA4C /* Pods-CloudMoneyNew.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CloudMoneyNew.release.xcconfig"; path = "Pods/Target Support Files/Pods-CloudMoneyNew/Pods-CloudMoneyNew.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -693,6 +696,8 @@
 				065B44B11C0BFB4B003042A4 /* CMLineProgressView.m */,
 				06A296E81E603D4D00251CC6 /* SDBarView.h */,
 				06A296E91E603D4D00251CC6 /* SDBarView.m */,
+				B285B7391E72FC79008FF4D8 /* SDMutiBarView.h */,
+				B285B73A1E72FC79008FF4D8 /* SDMutiBarView.m */,
 			);
 			path = CMProgressView;
 			sourceTree = "<group>";
@@ -1614,7 +1619,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1732,6 +1737,7 @@
 				06E668811BB234BA00B5A80E /* UIView+MJExtension.m in Sources */,
 				065B44BE1C0BFB4B003042A4 /* CMCircleProgressView.m in Sources */,
 				06E668821BB234BA00B5A80E /* YRJSONAdapter.m in Sources */,
+				B285B73B1E72FC79008FF4D8 /* SDMutiBarView.m in Sources */,
 				066357A01C1A5B5C0075F52B /* LoadingView.m in Sources */,
 				06E668771BB234BA00B5A80E /* MJRefreshBackGifFooter.m in Sources */,
 				06E668791BB234BA00B5A80E /* MJRefreshBackStateFooter.m in Sources */,
