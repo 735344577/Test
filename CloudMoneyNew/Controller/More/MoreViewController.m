@@ -45,6 +45,18 @@
     // Dispose of any resources that can be recreated.
 }
 
+//AVCaptureSession
+/*
+-(void)captureOutput:(AVCaptureOutput *)captureOutput didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer fromConnection:(AVCaptureConnection *)connection{
+    CVImageBufferRef ref = CMSampleBufferGetImageBuffer(sampleBuffer);
+    CIImage* ciImage = [[CIImage alloc]initWithCVPixelBuffer:ref];
+    CIContext *context = [CIContext contextWithOptions:nil];
+    CGImageRef cgImage = [context createCGImage:ciImage fromRect:[ciImage extent]];
+    UIImage * image = [[UIImage alloc]initWithCGImage:cgImage];
+    CGImageRelease(cgImage);
+}
+*/
+
 /*
 #pragma mark - Navigation
 

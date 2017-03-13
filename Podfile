@@ -7,4 +7,6 @@ target "CloudMoneyNew" do
     pod 'Masonry', '~> 1.0.1'
     pod 'FMDB', '~> 2.6.2'
     pod 'AFNetworking', '~> 3.1.0'
+#    pod 'OpenCV', '~> 3.0.0'
+#    pod 'TesseractOCRiOS'
 end

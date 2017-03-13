@@ -19,6 +19,8 @@
 #import "KLPopView.h"
 #import "SDBarView.h"
 #import "SDMutiBarView.h"
+#import "SDCiraleLoadingView.h"
+
 @interface HomeViewController ()
 @property (nonatomic, strong) ChangeValueLabel * ValueLabel;
 /**<#Description#>*/
@@ -145,8 +147,8 @@
     progressView.progress = 0.5;
 //    [self.view addSubview:progressView];
     
-    [_circleProgressView setProgress:0 animation:NO];
-    [_circleProgressView setProgress:0.5 animation:YES];
+//    [_circleProgressView setProgress:0 animation:NO];
+//    [_circleProgressView setProgress:0.5 animation:YES];
     
     
     
@@ -221,8 +223,11 @@
 //    barView.progress = 0.3;
 //    barView.backgroundColor = [UIColor colorWithHexString:@"#F5F5F5"];
     
+    
+    SDCiraleLoadingView *loadingView = [SDCiraleLoadingView ciraleView:@"正在加载..."];
+    [self.view addSubview:loadingView];
+    [loadingView startAnimation];
 }
-
 
 - (void)viewDidAppear:(BOOL)animated
 {

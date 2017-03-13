@@ -57,6 +57,7 @@
 		066E37461CFFC87500BE97BB /* KLPopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 066E37451CFFC87500BE97BB /* KLPopView.m */; };
 		067550161D6C4CC5004F3132 /* KLTwoTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 067550151D6C4CC5004F3132 /* KLTwoTableView.m */; };
 		0675E1931D6401570009C5D0 /* KLBannerLoopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0675E1921D6401570009C5D0 /* KLBannerLoopView.m */; };
+		0678DFDF1E70DF8E0063EEA9 /* SDCiraleLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0678DFDE1E70DF8E0063EEA9 /* SDCiraleLoadingView.m */; };
 		067965281CFE83130055EAD2 /* Status.m in Sources */ = {isa = PBXBuildFile; fileRef = 067965271CFE83130055EAD2 /* Status.m */; };
 		0679652A1CFEAF3F0055EAD2 /* Event.plist in Resources */ = {isa = PBXBuildFile; fileRef = 067965291CFEAF3F0055EAD2 /* Event.plist */; };
 		067FB8571CAA127300C05D87 /* UIViewController+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 067FB8561CAA127300C05D87 /* UIViewController+Category.m */; };
@@ -282,6 +283,8 @@
 		067550151D6C4CC5004F3132 /* KLTwoTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KLTwoTableView.m; sourceTree = "<group>"; };
 		0675E1911D6401570009C5D0 /* KLBannerLoopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KLBannerLoopView.h; sourceTree = "<group>"; };
 		0675E1921D6401570009C5D0 /* KLBannerLoopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KLBannerLoopView.m; sourceTree = "<group>"; };
+		0678DFDD1E70DF8E0063EEA9 /* SDCiraleLoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDCiraleLoadingView.h; sourceTree = "<group>"; };
+		0678DFDE1E70DF8E0063EEA9 /* SDCiraleLoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDCiraleLoadingView.m; sourceTree = "<group>"; };
 		067965261CFE83130055EAD2 /* Status.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Status.h; sourceTree = "<group>"; };
 		067965271CFE83130055EAD2 /* Status.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Status.m; sourceTree = "<group>"; };
 		067965291CFEAF3F0055EAD2 /* Event.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Event.plist; sourceTree = "<group>"; };
@@ -747,6 +750,8 @@
 				066357A21C1A5BA70075F52B /* ArcToCircleLayer.m */,
 				06673B281CE2D59C00DBE98D /* WHAnimation.h */,
 				06673B291CE2D59C00DBE98D /* WHAnimation.m */,
+				0678DFDD1E70DF8E0063EEA9 /* SDCiraleLoadingView.h */,
+				0678DFDE1E70DF8E0063EEA9 /* SDCiraleLoadingView.m */,
 			);
 			path = Loading;
 			sourceTree = "<group>";
@@ -1679,6 +1684,7 @@
 				06F09D6F1BB52A4A00E8B960 /* CMDeviceInfo.m in Sources */,
 				06E668571BB234BA00B5A80E /* IQTitleBarButtonItem.m in Sources */,
 				06E668751BB234BA00B5A80E /* MJRefreshAutoNormalFooter.m in Sources */,
+				0678DFDF1E70DF8E0063EEA9 /* SDCiraleLoadingView.m in Sources */,
 				06E6682B1BB234BA00B5A80E /* NSCalendar+Category.m in Sources */,
 				06E668701BB234BA00B5A80E /* MJRefreshBackFooter.m in Sources */,
 				06E668341BB234BA00B5A80E /* UIImage+Category.m in Sources */,

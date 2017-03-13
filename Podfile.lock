@@ -18,7 +18,7 @@ PODS:
     - FMDB/standard (= 2.6.2)
   - FMDB/standard (2.6.2)
   - JPFPSStatus (0.0.2)
-  - Masonry (1.0.1)
+  - Masonry (1.0.2)
   - pop (1.0.9)
 
 DEPENDENCIES:
@@ -32,9 +32,9 @@ SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
   FMDB: 854a0341b4726e53276f2a8996f06f1b80f9259a
   JPFPSStatus: 11de6027b4cbebfeee0c939dfe08f5ec124a0965
-  Masonry: a1a931a0d08870ed8ae415a2ea5ea68ebcac77df
+  Masonry: 7c429b56da9d4ee0bbb3ed77a5ea710d6a5df39e
   pop: f667631a5108a2e60d9e8797c9b32ddaf2080bce
 
-PODFILE CHECKSUM: daf9d776c44cfdbdf79832ad13111b4e2481f067
+PODFILE CHECKSUM: c9ffb8aab1fbf76f0a76919f3595fc4c9e6a610a
 
 COCOAPODS: 1.2.0
