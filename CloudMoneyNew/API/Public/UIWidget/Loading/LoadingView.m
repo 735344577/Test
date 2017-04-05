@@ -22,7 +22,7 @@ static CGFloat const kVerticalThinLayerWidth = 3;
 static CGFloat const kYScale = 0.8;
 static CGFloat const kVerticalFatLayerWidth = 6;
 
-@interface LoadingView ()
+@interface LoadingView ()<CAAnimationDelegate>
 @property (nonatomic, strong) ArcToCircleLayer *arcToCircleLayer;
 @property (nonatomic, strong) CAShapeLayer *moveArcLayer;
 @property (nonatomic, strong) CALayer *verticalMoveLayer;

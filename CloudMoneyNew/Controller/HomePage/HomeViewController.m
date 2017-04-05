@@ -20,11 +20,12 @@
 #import "SDBarView.h"
 #import "SDMutiBarView.h"
 #import "SDCiraleLoadingView.h"
-
 @interface HomeViewController ()
 @property (nonatomic, strong) ChangeValueLabel * ValueLabel;
 /**<#Description#>*/
 @property (nonatomic, strong) CMCircleProgressView * circleProgressView;
+/**<#Description#>*/
+@property (nonatomic, strong) NSThread *thread;
 @end
 
 @implementation HomeViewController
@@ -50,12 +51,12 @@
     [arr addObject:[WHAnimation replicatorLayer_Grid]];
     [arr addObject:[WHAnimation replicatorLayer_upDown]];
     [arr addObject:[WHAnimation replicatorLayer_upDown1]];
-    CGFloat radius = 80;
-    for (NSInteger loop = 0; loop < arr.count; loop ++) {
+    CGFloat radius = 79;
+    for (NSInteger loop = 0; loop < arr.count; loop++) {
         NSInteger col = loop % 4;
         NSInteger row = loop / 4;
         
-        UIView * view = [[UIView alloc] initWithFrame:CGRectMake(radius * col, radius * row, radius, radius)];
+        UIView * view = [[UIView alloc] initWithFrame:CGRectMake((radius + 1) * col, (radius + 1) * row, radius, radius)];
         view.backgroundColor = [UIColor lightGrayColor];
         [view.layer addSublayer:[arr objectAtIndex:loop]];
 //        [self.view addSubview:view];
@@ -114,7 +115,7 @@
     [bannerView setClickBlock:^(NSInteger index) {
         NSLog(@"index = %ld", index);
     }];
-    [self.view addSubview:bannerView];
+//    [self.view addSubview:bannerView];
     
     KLPopView * popView = [[KLPopView alloc] initWithOrigin:CGPointMake(50, 250) width:100 height:175 Type:XTTypeOfLeftUp color:nil];
     popView.dataArray = @[@"100", @"200", @"300", @"400", @"500", @"1000", @"1500", @"2000", @"2500", @"3000"];
@@ -150,7 +151,7 @@
 //    [_circleProgressView setProgress:0 animation:NO];
 //    [_circleProgressView setProgress:0.5 animation:YES];
     
-    
+
     
 //    SDBarView *barView = [[SDBarView alloc] initWithFrame:CGRectZero];
 //    [self.view addSubview:barView];
@@ -178,61 +179,101 @@
 //    barView.currentColor = [UIColor redColor];
     NSMutableArray *dataSource = @[].mutableCopy;
     NSMutableArray *bars = @[].mutableCopy;
-    
+    NSMutableArray *months = @[].mutableCopy;
     for (int i = 0; i < 12; i++) {
         NSDictionary *dic = @{@"progressColor": [UIColor redColor], @"progress": @(0.4 + i * 0.05), @"duration": @(0.75 + 0.05 * i)};
         NSArray *source = @[dic,
                                    @{@"progressColor": [UIColor blueColor], @"progress": @(0.3), @"duration": @(0.55)},
                                    @{@"progressColor": [UIColor orangeColor], @"progress": @(0.2), @"duration": @(0.25)}].mutableCopy;
         [dataSource addObject:source];
-        
-        SDMutiBarView *barView = [SDMutiBarView mutiBarWith:source];//[[SDMutiBarView alloc] initWithFrame:CGRectZero];
-        [self.view addSubview:barView];
-        [barView makeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(self.view).offset(65 + (15 + 5) * i);
-            make.width.equalTo(15);
-            make.height.equalTo(150);
-            make.top.equalTo(self.view).offset(250);
-        }];
-        [bars addObject:barView];
-        UILabel *label = [[UILabel alloc] init];
-        label.text = [NSString stringWithFormat:@"%@", @(i + 1)];
-        [self.view addSubview:label];
-        label.textAlignment = NSTextAlignmentCenter;
-        label.font = [UIFont systemFontOfSize:10];
-        [label makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(barView.bottom).offset(5);
-            make.left.centerX.equalTo(barView);
-        }];
+        [months addObject:[@(i + 1) stringValue]];
+//        SDMutiBarView *barView = [SDMutiBarView mutiBarWith:source];//[[SDMutiBarView alloc] initWithFrame:CGRectZero];
+//        [self.view addSubview:barView];
+//        [barView makeConstraints:^(MASConstraintMaker *make) {
+//            make.left.equalTo(self.view).offset(65 + (15 + 5) * i);
+//            make.width.equalTo(15);
+//            make.height.equalTo(150);
+//            make.top.equalTo(self.view).offset(250);
+//        }];
+//        [bars addObject:barView];
+//        UILabel *label = [[UILabel alloc] init];
+//        label.text = [NSString stringWithFormat:@"%@", @(i + 1)];
+//        [self.view addSubview:label];
+//        label.textAlignment = NSTextAlignmentCenter;
+//        label.font = [UIFont systemFontOfSize:10];
+//        [label makeConstraints:^(MASConstraintMaker *make) {
+//            make.top.equalTo(barView.bottom).offset(5);
+//            make.left.centerX.equalTo(barView);
+//        }];
     }
-    SDMutiBarView *bar = bars[7];
-    bar.currentColor = [UIColor purpleColor];
-    UILabel *label = [[UILabel alloc] init];
-    label.text = @"10.5%";
-    label.textColor = [UIColor purpleColor];
-    label.textAlignment = NSTextAlignmentCenter;
-    label.font = [UIFont systemFontOfSize:14.0];
-    [self.view addSubview:label];
-    [label makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.equalTo(bar.bottom).offset(-135);
-        make.centerX.equalTo(bar);
-    }];
+//    SDMutiBarView *bar = bars[7];
+//    bar.currentColor = [UIColor purpleColor];
+//    UILabel *label = [[UILabel alloc] init];
+//    label.text = @"10.5%";
+//    label.textColor = [UIColor purpleColor];
+//    label.textAlignment = NSTextAlignmentCenter;
+//    label.font = [UIFont systemFontOfSize:14.0];
+//    [self.view addSubview:label];
+//    [label makeConstraints:^(MASConstraintMaker *make) {
+//        make.bottom.equalTo(bar.bottom).offset(-135);
+//        make.centerX.equalTo(bar);
+//    }];
     
     
 //    barView.progressTintColor = [UIColor colorWithHexString:@"#FC712E"];
 //    barView.progress = 0.3;
 //    barView.backgroundColor = [UIColor colorWithHexString:@"#F5F5F5"];
     
-    
-    SDCiraleLoadingView *loadingView = [SDCiraleLoadingView ciraleView:@"正在加载..."];
-    [self.view addSubview:loadingView];
-    [loadingView startAnimation];
+//    SDCiraleLoadingView *loadingView = [SDCiraleLoadingView ciraleView:@"正在加载..."];
+//    [self.view addSubview:loadingView];
+//    [loadingView startAnimation];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    [self testDemo1];
+}
+
+- (void)testDemo1
+{
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        NSLog(@"线程开始");
+        //获取到当前线程
+        self.thread = [NSThread currentThread];
+        
+        NSRunLoop *runloop = [NSRunLoop currentRunLoop];
+        //添加一个Port，同理为了防止runloop没事干直接退出
+        [runloop addPort:[NSMachPort port] forMode:NSDefaultRunLoopMode];
+        
+        //运行一个runloop，[NSDate distantFuture]：很久很久以后才让它失效
+        [runloop runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];
+        
+        NSLog(@"线程结束");
+        
+    });
     
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        //在我们开启的异步线程调用方法
+        [self performSelector:@selector(recieveMsg) onThread:self.thread withObject:nil waitUntilDone:NO];
+    });
+}
+
+- (void)recieveMsg
+{
+    NSLog(@"收到消息了，在这个线程：%@",[NSThread currentThread]);
+    
+    /*
+     imageUrl
+     imageUrl hash
+     if 存在
+     取出image
+     else 
+     网络请求
+     请求结果
+     成功 存储image 并和imageUrl hash关联
+     
+     */
 }
 
 - (void)viewWillDisappear:(BOOL)animated

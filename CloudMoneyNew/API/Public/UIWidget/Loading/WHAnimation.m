@@ -79,7 +79,7 @@
     shape.fillColor = [UIColor redColor].CGColor;
     CAAnimationGroup * animationGroup = [CAAnimationGroup animation];
     animationGroup.animations = @[[WHAnimation scaleAnimation1], [WHAnimation alphaAnimation]];
-    animationGroup.duration = 1.0;
+    animationGroup.duration = 1.5;
     animationGroup.autoreverses = YES;
     animationGroup.repeatCount = HUGE;
     [shape addAnimation:animationGroup forKey:@"groupAnimation"];
