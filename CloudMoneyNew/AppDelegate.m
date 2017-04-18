@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "BaseTabBarViewController.h"
 #import "BaseRequest.h"
+#import "CMpersionChild.h"
 @interface AppDelegate ()
 
 @end
@@ -26,6 +27,10 @@
     self.window.hidden = NO;
     [self.window makeKeyAndVisible];
     self.window.rootViewController = [[BaseTabBarViewController alloc] init];
+    
+    CMpersionChild *persion = [[CMpersionChild alloc] init];
+    
+    
     return YES;
 }
 

@@ -20,12 +20,16 @@
 #import "SDBarView.h"
 #import "SDMutiBarView.h"
 #import "SDCiraleLoadingView.h"
-@interface HomeViewController ()
+#import "CMPersion.h"
+#import "KLWaveView.h"
+@interface HomeViewController ()<UIScrollViewDelegate>
 @property (nonatomic, strong) ChangeValueLabel * ValueLabel;
 /**<#Description#>*/
 @property (nonatomic, strong) CMCircleProgressView * circleProgressView;
 /**<#Description#>*/
 @property (nonatomic, strong) NSThread *thread;
+/**<#Description#>*/
+@property (nonatomic, strong) UIScrollView *scrollView;
 @end
 
 @implementation HomeViewController
@@ -131,6 +135,9 @@
     _circleProgressView.progressTintColor = [UIColor colorWithHexString:@"#FC712E"];
     _circleProgressView.state = @"抢购中";
 //    [self.view addSubview:_circleProgressView];
+    
+    KLWaveView *wave = [[KLWaveView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 100)];
+    [self.view addSubview:wave];
     
 }
 
