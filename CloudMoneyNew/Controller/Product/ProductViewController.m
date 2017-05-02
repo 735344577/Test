@@ -7,7 +7,7 @@
 //
 
 #import "ProductViewController.h"
-
+#import "KLMosaicImage.h"
 @interface ProductViewController ()<UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate>
 @property (nonatomic, strong) UITableView * tableView;
 @property (nonatomic, strong) UIImageView *topImageView;
@@ -112,8 +112,10 @@
 -(UIImageView *)topImageView{
     if (_topImageView == nil) {
         _topImageView = [[UIImageView alloc] init];
-        _topImageView.image = [UIImage imageNamed:@"005.jpg"];
+//        _topImageView.image = [UIImage imageNamed:@"005.jpg"];
         _topImageView.contentMode = UIViewContentModeScaleAspectFill;
+        UIImage *image = [UIImage imageNamed:@"3.jpg"];
+        _topImageView.image = [KLMosaicImage filterImageMosaic:image/*transToMosaicImage:image blockLevel:6*/];
     }
     return _topImageView;
 }
