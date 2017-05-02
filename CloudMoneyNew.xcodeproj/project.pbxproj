@@ -37,8 +37,6 @@
 		065AD6E41D4AE2F600B5A8F2 /* KLAttStrView.m in Sources */ = {isa = PBXBuildFile; fileRef = 065AD6E31D4AE2F600B5A8F2 /* KLAttStrView.m */; };
 		065B44BE1C0BFB4B003042A4 /* CMCircleProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 065B44AF1C0BFB4B003042A4 /* CMCircleProgressView.m */; };
 		065B44BF1C0BFB4B003042A4 /* CMLineProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 065B44B11C0BFB4B003042A4 /* CMLineProgressView.m */; };
-		065B44C01C0BFB4B003042A4 /* IMY_NJKWebViewProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = 065B44B51C0BFB4B003042A4 /* IMY_NJKWebViewProgress.m */; };
-		065B44C11C0BFB4B003042A4 /* CMWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 065B44B71C0BFB4B003042A4 /* CMWebView.m */; };
 		065B44C31C0BFB4B003042A4 /* CMPlaceHolderTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 065B44BD1C0BFB4B003042A4 /* CMPlaceHolderTextView.m */; };
 		065B44C61C0BFBA7003042A4 /* NSObject+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 065B44C51C0BFBA7003042A4 /* NSObject+Category.m */; };
 		065B44CB1C0BFBC1003042A4 /* AppDelegate+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 065B44C81C0BFBC1003042A4 /* AppDelegate+Category.m */; };
@@ -60,8 +58,11 @@
 		0678DFDF1E70DF8E0063EEA9 /* SDCiraleLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0678DFDE1E70DF8E0063EEA9 /* SDCiraleLoadingView.m */; };
 		067965281CFE83130055EAD2 /* Status.m in Sources */ = {isa = PBXBuildFile; fileRef = 067965271CFE83130055EAD2 /* Status.m */; };
 		0679652A1CFEAF3F0055EAD2 /* Event.plist in Resources */ = {isa = PBXBuildFile; fileRef = 067965291CFEAF3F0055EAD2 /* Event.plist */; };
+		067D294D1E978B9F006EF17C /* CMPersion.m in Sources */ = {isa = PBXBuildFile; fileRef = 067D294C1E978B9F006EF17C /* CMPersion.m */; };
+		067D29501E978BBB006EF17C /* CMpersionChild.m in Sources */ = {isa = PBXBuildFile; fileRef = 067D294F1E978BBB006EF17C /* CMpersionChild.m */; };
 		067FB8571CAA127300C05D87 /* UIViewController+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 067FB8561CAA127300C05D87 /* UIViewController+Category.m */; };
 		06821E731D41C34800B2CF47 /* CMIPAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = 06821E721D41C34800B2CF47 /* CMIPAddress.m */; };
+		068B04D11EA5A38300B6AD08 /* KLWaveView.m in Sources */ = {isa = PBXBuildFile; fileRef = 068B04D01EA5A38300B6AD08 /* KLWaveView.m */; };
 		0697F5FD1D4B5AE8004F210F /* ChangeValueLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0697F5FC1D4B5AE8004F210F /* ChangeValueLabel.m */; };
 		06A296EA1E603D4D00251CC6 /* SDBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 06A296E91E603D4D00251CC6 /* SDBarView.m */; };
 		06AEDF0D1D41EBA000EBCF3F /* KLDataBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 06AEDF0C1D41EBA000EBCF3F /* KLDataBase.m */; };
@@ -245,10 +246,6 @@
 		065B44AF1C0BFB4B003042A4 /* CMCircleProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMCircleProgressView.m; sourceTree = "<group>"; };
 		065B44B01C0BFB4B003042A4 /* CMLineProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMLineProgressView.h; sourceTree = "<group>"; };
 		065B44B11C0BFB4B003042A4 /* CMLineProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMLineProgressView.m; sourceTree = "<group>"; };
-		065B44B41C0BFB4B003042A4 /* IMY_NJKWebViewProgress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMY_NJKWebViewProgress.h; sourceTree = "<group>"; };
-		065B44B51C0BFB4B003042A4 /* IMY_NJKWebViewProgress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMY_NJKWebViewProgress.m; sourceTree = "<group>"; };
-		065B44B61C0BFB4B003042A4 /* CMWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMWebView.h; sourceTree = "<group>"; };
-		065B44B71C0BFB4B003042A4 /* CMWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMWebView.m; sourceTree = "<group>"; };
 		065B44BC1C0BFB4B003042A4 /* CMPlaceHolderTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMPlaceHolderTextView.h; sourceTree = "<group>"; };
 		065B44BD1C0BFB4B003042A4 /* CMPlaceHolderTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMPlaceHolderTextView.m; sourceTree = "<group>"; };
 		065B44C41C0BFBA7003042A4 /* NSObject+Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Category.h"; sourceTree = "<group>"; };
@@ -289,10 +286,16 @@
 		067965261CFE83130055EAD2 /* Status.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Status.h; sourceTree = "<group>"; };
 		067965271CFE83130055EAD2 /* Status.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Status.m; sourceTree = "<group>"; };
 		067965291CFEAF3F0055EAD2 /* Event.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Event.plist; sourceTree = "<group>"; };
+		067D294B1E978B9F006EF17C /* CMPersion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMPersion.h; sourceTree = "<group>"; };
+		067D294C1E978B9F006EF17C /* CMPersion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMPersion.m; sourceTree = "<group>"; };
+		067D294E1E978BBB006EF17C /* CMpersionChild.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMpersionChild.h; sourceTree = "<group>"; };
+		067D294F1E978BBB006EF17C /* CMpersionChild.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMpersionChild.m; sourceTree = "<group>"; };
 		067FB8551CAA127300C05D87 /* UIViewController+Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Category.h"; sourceTree = "<group>"; };
 		067FB8561CAA127300C05D87 /* UIViewController+Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Category.m"; sourceTree = "<group>"; };
 		06821E711D41C34800B2CF47 /* CMIPAddress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMIPAddress.h; sourceTree = "<group>"; };
 		06821E721D41C34800B2CF47 /* CMIPAddress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMIPAddress.m; sourceTree = "<group>"; };
+		068B04CF1EA5A38300B6AD08 /* KLWaveView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KLWaveView.h; sourceTree = "<group>"; };
+		068B04D01EA5A38300B6AD08 /* KLWaveView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KLWaveView.m; sourceTree = "<group>"; };
 		0697F5FB1D4B5AE8004F210F /* ChangeValueLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeValueLabel.h; sourceTree = "<group>"; };
 		0697F5FC1D4B5AE8004F210F /* ChangeValueLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeValueLabel.m; sourceTree = "<group>"; };
 		06A296E81E603D4D00251CC6 /* SDBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDBarView.h; sourceTree = "<group>"; };
@@ -678,6 +681,7 @@
 		065B44AC1C0BFB4B003042A4 /* UIWidget */ = {
 			isa = PBXGroup;
 			children = (
+				068B04CE1EA5A36700B6AD08 /* KLWaveView */,
 				065EDE641DB0AAA400E3C8F5 /* KLPieView */,
 				067550131D6C4CA9004F3132 /* KLTableView */,
 				0675E1901D6401240009C5D0 /* KLendlessLoop */,
@@ -686,8 +690,6 @@
 				066E37431CFFC85D00BE97BB /* KLPopView */,
 				0663579D1C1A5B3A0075F52B /* Loading */,
 				065B44AD1C0BFB4B003042A4 /* CMProgressView */,
-				065B44B21C0BFB4B003042A4 /* CMTableView */,
-				065B44B31C0BFB4B003042A4 /* CMWebView */,
 				065B44BB1C0BFB4B003042A4 /* PlaceHolderTextView */,
 			);
 			path = UIWidget;
@@ -706,24 +708,6 @@
 				B285B73A1E72FC79008FF4D8 /* SDMutiBarView.m */,
 			);
 			path = CMProgressView;
-			sourceTree = "<group>";
-		};
-		065B44B21C0BFB4B003042A4 /* CMTableView */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = CMTableView;
-			sourceTree = "<group>";
-		};
-		065B44B31C0BFB4B003042A4 /* CMWebView */ = {
-			isa = PBXGroup;
-			children = (
-				065B44B41C0BFB4B003042A4 /* IMY_NJKWebViewProgress.h */,
-				065B44B51C0BFB4B003042A4 /* IMY_NJKWebViewProgress.m */,
-				065B44B61C0BFB4B003042A4 /* CMWebView.h */,
-				065B44B71C0BFB4B003042A4 /* CMWebView.m */,
-			);
-			path = CMWebView;
 			sourceTree = "<group>";
 		};
 		065B44BB1C0BFB4B003042A4 /* PlaceHolderTextView */ = {
@@ -845,6 +829,15 @@
 				B2BF4C271EB8CF1B004F4920 /* KLMosaicImage.m */,
 			);
 			path = Common;
+			sourceTree = "<group>";
+		};
+		068B04CE1EA5A36700B6AD08 /* KLWaveView */ = {
+			isa = PBXGroup;
+			children = (
+				068B04CF1EA5A38300B6AD08 /* KLWaveView.h */,
+				068B04D01EA5A38300B6AD08 /* KLWaveView.m */,
+			);
+			path = KLWaveView;
 			sourceTree = "<group>";
 		};
 		0697F5FA1D4B583B004F210F /* ChangeValueLabel */ = {
@@ -1363,6 +1356,10 @@
 				4A12F3A41BAFCF02008D4FE0 /* BaseAppDelegate.m */,
 				4A12F36C1BAFB306008D4FE0 /* AppDelegate.h */,
 				4A12F36D1BAFB306008D4FE0 /* AppDelegate.m */,
+				067D294B1E978B9F006EF17C /* CMPersion.h */,
+				067D294C1E978B9F006EF17C /* CMPersion.m */,
+				067D294E1E978BBB006EF17C /* CMpersionChild.h */,
+				067D294F1E978BBB006EF17C /* CMpersionChild.m */,
 				06E6674F1BB234BA00B5A80E /* API */,
 				4A12F39D1BAFB353008D4FE0 /* Controller */,
 				4A12F39E1BAFB353008D4FE0 /* Models */,
@@ -1646,6 +1643,7 @@
 				067965281CFE83130055EAD2 /* Status.m in Sources */,
 				0626B3851BB0E57300E979C3 /* ProductViewController.m in Sources */,
 				06E1A58D1C1FEE4300479C07 /* UIControl+Category.m in Sources */,
+				067D29501E978BBB006EF17C /* CMpersionChild.m in Sources */,
 				06E6686E1BB234BA00B5A80E /* NSString+MJExtension.m in Sources */,
 				4A12F36E1BAFB306008D4FE0 /* AppDelegate.m in Sources */,
 				067550161D6C4CC5004F3132 /* KLTwoTableView.m in Sources */,
@@ -1708,11 +1706,12 @@
 				06F09D281BB5148D00E8B960 /* SecurityUtil.m in Sources */,
 				066357A31C1A5BA70075F52B /* ArcToCircleLayer.m in Sources */,
 				06E6687B1BB234BA00B5A80E /* MJRefreshNormalHeader.m in Sources */,
+				067D294D1E978B9F006EF17C /* CMPersion.m in Sources */,
 				0626B3901BB12BDB00E979C3 /* ForgetPasswordViewController.m in Sources */,
 				06E6687A1BB234BA00B5A80E /* MJRefreshGifHeader.m in Sources */,
 				06E668331BB234BA00B5A80E /* UIColor+Category.m in Sources */,
+				068B04D11EA5A38300B6AD08 /* KLWaveView.m in Sources */,
 				4A12F3A51BAFCF02008D4FE0 /* BaseAppDelegate.m in Sources */,
-				065B44C01C0BFB4B003042A4 /* IMY_NJKWebViewProgress.m in Sources */,
 				06E668781BB234BA00B5A80E /* MJRefreshBackNormalFooter.m in Sources */,
 				0697F5FD1D4B5AE8004F210F /* ChangeValueLabel.m in Sources */,
 				06E668311BB234BA00B5A80E /* NSTimer+Category.m in Sources */,
@@ -1723,7 +1722,6 @@
 				0668E0B91C0E85F400FA2669 /* UIScrollView+Category.m in Sources */,
 				06E668561BB234BA00B5A80E /* IQBarButtonItem.m in Sources */,
 				06E6684D1BB234BA00B5A80E /* IQNSArray+Sort.m in Sources */,
-				065B44C11C0BFB4B003042A4 /* CMWebView.m in Sources */,
 				065B44C31C0BFB4B003042A4 /* CMPlaceHolderTextView.m in Sources */,
 				06E6687F1BB234BA00B5A80E /* UIScrollView+MJExtension.m in Sources */,
 				06E668731BB234BA00B5A80E /* MJRefreshHeader.m in Sources */,
