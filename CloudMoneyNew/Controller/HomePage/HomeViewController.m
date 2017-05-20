@@ -22,6 +22,7 @@
 #import "SDCiraleLoadingView.h"
 #import "CMPersion.h"
 #import "KLWaveView.h"
+#import "KLSannerView.h"
 @interface HomeViewController ()<UIScrollViewDelegate>
 @property (nonatomic, strong) ChangeValueLabel * ValueLabel;
 /**<#Description#>*/
@@ -47,6 +48,16 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    KLSannerView *sannerView = [[KLSannerView alloc] init];
+    [self.view addSubview:sannerView];
+    sannerView.backgroundColor = [UIColor colorWithHexString:@"#E3E3E3"];
+    [sannerView makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.equalTo(self.view);
+        make.top.equalTo(self.view).offset(200);
+        make.height.equalTo(100);
+    }];
+    sannerView.dataSource = @[@"", @"", @"", @"", @"", @"", @"", @"", @"", @"", @"", @""];
     
     NSMutableArray * arr = [NSMutableArray arrayWithCapacity:3];
     [arr addObject:[WHAnimation replicatorLayer_Circle]];

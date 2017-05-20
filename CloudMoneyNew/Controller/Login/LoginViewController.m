@@ -13,7 +13,6 @@
 #import "ForgetPasswordViewController.h"
 #import "RegisterViewController.h"
 #import "Masonry.h"
-
 #define WS(weakSelf)  __weak __typeof(&*self)weakSelf = self
 @interface LoginViewController ()
 {
@@ -201,6 +200,11 @@
     RegisterViewController * registerVC = [[RegisterViewController alloc] init];
     [self.navVC pushViewController:registerVC animated:YES];
     
+}
+
+- (void)dealloc
+{
+    DLog(@"%@ dealloc", [self class]);
 }
 
 /*
