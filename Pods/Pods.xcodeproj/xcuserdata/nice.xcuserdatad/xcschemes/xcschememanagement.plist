@@ -9,6 +9,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Aspects.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>FMDB.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -37,7 +42,7 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>7B23965AAC0C4146FD996DF64C348991</key>
+		<key>049B0B0FFEA5ED61438A4F5F1B65EBD7</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -62,7 +67,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>EA0FEAE85EC0E0946035030E1C21948F</key>
+		<key>C44E55A8F0D4F4EBF7CEBE7E90F33F4C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C7C5FD310966070D9553E5B95C59641B</key>
 		<dict>
 			<key>primary</key>
 			<true/>

@@ -20,4 +20,7 @@
 @property (nonatomic, copy) NSString *sex;
 /**<#Description#>*/
 @property (nonatomic, copy) NSString *source;
+
+- (void)test;
+
 @end

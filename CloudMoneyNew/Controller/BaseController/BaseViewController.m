@@ -54,6 +54,10 @@
     self.view.backgroundColor = [UIColor whiteColor];
     [self configuration];
     
+    [UIViewController aspect_hookSelector:@selector(viewWillAppear:) withOptions:AspectPositionAfter usingBlock:^ {
+        DLog(@"aspect class = %@", [self class]);
+    } error:NULL];
+    
     // Do any additional setup after loading the view.
 }
 

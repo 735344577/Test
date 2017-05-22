@@ -23,6 +23,8 @@
 #import "CMPersion.h"
 #import "KLWaveView.h"
 #import "KLSannerView.h"
+#import "KLCalculateMonthOfDays.h"
+#import <objc/runtime.h>
 @interface HomeViewController ()<UIScrollViewDelegate>
 @property (nonatomic, strong) ChangeValueLabel * ValueLabel;
 /**<#Description#>*/
@@ -59,6 +61,9 @@
     }];
     sannerView.dataSource = @[@"", @"", @"", @"", @"", @"", @"", @"", @"", @"", @"", @""];
     
+//    KLCalculateMonthOfDays *dayObjc = [[KLCalculateMonthOfDays alloc] init];
+//    NSArray *arrDays = [dayObjc calculateDaysWithCount:48];
+//    NSLog(@"arrDays = %@", arrDays);
     NSMutableArray * arr = [NSMutableArray arrayWithCapacity:3];
     [arr addObject:[WHAnimation replicatorLayer_Circle]];
     [arr addObject:[WHAnimation replicatorLayer_Wave]];
@@ -151,6 +156,36 @@
     [self.view addSubview:wave];
 //    [self groupAsyncSerialTest];
 //    [self groupAsyncConcurrentTest];
+    
+    NSArray *fonts = @[@"PingFangSC-Light", @"PingFangSC-Medium", @"PingFangSC-Regular", @"PingFangSC-Semibold", @"PingFangSC-Thin", @"PingFangSC-UltraLight"];
+    NSMutableArray *labels = @[].mutableCopy;
+    UILabel *lastLabel;
+    for (NSInteger i = 0; i < fonts.count; i++) {
+        UILabel *label = [[UILabel alloc] init];
+        label.text = @"1234 苹方体";
+        UIFont *font = [UIFont fontWithName:fonts[i] size:14.0];
+        if (!font) {
+            font = [UIFont systemFontOfSize:14.0];
+        }
+        label.textAlignment = NSTextAlignmentCenter;
+        label.font = font;
+        [self.view addSubview:label];
+        if (lastLabel) {
+            [label makeConstraints:^(MASConstraintMaker *make) {
+                make.width.equalTo(200);
+                make.centerX.equalTo(self.view);
+                make.top.equalTo(lastLabel.bottom).offset(10);
+            }];
+        } else {
+            [label makeConstraints:^(MASConstraintMaker *make) {
+                make.width.equalTo(200);
+                make.centerX.equalTo(self.view);
+                make.top.equalTo(self.view).offset(200);
+            }];
+        }
+        lastLabel = label;
+    }
+    
 }
 
 //算法
@@ -330,6 +365,7 @@ void binaryInsertSort(int a[]) {
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    DLog(@"class = %@", [self class]);
     self.title = @"云钱袋";
     self.tabBarItem.title = @"首页";
     [self loginButton];
@@ -420,6 +456,9 @@ void binaryInsertSort(int a[]) {
 //    SDCiraleLoadingView *loadingView = [SDCiraleLoadingView ciraleView:@"正在加载..."];
 //    [self.view addSubview:loadingView];
 //    [loadingView startAnimation];
+    
+    
+    
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -467,6 +506,26 @@ void binaryInsertSort(int a[]) {
      成功 存储image 并和imageUrl hash关联
      
      */
+    
+    /*
+     UIImageView 控件
+     imageManager
+     
+     内存中查找 ---> 有  回调
+     
+     无
+     
+     磁盘中查找 ---> 有 放到内存中  ----> 回调
+     
+     无 
+     
+     下载
+     
+     放到内存 磁盘中 回调
+     
+     */
+    
+    
 }
 
 - (void)viewWillDisappear:(BOOL)animated

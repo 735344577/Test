@@ -23,4 +23,8 @@
     _lastName = @"炎黄";
 }
 
+- (void)test {
+    
+}
+
 @end

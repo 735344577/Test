@@ -62,7 +62,10 @@
 		067D29501E978BBB006EF17C /* CMpersionChild.m in Sources */ = {isa = PBXBuildFile; fileRef = 067D294F1E978BBB006EF17C /* CMpersionChild.m */; };
 		067FB8571CAA127300C05D87 /* UIViewController+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 067FB8561CAA127300C05D87 /* UIViewController+Category.m */; };
 		06821E731D41C34800B2CF47 /* CMIPAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = 06821E721D41C34800B2CF47 /* CMIPAddress.m */; };
+		06871F451EC45B8E005CB3B2 /* KLCalculateMonthOfDays.m in Sources */ = {isa = PBXBuildFile; fileRef = 06871F441EC45B8E005CB3B2 /* KLCalculateMonthOfDays.m */; };
 		068B04D11EA5A38300B6AD08 /* KLWaveView.m in Sources */ = {isa = PBXBuildFile; fileRef = 068B04D01EA5A38300B6AD08 /* KLWaveView.m */; };
+		0693F84C1ECEC7F500A7A20B /* KLGalleryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0693F84B1ECEC7F500A7A20B /* KLGalleryView.m */; };
+		0693F84F1ECECA4000A7A20B /* KLLineLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 0693F84E1ECECA4000A7A20B /* KLLineLayout.m */; };
 		0697F5FD1D4B5AE8004F210F /* ChangeValueLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0697F5FC1D4B5AE8004F210F /* ChangeValueLabel.m */; };
 		06A296EA1E603D4D00251CC6 /* SDBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 06A296E91E603D4D00251CC6 /* SDBarView.m */; };
 		06AEDF0D1D41EBA000EBCF3F /* KLDataBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 06AEDF0C1D41EBA000EBCF3F /* KLDataBase.m */; };
@@ -296,8 +299,14 @@
 		067FB8561CAA127300C05D87 /* UIViewController+Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Category.m"; sourceTree = "<group>"; };
 		06821E711D41C34800B2CF47 /* CMIPAddress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMIPAddress.h; sourceTree = "<group>"; };
 		06821E721D41C34800B2CF47 /* CMIPAddress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMIPAddress.m; sourceTree = "<group>"; };
+		06871F431EC45B8E005CB3B2 /* KLCalculateMonthOfDays.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KLCalculateMonthOfDays.h; sourceTree = "<group>"; };
+		06871F441EC45B8E005CB3B2 /* KLCalculateMonthOfDays.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KLCalculateMonthOfDays.m; sourceTree = "<group>"; };
 		068B04CF1EA5A38300B6AD08 /* KLWaveView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KLWaveView.h; sourceTree = "<group>"; };
 		068B04D01EA5A38300B6AD08 /* KLWaveView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KLWaveView.m; sourceTree = "<group>"; };
+		0693F84A1ECEC7F500A7A20B /* KLGalleryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KLGalleryView.h; sourceTree = "<group>"; };
+		0693F84B1ECEC7F500A7A20B /* KLGalleryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KLGalleryView.m; sourceTree = "<group>"; };
+		0693F84D1ECECA4000A7A20B /* KLLineLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KLLineLayout.h; sourceTree = "<group>"; };
+		0693F84E1ECECA4000A7A20B /* KLLineLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KLLineLayout.m; sourceTree = "<group>"; };
 		0697F5FB1D4B5AE8004F210F /* ChangeValueLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeValueLabel.h; sourceTree = "<group>"; };
 		0697F5FC1D4B5AE8004F210F /* ChangeValueLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeValueLabel.m; sourceTree = "<group>"; };
 		06A296E81E603D4D00251CC6 /* SDBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDBarView.h; sourceTree = "<group>"; };
@@ -687,6 +696,7 @@
 		065B44AC1C0BFB4B003042A4 /* UIWidget */ = {
 			isa = PBXGroup;
 			children = (
+				0693F8491ECEC7BF00A7A20B /* KLGallery */,
 				068B04CE1EA5A36700B6AD08 /* KLWaveView */,
 				065EDE641DB0AAA400E3C8F5 /* KLPieView */,
 				067550131D6C4CA9004F3132 /* KLTableView */,
@@ -833,6 +843,8 @@
 				06AEDF0C1D41EBA000EBCF3F /* KLDataBase.m */,
 				B2BF4C261EB8CF1B004F4920 /* KLMosaicImage.h */,
 				B2BF4C271EB8CF1B004F4920 /* KLMosaicImage.m */,
+				06871F431EC45B8E005CB3B2 /* KLCalculateMonthOfDays.h */,
+				06871F441EC45B8E005CB3B2 /* KLCalculateMonthOfDays.m */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -848,6 +860,17 @@
 				068B04D01EA5A38300B6AD08 /* KLWaveView.m */,
 			);
 			path = KLWaveView;
+			sourceTree = "<group>";
+		};
+		0693F8491ECEC7BF00A7A20B /* KLGallery */ = {
+			isa = PBXGroup;
+			children = (
+				0693F84A1ECEC7F500A7A20B /* KLGalleryView.h */,
+				0693F84B1ECEC7F500A7A20B /* KLGalleryView.m */,
+				0693F84D1ECECA4000A7A20B /* KLLineLayout.h */,
+				0693F84E1ECECA4000A7A20B /* KLLineLayout.m */,
+			);
+			path = KLGallery;
 			sourceTree = "<group>";
 		};
 		0697F5FA1D4B583B004F210F /* ChangeValueLabel */ = {
@@ -1685,6 +1708,7 @@
 				06E668581BB234BA00B5A80E /* IQToolbar.m in Sources */,
 				06E668361BB234BA00B5A80E /* UILabel+Category.m in Sources */,
 				06F09D271BB5148D00E8B960 /* NSString+MD5.m in Sources */,
+				06871F451EC45B8E005CB3B2 /* KLCalculateMonthOfDays.m in Sources */,
 				06E6686A1BB234BA00B5A80E /* NSObject+MJClass.m in Sources */,
 				06FDBAD41BB90C5800866A2C /* MBProgressHUD.m in Sources */,
 				06E668681BB234BA00B5A80E /* MJPropertyKey.m in Sources */,
@@ -1701,6 +1725,7 @@
 				0678DFDF1E70DF8E0063EEA9 /* SDCiraleLoadingView.m in Sources */,
 				06E6682B1BB234BA00B5A80E /* NSCalendar+Category.m in Sources */,
 				06E668701BB234BA00B5A80E /* MJRefreshBackFooter.m in Sources */,
+				0693F84C1ECEC7F500A7A20B /* KLGalleryView.m in Sources */,
 				06E668341BB234BA00B5A80E /* UIImage+Category.m in Sources */,
 				06E6684E1BB234BA00B5A80E /* IQUITextFieldView+Additions.m in Sources */,
 				06F09D211BB5148D00E8B960 /* AESCrypt.m in Sources */,
@@ -1768,6 +1793,7 @@
 				0626B3941BB12E0000E979C3 /* CMUserInfo.m in Sources */,
 				065B44CC1C0BFBC1003042A4 /* UITableView+Category.m in Sources */,
 				06E668671BB234BA00B5A80E /* MJProperty.m in Sources */,
+				0693F84F1ECECA4000A7A20B /* KLLineLayout.m in Sources */,
 				06E668381BB234BA00B5A80E /* UITabBarItem+Category.m in Sources */,
 				B2BF4C281EB8CF1B004F4920 /* KLMosaicImage.m in Sources */,
 			);

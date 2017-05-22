@@ -16,7 +16,7 @@
 #import "ThirdParty.h"
 #import "UIKit+Category.h"
 #import "Foundation+Category.h"
-
+#import <Aspects/Aspects.h>
 //define this constant if you want to use Masonry without the 'mas_' prefix
 //不再需要写 mas_ 前缀，可以直接使用 控件.right .lift等属性
 #define MAS_SHORTHAND

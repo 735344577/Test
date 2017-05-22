@@ -9,5 +9,5 @@
 #import "CMPersion.h"
 
 @interface CMpersionChild : CMPersion
-
+- (void)test;
 @end

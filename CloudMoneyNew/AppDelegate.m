@@ -28,6 +28,9 @@
     [self.window makeKeyAndVisible];
     self.window.rootViewController = [[BaseTabBarViewController alloc] init];
     
+    CMpersionChild *child = [[CMpersionChild alloc] init];
+    [child test];
+    
     return YES;
 }
 
